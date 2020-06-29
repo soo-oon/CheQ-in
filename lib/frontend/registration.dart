@@ -1,6 +1,6 @@
-import 'personalData.dart';
+import '../frontend/personalData.dart';
 import 'package:flutter/material.dart';
-import 'checkInMain.dart';
+import '../frontend/checkInMain.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterForm extends StatefulWidget {

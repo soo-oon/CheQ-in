@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:firebase_database/firebase_database.dart';
-import 'personalData.dart';
+import '../frontend/personalData.dart';
 //import 'package:flutter_firebase_auth/user.dart';
 
 class FireBaseHelper{
@@ -44,22 +44,29 @@ class FireBaseHelper{
 
   addToFDB(Map map, String dbChild) async {
 
-    _visitorsRef = FirebaseDatabase.instance.reference().child(dbChild);
+    switch (dbChild){
 
-    await _visitorsRef
-        .orderByChild("key")
-        .startAt(map["key"]).endAt(map["key"])
-        .once()
-        .then((DataSnapshot snapshot){
-      if(snapshot.value == null){
-        _visitorsRef.push().set(map).then((_) {
-          print('Transaction  committed.');
+      case "visitors":{
+        _visitorsRef = FirebaseDatabase.instance.reference().child(dbChild);
+
+        await _visitorsRef
+            .orderByChild("key")
+            .startAt(map["key"]).endAt(map["key"])
+            .once()
+            .then((DataSnapshot snapshot){
+          if(snapshot.value == null){
+            _visitorsRef.push().set(map).then((_) {
+              print('Transaction  committed.');
+            });
+          } else {
+            Map<dynamic, dynamic> value = snapshot.value;
+            value.forEach((k, v){print(v["name"]);});
+          }
         });
-      } else {
-        Map<dynamic, dynamic> value = snapshot.value;
-        value.forEach((k, v){print(v["name"]);});
+
       }
-    });
+    }
+
 
 
     /*final TransactionResult transactionResult =

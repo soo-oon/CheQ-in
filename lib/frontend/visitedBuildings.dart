@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'const.dart';
+import '../util/const.dart';
 import 'package:qrscan/qrscan.dart'as scanner;
 
 class VisitedBuildingPage extends StatefulWidget{

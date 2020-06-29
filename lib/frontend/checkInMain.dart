@@ -3,10 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:qrscan/qrscan.dart' as scanner;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'const.dart';
-import 'fireBaseHelper.dart';
-import 'registration.dart';
-import 'visitedBuildings.dart';
+import '../util/const.dart';
+import '../util/fireBaseHelper.dart';
+import '../frontend/registration.dart';
+import '../frontend/visitedBuildings.dart';
 
 Future<void> main() async {
 
