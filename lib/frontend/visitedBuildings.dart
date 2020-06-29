@@ -49,10 +49,10 @@ class Buildings{
 
   Buildings(){
     buildingNames
-      ..add("Buidling1")
-      ..add("Buidling2")
-      ..add("Buidling3")
-      ..add("Buidling4")
+      ..add("Building1")
+      ..add("Building2")
+      ..add("Building3")
+      ..add("Building4")
     ;
   }
 

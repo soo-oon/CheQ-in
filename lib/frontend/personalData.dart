@@ -98,6 +98,7 @@ class PersonalData {
     });
   }
 
+
   getPersonalData() {
 
     isRegistered = getFromSharedPref("isRegistered");
