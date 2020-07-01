@@ -1,6 +1,6 @@
-import 'package:checkin/backend/ui/view/push_view.dart';
-import 'package:checkin/backend/ui/view/suggestion_view.dart';
-import 'package:checkin/backend/ui/view/visitor_view.dart';
+import 'package:checkin/ui/view/push_view.dart';
+import 'package:checkin/ui/view/suggestion_view.dart';
+import 'package:checkin/ui/view/visitor_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
