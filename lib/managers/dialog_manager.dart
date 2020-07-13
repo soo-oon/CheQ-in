@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:checkin/locator.dart';
-import 'package:checkin/backend/models/dialog.dart';
+import 'package:checkin/models/dialog.dart';
 import 'package:checkin/services/dialog_service.dart';
 
 class DialogManager extends StatefulWidget {
@@ -32,7 +32,7 @@ class _DialogManagerState extends State<DialogManager> {
               title: Text(request.title),
               content: Text(request.description),
               actions: <Widget>[
-                if(isConfirmationDialog)
+                if (isConfirmationDialog)
                   FlatButton(
                     child: Text(request.cancelTitle),
                     onPressed: () {

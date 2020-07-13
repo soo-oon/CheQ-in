@@ -1,9 +1,8 @@
 import 'package:checkin/locator.dart';
-import 'package:checkin/backend/models/user.dart';
+import 'package:checkin/models/user.dart';
 import 'package:checkin/services/firestore_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 
 class AuthenticationService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -58,9 +57,8 @@ class AuthenticationService {
 
   Future<bool> isUserLoggedIn() async {
     var user = await _firebaseAuth.currentUser();
-    if(user != null)
-      await _populateCurrentUser(user);
-    
+    if (user != null) await _populateCurrentUser(user);
+
     return user != null;
   }
 
@@ -75,7 +73,7 @@ class AuthenticationService {
       var result = await _firebaseAuth.signOut();
 
       return result;
-    } catch(e) {
+    } catch (e) {
       return e.message;
     }
   }

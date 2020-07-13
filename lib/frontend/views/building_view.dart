@@ -1,4 +1,4 @@
-import 'package:checkin/viewModel/building_viewModel.dart';
+import '../viewModels/building_viewModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider_architecture/_viewmodel_provider.dart';
 
