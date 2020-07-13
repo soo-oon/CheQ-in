@@ -8,8 +8,10 @@ class InfoViewModel extends BaseModel {
   final AuthenticationService _authenticationService = locator<AuthenticationService>();
   final NavigationService _navigationService = locator<NavigationService>();
 
-  Future signOut() {
+  void signOut() {
+    setBusy(true);
     _authenticationService.signOut();
     _navigationService.navigateTo(LoginViewRoute);
+    setBusy(false);
   }
 }
