@@ -1,6 +1,6 @@
 import '../frontend/personalData.dart';
 import 'package:flutter/material.dart';
-import '../frontend/checkInMain.dart';
+import 'main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class RegisterForm extends StatefulWidget {
@@ -11,7 +11,6 @@ class RegisterForm extends StatefulWidget {
 }
 
 class _RegisterFormState extends State<RegisterForm> {
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   PersonalData _personalData = new PersonalData();
   String _radioGroupValue = 'Student';
@@ -23,12 +22,10 @@ class _RegisterFormState extends State<RegisterForm> {
       _radioGroupValue = 'Student';
       _personalData.getPersonalData();
     });
-
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.lightBlue.shade50,
       appBar: AppBar(
@@ -54,7 +51,7 @@ class _RegisterFormState extends State<RegisterForm> {
                             width: 1,
                           ),
                         ),
-                        child:  Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           mainAxisSize: MainAxisSize.max,
                           children: <Widget>[
@@ -90,8 +87,8 @@ class _RegisterFormState extends State<RegisterForm> {
     );
   }
 
-  Widget _textFieldFormWidget(String fieldText, bool last, Future<String> value){
-
+  Widget _textFieldFormWidget(
+      String fieldText, bool last, Future<String> value) {
     return FutureBuilder<String>(
         future: value,
         builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
@@ -105,7 +102,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 return Column(
                   children: <Widget>[
                     TextFormField(
-                      initialValue: value == null? "" : snapshot.data,
+                      initialValue: value == null ? "" : snapshot.data,
                       keyboardType: fieldText == "Phone"
                           ? TextInputType.phone
                           : TextInputType.text,
@@ -116,61 +113,58 @@ class _RegisterFormState extends State<RegisterForm> {
                       decoration: InputDecoration(
                         labelText: '$fieldText',
                       ),
-                      validator: (value) => _validateTextRequired(value, fieldText),
+                      validator: (value) =>
+                          _validateTextRequired(value, fieldText),
                     ),
                     const SizedBox(height: 16.0),
                   ],
                 );
               }
           }
-        }
-    );
+        });
   }
 
-  Widget _radioWithLabelWidget(String val){
+  Widget _radioWithLabelWidget(String val) {
     return Row(
       children: <Widget>[
         Radio(
           value: val,
           groupValue: _radioGroupValue,
           onChanged: (radioValue) {
-            setState(() { _radioGroupValue = radioValue;});
-            },
+            setState(() {
+              _radioGroupValue = radioValue;
+            });
+          },
         ),
         Text(val),
       ],
     );
   }
 
-  String _validateTextRequired(String value, String field)  {
-
-     if(value.isEmpty) {
-       return '$field is Required';
-     } else {
-       _saveValueToSharedPreference(field, value);
-       return null;
+  String _validateTextRequired(String value, String field) {
+    if (value.isEmpty) {
+      return '$field is Required';
+    } else {
+      _saveValueToSharedPreference(field, value);
+      return null;
     }
   }
 
   void _submit() async {
-
     final prefs = await SharedPreferences.getInstance();
 
-    if(_formKey.currentState.validate()){
-
+    if (_formKey.currentState.validate()) {
       _saveValueToSharedPreference("isRegistered", "Yes");
-      _saveValueToSharedPreference("InsideBldg","No Where");
-      _saveValueToSharedPreference("Status",_radioGroupValue);
+      _saveValueToSharedPreference("InsideBldg", "No Where");
+      _saveValueToSharedPreference("Status", _radioGroupValue);
 
-
-      Navigator.pushReplacement(context,
+      Navigator.pushReplacement(
+          context,
           MaterialPageRoute(
             fullscreenDialog: false,
             builder: (context) => CheckInHome(),
-          )
-      );
-    }
-    else
+          ));
+    } else
       prefs.setString("isRegistered", null);
     print('Form submitted');
   }
@@ -181,4 +175,3 @@ class _RegisterFormState extends State<RegisterForm> {
     print("$key---${prefs.getString(key)}");
   }
 }
-
