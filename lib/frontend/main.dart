@@ -1,3 +1,5 @@
+import 'package:checkin/ui/view/building_view.dart';
+import 'package:checkin/widget/buildingviewWidget.dart';
 import 'package:checkin/widget/cardstyle.dart';
 import 'package:checkin/widget/notificationlist.dart';
 import 'package:checkin/widget/suggestion.dart';
@@ -110,7 +112,7 @@ class _CheckInState extends State<CheckInHome> {
               ),
               Center(
                 child: Container(
-                  child: CardWidget(),
+                  child: BuildingViewWidget(),
                 ),
               ),
               Center(
