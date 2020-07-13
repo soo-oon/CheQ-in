@@ -1,8 +1,9 @@
+import 'package:checkin/constants/route_names.dart';
 import 'package:checkin/locator.dart';
 import 'package:checkin/services/authentication_service.dart';
 import 'package:checkin/services/navigation_service.dart';
 import 'package:checkin/services/pushnotification_service.dart';
-import 'package:checkin/viewModel/base_model.dart';
+import 'package:checkin/backend/viewModels/base_model.dart';
 
 class StartUpViewModel extends BaseModel {
   final AuthenticationService _authenticationService = locator<AuthenticationService>();
@@ -15,9 +16,13 @@ class StartUpViewModel extends BaseModel {
     var hasLoggedInUser = await _authenticationService.isUserLoggedIn();
 
     if(hasLoggedInUser) {
-      //_navigationService.navigateTo(routeName);
+      if(_authenticationService.currentUser.userRole == "Admin") {
+        _navigationService.navigateTo(BackEndHomeViewRoute);
+      } else {
+        _navigationService.navigateTo(FrontEndHomeViewRoute);
+      }
     } else {
-      //_navigationService.navigateTo(routeName);
+      _navigationService.navigateTo(LoginViewRoute);
     }
   }
 }

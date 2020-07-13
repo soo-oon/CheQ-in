@@ -1,4 +1,4 @@
-import 'package:checkin/viewModel/base_model.dart';
+import 'package:checkin/backend/viewModels/base_model.dart';
 
 class SuggestionViewModel extends BaseModel {
   init() {}

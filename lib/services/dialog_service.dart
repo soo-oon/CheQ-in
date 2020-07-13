@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:checkin/models/dialog.dart';
+import 'package:checkin/backend/models/dialog.dart';
 import 'package:flutter/cupertino.dart';
 
 class DialogService {

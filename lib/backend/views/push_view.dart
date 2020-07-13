@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:checkin/viewModel/push_viewModel.dart';
+import 'package:checkin/backend/viewModels/push_viewModel.dart';
 import 'package:provider_architecture/_viewmodel_provider.dart';
 
 class PushView extends StatelessWidget {

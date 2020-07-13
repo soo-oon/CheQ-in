@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:checkin/locator.dart';
-import 'package:checkin/models/dialog.dart';
+import 'package:checkin/backend/models/dialog.dart';
 import 'package:checkin/services/dialog_service.dart';
 
 class DialogManager extends StatefulWidget {
