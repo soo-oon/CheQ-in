@@ -19,17 +19,16 @@ class BuildingView extends StatelessWidget {
                 child: Column(
               children: <Widget>[
                 CategoryList(),
-                SizedBox(
-                  height: 15,
-                ),
                 ListView.builder(
                   shrinkWrap: true,
                   itemCount: model.buildings.length,
                   itemBuilder: (context, index) {
-                    return Container(
-                      color: Colors.redAccent,
-                      child: Center(child: Text('Entry ${index}')),
-                    );
+                    return NoticeSampleWidget(
+                        context,
+                        model.buildings[index].name,
+                        "is infected",
+                        Colors.redAccent,
+                        index);
                   },
                 )
               ],
@@ -79,3 +78,72 @@ class BuildingView extends StatelessWidget {
 //                 // )
 //               ],
 //             )
+
+// ignore: non_constant_identifier_names
+Widget NoticeSampleWidget(BuildContext context, String stateOfRisk,
+    String comment, Color color, int index) {
+  return Container(
+    margin: EdgeInsets.symmetric(
+      horizontal: 20.0,
+      vertical: 20.0,
+    ),
+    //color: Colors.blueAccent,
+    height: MediaQuery.of(context).size.height / 7,
+    //width: MediaQuery.of(context).size.width,
+    child: GestureDetector(
+      child: InkWell(
+        onTap: () {},
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          children: <Widget>[
+            Container(
+              height: MediaQuery.of(context).size.height / 7,
+              width: MediaQuery.of(context).size.width - 50,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(22),
+                color: color,
+              ),
+              child: Container(
+                margin: EdgeInsets.only(right: 10),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(22),
+                    color: Colors.white),
+              ),
+            ),
+            Positioned(
+              bottom: 0,
+              left: 5,
+              child: SizedBox(
+                height: 90,
+                width: MediaQuery.of(context).size.width - 100,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      child: Text(stateOfRisk),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 30, vertical: 5),
+                      decoration: BoxDecoration(
+                          color: color,
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(22),
+                              bottomRight: Radius.circular(22))),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 10),
+                      child: Text(
+                        comment,
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}

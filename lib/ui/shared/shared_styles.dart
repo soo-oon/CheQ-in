@@ -22,7 +22,7 @@ const TextStyle buttonTitleTextStyle =
 
 // Default Shadow
 const kDefaultShadow = BoxShadow(
-  blurRadius: 27,
-  offset: Offset(0, 15),
+  blurRadius: 50,
+  offset: Offset(0, 10),
   color: Colors.black12,
 );
