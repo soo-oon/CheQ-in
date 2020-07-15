@@ -19,3 +19,10 @@ const EdgeInsets largeFieldPadding =
 // Text Variables
 const TextStyle buttonTitleTextStyle =
     const TextStyle(fontWeight: FontWeight.w700, color: Colors.white);
+
+// Default Shadow
+const kDefaultShadow = BoxShadow(
+  blurRadius: 50,
+  offset: Offset(0, 10),
+  color: Colors.black12,
+);
