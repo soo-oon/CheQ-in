@@ -1,4 +1,5 @@
-import 'package:checkin/frontend/viewModels/frontend_home_view_model.dart';
+import 'package:checkin/frontend/viewModels/frontend_home_view_Model.dart';
+import 'package:checkin/widget/buildingviewWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider_architecture/provider_architecture.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
@@ -19,7 +20,7 @@ class FrontEndHomeView extends StatelessWidget {
             TabItem(icon: Icons.message, title: 'Suggestion'),
             TabItem(icon: Icons.info, title: 'info'),
           ],
-          initialActiveIndex: 0,
+          initialActiveIndex: 0, //optional, default as 0
           onTap: (index) => model.setIndex(index),
         ),
       ),
