@@ -17,7 +17,7 @@ class FirestoreService {
     _buildingsCollectionReference.snapshots().listen((postsSnapshot) {
       if (postsSnapshot.documents.isNotEmpty) {
         var posts = postsSnapshot.documents
-            .map((snapshot) => Building.fromData(snapshot.data))
+            .map((snapshot) => Building.fromJson(snapshot.data))
             .where((mappedItem) => mappedItem.name != null)
             .toList();
         // Add the posts onto the controller
@@ -57,7 +57,7 @@ class FirestoreService {
   Future getUser(String uid) async {
     try {
       var userData = await _usersCollectionReference.document(uid).get();
-      return User.fromData(userData.data);
+      return User.fromJson(userData.data);
     } catch (e) {
       if (e is PlatformException) {
         return e.message;
@@ -71,7 +71,7 @@ class FirestoreService {
       var list = await _buildingsCollectionReference.getDocuments();
       if (list.documents.isNotEmpty) {
         return list.documents
-            .map((snapshot) => Building.fromData(snapshot.data))
+            .map((snapshot) => Building.fromJson(snapshot.data))
             .toList();
       }
     } catch (e) {

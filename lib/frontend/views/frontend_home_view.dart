@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider_architecture/provider_architecture.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 
-import 'building_view.dart';
-
 class FrontEndHomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

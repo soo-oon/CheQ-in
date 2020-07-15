@@ -34,9 +34,13 @@ dependencies:
   provider: ^4.0.1
   convex_bottom_bar: ^2.2.5
 
+  json_serializable: ^3.3.0
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

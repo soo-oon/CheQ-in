@@ -1,3 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'suggestion.g.dart';
+
+@JsonSerializable(nullable: false)
 class Suggestion {
   String name;
   String title;
@@ -6,18 +11,6 @@ class Suggestion {
 
   Suggestion({this.name, this.content, this.time, this.title});
 
-  Suggestion.fromData(Map<String, dynamic> data)
-      : name = data['name'],
-        content = data['content'],
-        time = data['time'],
-        title = data['title'];
-
-  Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'content': content,
-      'time': time,
-      'title': title,
-    };
-  }
+  factory Suggestion.fromJson(Map<String, dynamic> json) => _$SuggestionFromJson(json);
+  Map<String, dynamic> toJson() => _$SuggestionToJson(this);
 }

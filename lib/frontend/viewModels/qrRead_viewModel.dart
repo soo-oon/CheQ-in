@@ -19,7 +19,7 @@ class QrReadViewModel extends BaseModel {
     if (buildings.contains(buildingName)) {
       for (var building in buildings) {
         if (building.name == buildingName) {
-          building.logs.add(Log(currentUser, DateTime.now()));
+          building.logs.add(Log());
           _firestoreService.updateBuilding(building);
         }
       }

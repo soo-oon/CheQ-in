@@ -21,7 +21,7 @@ class BuildingViewModel extends BaseModel {
         if (building.logs == null) {
           building.logs = [];
         }
-        building.logs.add(Log(currentUser, DateTime.now()));
+        building.logs.add(Log(user: currentUser, time: DateTime.now().toString()));
         _firestoreService.updateBuilding(building);
       }
     }
