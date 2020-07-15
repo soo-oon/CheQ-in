@@ -4,10 +4,10 @@ part 'suggestion.g.dart';
 
 @JsonSerializable(nullable: false)
 class Suggestion {
-  String name;
-  String title;
-  String content;
-  DateTime time;
+  final String name;
+  final String title;
+  final String content;
+  final DateTime time;
 
   Suggestion({this.name, this.content, this.time, this.title});
 

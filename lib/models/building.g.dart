@@ -8,7 +8,6 @@ part of 'building.dart';
 
 Building _$BuildingFromJson(Map<String, dynamic> json) {
   return Building(
-    id: json['id'] as String,
     name: json['name'] as String,
     department: json['department'] as int,
     status: json['status'] as int,
@@ -19,9 +18,8 @@ Building _$BuildingFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$BuildingToJson(Building instance) => <String, dynamic>{
-      'id': instance.id,
       'name': instance.name,
       'department': instance.department,
       'status': instance.status,
-      'logs': instance.logs,
-    };
+      'logs': instance.logs.map((e) => e.toJson()).toList(),
+};

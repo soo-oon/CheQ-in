@@ -30,8 +30,10 @@ class FirestoreService {
 
   Future updateBuilding(Building building) async {
     try {
+      var i = _buildingsCollectionReference.document(building.name).documentID;
+      print(building.toJson());
       await _buildingsCollectionReference
-          .document(building.id)
+          .document(i)
           .updateData(building.toJson());
       return true;
     } catch (e) {

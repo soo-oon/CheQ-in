@@ -1,7 +1,6 @@
 import 'package:checkin/backend/viewModels/base_model.dart';
 import 'package:checkin/locator.dart';
 import 'package:checkin/models/building.dart';
-import 'package:checkin/models/log.dart';
 import 'dart:convert';
 
 import 'package:checkin/services/firestore_service.dart';
@@ -9,16 +8,19 @@ import 'package:checkin/services/firestore_service.dart';
 class VisitorViewModel extends BaseModel {
 
   final FirestoreService _firestoreService = locator<FirestoreService>();
-
   List<Building> buildingList = new List<Building>();
+  var encodedJsonData;
+  var decodedJsonData;
 
   init() async {
+    setBusy(true);
     buildingList = await _firestoreService.getBuildings();
 
-    var json = jsonEncode(buildingList[0].toJson());
-
-    print(json);
-    print(1);
+    encodedJsonData = jsonEncode(buildingList);
+    decodedJsonData = jsonDecode(encodedJsonData);
+    setBusy(false);
+    // print(json);
+    // print(1);
   }
 
   String getPrettyJSONString(jsonObject) {

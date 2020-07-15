@@ -1,5 +1,4 @@
 import 'package:checkin/frontend/viewModels/frontend_home_view_Model.dart';
-import 'package:checkin/widget/buildingviewWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider_architecture/provider_architecture.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';

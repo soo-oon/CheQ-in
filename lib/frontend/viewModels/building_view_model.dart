@@ -4,6 +4,7 @@ import 'package:checkin/services/firestore_service.dart';
 
 import 'package:checkin/locator.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../../backend/viewModels/base_model.dart';
 
 class BuildingViewModel extends BaseModel {
@@ -21,7 +22,9 @@ class BuildingViewModel extends BaseModel {
         if (building.logs == null) {
           building.logs = [];
         }
-        building.logs.add(Log(user: currentUser, time: DateTime.now().toString()));
+        var f = new DateFormat('yyyy-MM-dd hh:mm');
+
+        building.logs.add(Log(user: currentUser, time: f.format(DateTime.now())));
         _firestoreService.updateBuilding(building);
       }
     }

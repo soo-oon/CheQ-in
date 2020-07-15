@@ -14,6 +14,6 @@ Log _$LogFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$LogToJson(Log instance) => <String, dynamic>{
-      'user': instance.user,
+      'user': instance.user.toJson(),
       'time': instance.time,
     };

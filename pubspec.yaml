@@ -33,6 +33,7 @@ dependencies:
   cloud_firestore: ^0.13.7
   provider: ^4.0.1
   convex_bottom_bar: ^2.2.5
+  intl:
 
   json_serializable: ^3.3.0
 

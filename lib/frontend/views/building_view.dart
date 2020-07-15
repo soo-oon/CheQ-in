@@ -1,3 +1,6 @@
+import 'package:checkin/models/building.dart';
+import 'package:flutter/material.dart';
+
 import '../viewModels/building_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider_architecture/_viewmodel_provider.dart';
@@ -17,6 +20,12 @@ class BuildingView extends StatelessWidget {
                 Text(
                   "Test Buildings",
                   style: TextStyle(fontSize: 30),
+                ),
+                FlatButton(
+                  child: Text("testing"),
+                  onPressed: () {
+                    model.enterLog("bongkyung");
+                  }
                 ),
               ],
             ))));
