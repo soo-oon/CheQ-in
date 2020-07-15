@@ -7,7 +7,8 @@ class BuildingViewWidget extends StatefulWidget {
 }
 
 class BuildingViewWidgetState extends State<BuildingViewWidget> {
-  String building = "Building1";
+  String building = "Engineering";
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -24,7 +25,7 @@ class BuildingViewWidgetState extends State<BuildingViewWidget> {
                 building = newValue;
               });
             },
-            items: <String>["Building1", "Building2", "Building3", "Building4"]
+            items: <String>["Engineering", "Sport", "Medical", "Center"]
                 .map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,
