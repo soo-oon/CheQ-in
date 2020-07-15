@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class NotificationRisk {
   bool _isDanger = false;
   String _comment = "";

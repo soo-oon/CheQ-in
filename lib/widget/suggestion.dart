@@ -70,6 +70,7 @@ class SuggestionState extends State<Suggestion> {
               ),
               FlatButton(
                 child: Text("Send"),
+                onPressed: () {},
               )
             ],
           )

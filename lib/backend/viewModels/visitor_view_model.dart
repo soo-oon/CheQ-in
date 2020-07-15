@@ -9,4 +9,6 @@ class VisitorViewModel extends BaseModel {
     String jsonString = encoder.convert(json.decode(jsonObject));
     return jsonString;
   }
+
+  
 }

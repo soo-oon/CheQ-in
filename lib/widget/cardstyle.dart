@@ -47,6 +47,7 @@ class _CardWidgetState extends State<CardWidget> {
   }
 }
 
+// ignore: non_constant_identifier_names
 Widget NoticeSampleWidget(BuildContext context, String stateOfRisk,
     String comment, Color color, int index) {
   return Container(

@@ -47,6 +47,8 @@ class BuildingViewModel extends BaseModel {
     var result = await _firestoreService
         .addBuilding(building); // We need to add the current userId
     setBusy(false);
+
+    return result;
   }
 
   void fetchBuildings() async {

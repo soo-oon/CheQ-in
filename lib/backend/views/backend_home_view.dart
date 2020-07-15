@@ -1,8 +1,4 @@
 import 'package:checkin/backend/viewModels/backend_home_viewModel.dart';
-import 'package:checkin/backend/views/info_view.dart';
-import 'package:checkin/backend/views/push_view.dart';
-import 'package:checkin/backend/views/suggestion_view.dart';
-import 'package:checkin/backend/views/visitor_view.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider_architecture/provider_architecture.dart';

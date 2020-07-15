@@ -20,7 +20,6 @@ class FirestoreService {
             .map((snapshot) => Building.fromData(snapshot.data))
             .where((mappedItem) => mappedItem.name != null)
             .toList();
-
         // Add the posts onto the controller
         _buildingsController.add(posts);
       }
