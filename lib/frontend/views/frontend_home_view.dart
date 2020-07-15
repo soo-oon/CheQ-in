@@ -1,4 +1,4 @@
-import 'package:checkin/frontend/viewModels/frontend_home_viewModel.dart';
+import 'package:checkin/frontend/viewModels/frontend_home_view_Model.dart';
 import 'package:checkin/widget/buildingviewWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider_architecture/provider_architecture.dart';
@@ -13,7 +13,7 @@ class FrontEndHomeView extends StatelessWidget {
       viewModelBuilder: () => FrontEndHomeViewModel(),
       builder: (context, model, child) => Scaffold(
         backgroundColor: Colors.white,
-        body: BuildingView(),
+        body: model.pages[model.currentIndex],
         bottomNavigationBar: ConvexAppBar(
           style: TabStyle.react,
           items: [
@@ -23,7 +23,7 @@ class FrontEndHomeView extends StatelessWidget {
             TabItem(icon: Icons.info, title: 'info'),
           ],
           initialActiveIndex: 0, //optional, default as 0
-          onTap: (int i) => print('click index=$i'),
+          onTap: (index) => model.setIndex(index),
         ),
       ),
     );

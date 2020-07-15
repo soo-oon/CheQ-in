@@ -6,6 +6,21 @@ class Log {
   User user;
   DateTime time;
   Log(this.user, this.time);
+  DateTime _convertStamp(Timestamp _stamp) {
+    if (_stamp != null) {
+      return Timestamp(_stamp.seconds, _stamp.nanoseconds).toDate();
+      /*
+    if (Platform.isIOS) {
+      return _stamp.toDate();
+    } else {
+      return Timestamp(_stamp.seconds, _stamp.nanoseconds).toDate();
+    }
+    */
+
+    } else {
+      return null;
+    }
+  }
 
   Log.fromData(Map<String, dynamic> data)
       : user = User.fromData(data['user']),
