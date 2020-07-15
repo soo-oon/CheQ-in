@@ -3,6 +3,7 @@ import 'package:checkin/backend/views/info_view.dart';
 import 'package:checkin/backend/views/push_view.dart';
 import 'package:checkin/backend/views/suggestion_view.dart';
 import 'package:checkin/backend/views/visitor_view.dart';
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider_architecture/provider_architecture.dart';
 
@@ -11,42 +12,17 @@ class BackEndHomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelProvider<BackEndHomeViewModel>.withConsumer(
       viewModelBuilder: () => BackEndHomeViewModel(),
-      builder: (context, model, child) => DefaultTabController(
-          length: 4,
-            child: Scaffold(
-            appBar: AppBar(
-              title: Text("Back End Main Page"),
-              bottom: TabBar(
-                tabs: <Widget>[
-                  Tab(
-                    text: "Visitors",
-                  ),
-                  Tab(
-                    text: "Suggestions ",
-                  ),
-                  Tab(
-                    text: "Push",
-                  ),
-                  Tab(
-                    text: "Info",
-                  ),
-                ],
-              ),
-            ),
-            body: TabBarView(
-              physics: NeverScrollableScrollPhysics(),
-              children: <Widget>[
-                VisitorView(),
-                SuggestionView(),
-                PushView(),
-                InfoView()
-              ],
-            )),
-      ),
+      builder: (context, model, child) => Scaffold(
+          bottomNavigationBar: ConvexAppBar(
+            items: [
+              TabItem(icon: Icons.ac_unit, title: 'Home'),
+              TabItem(icon: Icons.access_time, title: 'info'),
+              TabItem(icon: Icons.add_call, title: 'sugg'),
+              TabItem(icon: Icons.dashboard, title: 'push')
+            ],
+            onTap: (index) => model.setIndex(index),
+          ),
+          body: model.pages[model.currentIndex]),
     );
   }
 }
-
-
-
-

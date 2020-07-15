@@ -1,4 +1,4 @@
-import 'package:checkin/backend/viewModels/info_viewModel.dart';
+import 'package:checkin/backend/viewModels/info_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider_architecture/provider_architecture.dart';
 

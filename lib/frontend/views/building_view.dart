@@ -1,8 +1,6 @@
-import '../viewModels/building_viewModel.dart';
+import '../viewModels/building_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider_architecture/_viewmodel_provider.dart';
-
-import '../../models/building.dart';
 
 class BuildingView extends StatelessWidget {
   @override

@@ -4,7 +4,7 @@ import 'package:checkin/ui/widgets/expansion_list.dart';
 import 'package:checkin/ui/widgets/input_field.dart';
 import 'package:flutter/material.dart';
 import 'package:provider_architecture/provider_architecture.dart';
-import 'package:checkin/backend/viewModels/signup_viewModel.dart';
+import 'package:checkin/backend/viewModels/signup_view_model.dart';
 
 class SignUpView extends StatelessWidget {
   final emailController = TextEditingController();

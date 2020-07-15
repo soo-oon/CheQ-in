@@ -4,7 +4,7 @@ import 'package:checkin/ui/widgets/input_field.dart';
 import 'package:checkin/ui/widgets/text_link.dart';
 import 'package:flutter/material.dart';
 import 'package:provider_architecture/provider_architecture.dart';
-import 'package:checkin/backend/viewModels/login_viewModel.dart';
+import 'package:checkin/backend/viewModels/login_view_model.dart';
 
 class LoginView extends StatelessWidget {
   final emailController = TextEditingController();

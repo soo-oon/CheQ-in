@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:checkin/backend/viewModels/visitor_viewModel.dart';
+import 'package:checkin/backend/viewModels/visitor_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider_architecture/provider_architecture.dart';
 import 'package:json_table/json_table.dart';
