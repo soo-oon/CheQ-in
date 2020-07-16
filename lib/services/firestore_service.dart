@@ -1,27 +1,27 @@
 import 'dart:async';
 import 'package:checkin/models/building.dart';
-import 'package:checkin/models/log.dart';
 import 'package:checkin/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 
 class FirestoreService {
-  final CollectionReference _usersCollectionReference = Firestore.instance.collection('users');
-  final CollectionReference _buildingsCollectionReference = Firestore.instance.collection('buildings');
-  final CollectionReference _logsCollectionReference = Firestore.instance.collection('logs');
-  final StreamController<List<Building>> _buildingsController = StreamController<List<Building>>.broadcast();
-
+  final CollectionReference _usersCollectionReference =
+      Firestore.instance.collection('users');
+  final CollectionReference _buildingsCollectionReference =
+      Firestore.instance.collection('buildings');
   List<Building> buildings;
-  List<Log> logs;
-
-  Stream listenToBuildingsRealTime() {
-    _buildingsCollectionReference.snapshots().listen((buildingsSnapshot) {
-      if (buildingsSnapshot.documents.isNotEmpty) {
-        var buildings = buildingsSnapshot.documents
+  final StreamController<List<Building>> _buildingsController =
+      StreamController<List<Building>>.broadcast();
+  Stream listenToPostsRealTime() {
+    // Register the handler for when the posts data changes
+    _buildingsCollectionReference.snapshots().listen((postsSnapshot) {
+      if (postsSnapshot.documents.isNotEmpty) {
+        var posts = postsSnapshot.documents
             .map((snapshot) => Building.fromJson(snapshot.data))
             .where((mappedItem) => mappedItem.name != null)
             .toList();
-        _buildingsController.add(buildings);
+        // Add the posts onto the controller
+        _buildingsController.add(posts);
       }
     });
 
@@ -40,6 +40,7 @@ class FirestoreService {
       if (e is PlatformException) {
         return e.message;
       }
+
       return e.toString();
     }
   }
@@ -83,18 +84,13 @@ class FirestoreService {
     }
   }
 
-  Future getLogs() async {
+  Future addBuilding(Building building) async {
     try {
-      var list = await _logsCollectionReference.getDocuments();
-      if (list.documents.isNotEmpty) {
-        return list.documents
-            .map((snapshot) => Log.fromJson(snapshot.data))
-            .toList();
-      }
+      await _buildingsCollectionReference
+          .document('${building.name}')
+          .setData(building.toJson());
+      return true;
     } catch (e) {
-      if (e is PlatformException) {
-        return e.message;
-      }
       return e.toString();
     }
   }
