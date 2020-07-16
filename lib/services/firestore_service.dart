@@ -86,7 +86,9 @@ class FirestoreService {
 
   Future addBuilding(Building building) async {
     try {
-      await _buildingsCollectionReference.add(building.toJson());
+      await _buildingsCollectionReference
+          .document('${building.name}')
+          .setData(building.toJson());
       return true;
     } catch (e) {
       return e.toString();
