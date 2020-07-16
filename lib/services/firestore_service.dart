@@ -44,6 +44,18 @@ class FirestoreService {
     }
   }
 
+  Future updateLogs(Log log) async {
+    try {
+      await _logsCollectionReference.document().setData(log.toJson());
+      return true;
+    } catch (e) {
+      if (e is PlatformException) {
+        return e.message;
+      }
+      return e.toString();
+    }
+  }
+
   Future createUser(User user) async {
     try {
       await _usersCollectionReference.document(user.id).setData(user.toJson());

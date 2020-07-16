@@ -10,7 +10,12 @@ class SuggestionView extends StatelessWidget {
       disposeViewModel: false,
       onModelReady: (model) => model.init(),
       builder: (context, model, child) => Center(
-        child: Text("Suggestion View")
+        child: FlatButton(
+          child: Text("button"),
+          onPressed: () {
+            model.enterLog("덕래관");
+          },
+        )
       ),
     );
   }
