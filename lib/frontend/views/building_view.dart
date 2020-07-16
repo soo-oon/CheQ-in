@@ -18,22 +18,6 @@ class BuildingView extends StatelessWidget {
                 length: 3,
                 child: SingleChildScrollView(
                     child: Column(
-<<<<<<< HEAD
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  "Test Buildings",
-                  style: TextStyle(fontSize: 30),
-                ),
-                FlatButton(
-                  child: Text("testing"),
-                  onPressed: () {
-                   
-                  }
-                ),
-              ],
-            ))));
-=======
                   children: <Widget>[
                     TabBar(
                       tabs: <Widget>[
@@ -68,7 +52,6 @@ class BuildingView extends StatelessWidget {
                 )),
               ),
             ));
->>>>>>> 1cfc5dd819868f304eddb683001325f6c491442f
   }
 }
 
