@@ -24,7 +24,7 @@ class BuildingView extends StatelessWidget {
                 FlatButton(
                   child: Text("testing"),
                   onPressed: () {
-                    model.enterLog("bongkyung");
+                   
                   }
                 ),
               ],

@@ -8,17 +8,19 @@ class BackEndHomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelProvider<BackEndHomeViewModel>.withConsumer(
       viewModelBuilder: () => BackEndHomeViewModel(),
-      builder: (context, model, child) => Scaffold(
-          bottomNavigationBar: ConvexAppBar(
-            items: [
-              TabItem(icon: Icons.ac_unit, title: 'Home'),
-              TabItem(icon: Icons.access_time, title: 'info'),
-              TabItem(icon: Icons.add_call, title: 'sugg'),
-              TabItem(icon: Icons.dashboard, title: 'push')
-            ],
-            onTap: (index) => model.setIndex(index),
-          ),
-          body: model.pages[model.currentIndex]),
+      builder: (context, model, child) => SafeArea(
+        child: Scaffold(
+            bottomNavigationBar: ConvexAppBar(
+              items: [
+                TabItem(icon: Icons.ac_unit, title: 'Home'),
+                TabItem(icon: Icons.access_time, title: 'info'),
+                TabItem(icon: Icons.add_call, title: 'sugg'),
+                TabItem(icon: Icons.dashboard, title: 'push')
+              ],
+              onTap: (index) => model.setIndex(index),
+            ),
+            body: model.pages[model.currentIndex]),
+      ),
     );
   }
 }

@@ -8,12 +8,14 @@ part of 'log.dart';
 
 Log _$LogFromJson(Map<String, dynamic> json) {
   return Log(
-    user: User.fromJson(json['user'] as Map<String, dynamic>),
+    userName: json['userName'] as String,
+    buildingName: json['buildingName'] as String,
     time: json['time'] as String,
   );
 }
 
 Map<String, dynamic> _$LogToJson(Log instance) => <String, dynamic>{
-      'user': instance.user.toJson(),
+      'userName': instance.userName,
+      'buildingName': instance.buildingName,
       'time': instance.time,
     };

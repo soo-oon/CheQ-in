@@ -15,26 +15,26 @@ class BuildingViewModel extends BaseModel {
     listenToPosts();
   }
 
-  void enterLog(String buildingName) {
-    setBusy(true);
-    for (var building in buildings) {
-      if (building.name == buildingName) {
-        if (building.logs == null) {
-          building.logs = [];
-        }
-        var f = new DateFormat('yyyy-MM-dd hh:mm');
+  // void enterLog(String buildingName) {
+  //   setBusy(true);
+  //   for (var building in buildings) {
+  //     if (building.name == buildingName) {
+  //       if (building.logs == null) {
+  //         building.logs = [];
+  //       }
+  //       var f = new DateFormat('yyyy-MM-dd hh:mm');
 
-        building.logs.add(Log(user: currentUser, time: f.format(DateTime.now())));
-        _firestoreService.updateBuilding(building);
-      }
-    }
-    setBusy(false);
-  }
+  //       building.logs.add(Log(userName: currentUser.fullName, time: f.format(DateTime.now())));
+  //       _firestoreService.updateBuilding(building);
+  //     }
+  //   }
+  //   setBusy(false);
+  // }
 
   void listenToPosts() {
     setBusy(true);
 
-    _firestoreService.listenToPostsRealTime().listen((postsData) {
+    _firestoreService.listenToBuildingsRealTime().listen((postsData) {
       List<Building> updatedPosts = postsData;
       if (updatedPosts != null && updatedPosts.length > 0) {
         _buildings = updatedPosts;
@@ -43,15 +43,6 @@ class BuildingViewModel extends BaseModel {
 
       setBusy(false);
     });
-  }
-
-  Future addBuilding({@required Building building}) async {
-    setBusy(true);
-    var result = await _firestoreService
-        .addBuilding(building); // We need to add the current userId
-    setBusy(false);
-
-    return result;
   }
 
   void fetchBuildings() async {

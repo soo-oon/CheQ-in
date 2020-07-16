@@ -8,9 +8,8 @@ class Building {
   final String name;
   final int department;
   final int status;
-  List<Log> logs;
 
-  Building({this.name, this.department, this.status, this.logs});
+  Building({this.name, this.department, this.status});
   
   factory Building.fromJson(Map<String, dynamic> json) => _$BuildingFromJson(json);
   Map<String, dynamic> toJson() => _$BuildingToJson(this);

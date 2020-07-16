@@ -10,28 +10,27 @@ class VisitorView extends StatelessWidget {
       viewModelBuilder: () => VisitorViewModel(),
       disposeViewModel: false,
       onModelReady: (model) => model.init(),
-      builder: (context, model, child) => SingleChildScrollView(
+      builder: (context, model, child) => Center(
         child: Column(
-            children: [
-                JsonTable(
-                      model.decodedJsonData,
-                      showColumnToggle: true,
-                      allowRowHighlight: true,
-                      rowHighlightColor: Colors.yellow[500].withOpacity(0.7),
-                      paginationRowCount: 20,
-                      onRowSelect: (index, map) {
-                        print(index);
-                        print(map);
-                      },
-                    ),
-                    SizedBox(
-                      height: 40.0,
-                    ),
-                  ],
-                )
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            model.busy
+                ? CircularProgressIndicator()
+                : JsonTable(
+                    model.logDecodedJsonData,
+                    showColumnToggle: false,
+                    allowRowHighlight: true,
+                    rowHighlightColor: Colors.yellow[500].withOpacity(0.7),
+                    paginationRowCount: 20,
+                    onRowSelect: (index, map) {
+                      print(index);
+                      print(map);
+                    },
+                  )
+          ],
         ),
+      ),
     );
   }
 }
-
-

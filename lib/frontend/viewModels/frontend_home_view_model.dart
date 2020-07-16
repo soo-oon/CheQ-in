@@ -17,8 +17,12 @@ class FrontEndHomeViewModel extends BaseModel {
   final FirestoreService _firestoreService = locator<FirestoreService>();
   List<Building> _buildings;
   List<Building> get buildings => _buildings;
+  var _logs;
+
   init() {
     listenToPosts();
+    _logs = _firestoreService.getLogs();
+    print(1);
   }
 
   void setIndex(int index) {
@@ -43,10 +47,10 @@ class FrontEndHomeViewModel extends BaseModel {
     setBusy(true);
     for (var building in buildings) {
       if (building.name == buildingName) {
-        if (building.logs == null) {
-          building.logs = [];
+        if (_logs == null) {
+          _logs = [];
         }
-        building.logs.add(Log(user: currentUser, time: DateTime.now().toString()));
+        _logs.add(Log(userName: currentUser.fullName, buildingName: buildingName, time: DateTime.now().toString()));
         _firestoreService.updateBuilding(building);
       }
     }
@@ -56,7 +60,7 @@ class FrontEndHomeViewModel extends BaseModel {
   void listenToPosts() {
     setBusy(true);
 
-    _firestoreService.listenToPostsRealTime().listen((postsData) {
+    _firestoreService.listenToBuildingsRealTime().listen((postsData) {
       List<Building> updatedPosts = postsData;
       if (updatedPosts != null && updatedPosts.length > 0) {
         _buildings = updatedPosts;
