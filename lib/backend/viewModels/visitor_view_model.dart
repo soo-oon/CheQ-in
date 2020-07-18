@@ -5,16 +5,22 @@ import 'package:checkin/models/log.dart';
 import 'dart:convert';
 
 import 'package:checkin/services/firestore_service.dart';
+import 'package:flutter/material.dart';
 
 class VisitorViewModel extends BaseModel {
-
   final FirestoreService _firestoreService = locator<FirestoreService>();
+
   List<Building> buildingList = new List<Building>();
   List<Log> logList = new List<Log>();
   var buildingEncodedJsonData;
   var buildingDecodedJsonData;
   var logEncodedJsonData;
   var logDecodedJsonData;
+
+  //Query variables
+  DateTime startDate;
+  DateTime endDate;
+  String building;
 
   init() async {
     setBusy(true);
@@ -27,6 +33,9 @@ class VisitorViewModel extends BaseModel {
     logEncodedJsonData = jsonEncode(logList);
     logDecodedJsonData = jsonDecode(logEncodedJsonData) as List;
 
+    startDate = DateTime.now();
+    endDate = DateTime(2021);
+    building = "덕래관";
     setBusy(false);
   }
 
@@ -36,7 +45,37 @@ class VisitorViewModel extends BaseModel {
     return jsonString;
   }
 
-  getBuildingLogList(jsonObject) {
+  Future setStartDateTime(BuildContext context) async {
+    setBusy(true);
+    DateTime picked = await showDatePicker(
+        context: context,
+        initialDate: new DateTime.now(),
+        firstDate: new DateTime(2020),
+        lastDate: new DateTime(2021));
 
+    if (picked != null) {
+      startDate = picked;
+    }
+    setBusy(false);
+  }
+
+  Future setEndDateTime(BuildContext context) async {
+    setBusy(true);
+    DateTime picked = await showDatePicker(
+        context: context,
+        initialDate: new DateTime.now(),
+        firstDate: new DateTime.now(),
+        lastDate: new DateTime(2021));
+
+    if (picked != null) {
+      endDate = picked;
+    }
+    setBusy(false);
+  }
+
+  void setBuildingName(String value) {
+    setBusy(true);
+    building = value;
+    setBusy(false);
   }
 }

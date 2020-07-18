@@ -34,6 +34,8 @@ dependencies:
   convex_bottom_bar: ^2.2.5
   json_table: ^1.4.0
   intl:
+  auto_size_text: ^2.1.0
+
 
   json_serializable: ^3.3.0
 

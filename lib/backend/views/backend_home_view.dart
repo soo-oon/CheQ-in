@@ -11,6 +11,8 @@ class BackEndHomeView extends StatelessWidget {
       builder: (context, model, child) => SafeArea(
         child: Scaffold(
             bottomNavigationBar: ConvexAppBar(
+              height: 50,
+              style: TabStyle.react,
               items: [
                 TabItem(icon: Icons.ac_unit, title: 'Home'),
                 TabItem(icon: Icons.access_time, title: 'info'),
