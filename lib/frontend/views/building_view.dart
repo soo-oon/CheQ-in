@@ -20,45 +20,55 @@ class BuildingView extends StatelessWidget {
         disposeViewModel: false,
         onModelReady: (model) => model.init(),
         builder: (context, model, child) => SafeArea(
-              child: DefaultTabController(
-                length: 3,
-                child: SingleChildScrollView(
-                    child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    CategoryList(),
-                    model.busy
-                        ? CircularProgressIndicator()
-                        : ListView.builder(
-                            shrinkWrap: true,
+              child: SingleChildScrollView(
+                  child: Column(
+                children: <Widget>[
+                  CategoryList(),
+                  model.busy
+                      ? CircularProgressIndicator()
+                      : SizedBox(
+                          height: 400,
+                          child: ListView.builder(
+                            scrollDirection: Axis.vertical,
                             itemCount: model.buildings.length,
                             itemBuilder: (context, index) {
-                              if (model.buildings[index].status == 0)
-                                return BuildingCard(model, index, "is infected",
-                                    Colors.redAccent);
-                              else if (model.buildings[index].status == 1)
-                                return BuildingCard(model, index, "is cleaned",
-                                    Colors.yellowAccent);
-                              else
-                                return BuildingCard(
-                                    model, index, "is green", Colors.black12);
+                              return Container(
+                                width: 200,
+                                child: Card(
+                                  color: Colors.white70,
+                                  child: ListTile(
+                                    title: Text(model.buildings[index].name),
+                                    trailing: Text("no problem"),
+                                  ),
+                                ),
+                              );
+                              // if (model.buildings[index].status == 0)
+                              //   return buildingCard(model, index, "is infected",
+                              //       Colors.redAccent);
+                              // else if (model.buildings[index].status == 1)
+                              //   return buildingCard(model, index, "is cleaned",
+                              //       Colors.yellowAccent);
+                              // else
+                              //   return buildingCard(
+                              //       model, index, "is green", Colors.black12);
                             },
-                          )
-                  ],
-                )),
-              ),
+                          ),
+                        )
+                ],
+              )),
             ));
   }
 }
 
-Widget BuildingCard(
+Widget buildingCard(
     BuildingViewModel model, int index, String comment, Color color) {
-  return Card(
-    color: color,
-    child: ListTile(
-      title: Text(model.buildings[index].name),
-      trailing: Text(comment),
+  return Container(
+    child: Card(
+      color: color,
+      child: ListTile(
+        title: Text(model.buildings[index].name),
+        trailing: Text(comment),
+      ),
     ),
   );
 }

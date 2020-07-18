@@ -34,9 +34,9 @@ dependencies:
   convex_bottom_bar: ^2.2.5
   json_table: ^1.4.0
   intl:
+  shared_preferences:
 
   json_serializable: ^3.3.0
-
 
 dev_dependencies:
   flutter_test:
