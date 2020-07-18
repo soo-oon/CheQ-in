@@ -2,6 +2,7 @@ import 'package:checkin/backend/viewModels/base_model.dart';
 import 'package:checkin/backend/views/info_view.dart';
 import 'package:checkin/frontend/views/building_view.dart';
 import 'package:checkin/frontend/views/suggestion_view.dart';
+import 'package:checkin/frontend/views/visited_view.dart';
 import 'package:checkin/models/building.dart';
 import 'package:checkin/models/log.dart';
 import 'package:checkin/services/firestore_service.dart';
@@ -11,7 +12,13 @@ import 'package:qrscan/qrscan.dart' as scanner;
 import '../../locator.dart';
 
 class FrontEndHomeViewModel extends BaseModel {
-  List<Widget> pages = [BuildingView(), SizedBox(), SuggestionView(), InfoView()];
+  List<Widget> pages = [
+    VisitedView(),
+    BuildingView(),
+    SizedBox(),
+    SuggestionView(),
+    InfoView()
+  ];
   int currentIndex = 0;
 
   final FirestoreService _firestoreService = locator<FirestoreService>();
@@ -28,7 +35,7 @@ class FrontEndHomeViewModel extends BaseModel {
   void setIndex(int index) {
     setBusy(true);
 
-    if (index == 1) {
+    if (index == 2) {
       _enterBuilding();
     } else {
       currentIndex = index;
@@ -50,7 +57,10 @@ class FrontEndHomeViewModel extends BaseModel {
         if (_logs == null) {
           _logs = [];
         }
-        _logs.add(Log(userName: currentUser.fullName, buildingName: buildingName, time: DateTime.now().toString()));
+        _logs.add(Log(
+            userName: currentUser.fullName,
+            buildingName: buildingName,
+            time: DateTime.now().toString()));
         _firestoreService.updateBuilding(building);
       }
     }

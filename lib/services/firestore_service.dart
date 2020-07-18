@@ -5,6 +5,9 @@ import 'package:checkin/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 
+import '../models/suggestion.dart';
+import '../models/suggestion.dart';
+
 class FirestoreService {
   final CollectionReference _usersCollectionReference =
       Firestore.instance.collection('users');
@@ -12,8 +15,13 @@ class FirestoreService {
       Firestore.instance.collection('buildings');
   final CollectionReference _logsCollectionReference =
       Firestore.instance.collection('logs');
+  final CollectionReference _suggestionsCollectionReference =
+      Firestore.instance.collection('suggestions');
 
+// Want to know visited building name in visitedviewmodel.
+  List<String> visitedBuildingNames = new List<String>();
   List<Building> buildings;
+
   final StreamController<List<Building>> _buildingsController =
       StreamController<List<Building>>.broadcast();
   Stream listenToBuildingsRealTime() {
@@ -47,6 +55,10 @@ class FirestoreService {
 
       return e.toString();
     }
+  }
+
+  void visitedBuildings(String buildingName) {
+    visitedBuildingNames.add(buildingName);
   }
 
   Future updateLogs(Log log) async {
@@ -92,6 +104,36 @@ class FirestoreService {
             .map((snapshot) => Building.fromJson(snapshot.data))
             .toList();
       }
+    } catch (e) {
+      if (e is PlatformException) {
+        return e.message;
+      }
+      return e.toString();
+    }
+  }
+
+  Future getSuggestions() async {
+    try {
+      var list = await _suggestionsCollectionReference.getDocuments();
+      if (list.documents.isNotEmpty) {
+        return list.documents
+            .map((snapshot) => Suggestion.fromJson(snapshot.data))
+            .toList();
+      }
+    } catch (e) {
+      if (e is PlatformException) {
+        return e.message;
+      }
+      return e.toString();
+    }
+  }
+
+  Future addSuggestion(Suggestion suggestion) async {
+    try {
+      await _suggestionsCollectionReference
+          .document('${suggestion.title}')
+          .setData(suggestion.toJson());
+      return true;
     } catch (e) {
       if (e is PlatformException) {
         return e.message;

@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 
-class Suggestion extends StatefulWidget {
-  const Suggestion({Key key}) : super(key: key);
-  @override
-  State<StatefulWidget> createState() => SuggestionState();
-}
-
-class SuggestionState extends State<Suggestion> {
+class SuggestionWidget extends StatelessWidget {
   final TextEditingController _textController = new TextEditingController();
-  String building = "Building1";
+  final TextEditingController _titleController = new TextEditingController();
+  TextEditingController get textController => _textController;
+  TextEditingController get titleController => _titleController;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -20,31 +16,16 @@ class SuggestionState extends State<Suggestion> {
             "Suggestion",
             style: new TextStyle(fontSize: 40.0),
           ),
-          DropdownButton<String>(
-            value: building,
-            onChanged: (String newValue) {
-              setState(() {
-                building = newValue;
-              });
-            },
-            items: <String>["Building1", "Building2", "Building3", "Building4"]
-                .map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
-              );
-            }).toList(),
-          ),
           Container(
             child: Padding(
               padding: const EdgeInsets.all(15.0),
               child: TextField(
-                controller: _textController,
-                minLines: 10,
-                maxLines: 15,
+                controller: _titleController,
+                minLines: 1,
+                maxLines: 2,
                 autocorrect: false,
                 decoration: InputDecoration(
-                  hintText: 'Write your status here',
+                  hintText: 'Write title',
                   filled: true,
                   fillColor: Color(0xFFDBEDFF),
                   enabledBorder: OutlineInputBorder(
@@ -59,21 +40,30 @@ class SuggestionState extends State<Suggestion> {
               ),
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              RaisedButton(
-                child: Text("clear"),
-                onPressed: () {
-                  _textController.clear();
-                },
+          Container(
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: TextField(
+                controller: _textController,
+                minLines: 10,
+                maxLines: 15,
+                autocorrect: false,
+                decoration: InputDecoration(
+                  hintText: 'Write contents',
+                  filled: true,
+                  fillColor: Color(0xFFDBEDFF),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    borderSide: BorderSide(color: Colors.grey),
+                  ),
+                ),
               ),
-              FlatButton(
-                child: Text("Send"),
-                onPressed: () {},
-              )
-            ],
-          )
+            ),
+          ),
         ],
       ),
     );
