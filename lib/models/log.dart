@@ -1,4 +1,3 @@
-import 'user.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'log.g.dart';
