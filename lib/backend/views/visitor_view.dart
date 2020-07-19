@@ -21,9 +21,9 @@ class VisitorView extends StatelessWidget {
                   ? SizedBox()
                   : Container(
                       child: ExpansionTile(
-                        expandedAlignment: Alignment.centerLeft,
-                        expandedCrossAxisAlignment: CrossAxisAlignment.start,
-                        childrenPadding: EdgeInsets.all(20),
+                        // expandedAlignment: Alignment.centerLeft,
+                        // expandedCrossAxisAlignment: CrossAxisAlignment.start,
+                        // childrenPadding: EdgeInsets.all(20),
                         title: Text("Filter"),
                         children: [
                           Text("Start"),

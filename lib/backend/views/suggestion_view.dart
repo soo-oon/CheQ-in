@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider_architecture/provider_architecture.dart';
 
 class SuggestionView extends StatelessWidget {
+  Set<DataRow> rows;
   @override
   Widget build(BuildContext context) {
     return ViewModelProvider<SuggestionViewModel>.withConsumer(
@@ -26,13 +27,7 @@ class SuggestionView extends StatelessWidget {
                   )),
                   DataColumn(
                       label: Text(
-                    "Date",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 14),
-                  )),
-                  DataColumn(
-                      label: Text(
-                    "Name",
+                    "title",
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 14),
                   )),
@@ -43,15 +38,7 @@ class SuggestionView extends StatelessWidget {
                     style: TextStyle(fontSize: 14),
                   )),
                 ],
-                rows: [
-                  //Need to limit content's text length
-                  DataRow(cells: [
-                    DataCell(Text('1')),
-                    DataCell(Text('2020/6/30')),
-                    DataCell(Text('Taewook')),
-                    DataCell(Text('This must be fixed')),
-                  ])
-                ],
+                rows: model.rows,
               )
             ],
           ),
