@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:checkin/backend/viewModels/visitor_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider_architecture/provider_architecture.dart';
@@ -18,12 +17,13 @@ class VisitorView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               model.busy
-                  ? SizedBox()
+                  ? SizedBox(height: 300)
                   : Container(
                       child: ExpansionTile(
                         expandedAlignment: Alignment.centerLeft,
                         expandedCrossAxisAlignment: CrossAxisAlignment.start,
                         childrenPadding: EdgeInsets.all(20),
+                        leading: Icon(Icons.filter_list),
                         title: Text("Filter"),
                         children: [
                           Text("Start"),
@@ -99,7 +99,7 @@ class VisitorView extends StatelessWidget {
                       showColumnToggle: false,
                       allowRowHighlight: true,
                       rowHighlightColor: Colors.yellow[500].withOpacity(0.7),
-                      paginationRowCount: 11,
+                      paginationRowCount: 13,
                       tableHeaderBuilder: (String header) {
                         if (header == "userName")
                           header = "이름";
@@ -110,11 +110,19 @@ class VisitorView extends StatelessWidget {
                         return Container(
                           padding: EdgeInsets.symmetric(
                               horizontal: 15.0, vertical: 8.0),
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                width: 0.8,
-                              ),
-                              color: Colors.grey[300]),
+                          decoration: (header == "건물")
+                              ? BoxDecoration(
+                                  color: Colors.blue[200],
+                                  border: Border(
+                                      bottom: BorderSide(width: 0.8),
+                                      top: BorderSide(width: 0.8)),
+                                )
+                              : BoxDecoration(
+                                  color: Colors.blue[200],
+                                  border: Border.all(
+                                    width: 0.8,
+                                  ),
+                                ),
                           child: Text(
                             header,
                             textAlign: TextAlign.center,
@@ -125,7 +133,7 @@ class VisitorView extends StatelessWidget {
                       },
                       tableCellBuilder: (value) {
                         return Container(
-                          height: 30,
+                          height: 35,
                           padding: EdgeInsets.all(5),
                           decoration: BoxDecoration(
                               border: Border.all(

@@ -11,9 +11,11 @@ class InfoView extends StatelessWidget {
           backgroundColor: Colors.white,
           body: Center(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text("BackHomeView"),
-                FlatButton(
+                RaisedButton(
                   child: Text("Sign Out"),
                   onPressed: () {
                     model.signOut();
