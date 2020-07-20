@@ -18,6 +18,14 @@ Future<void> main() async {
 
   runApp(
       MaterialApp(
+        theme: new ThemeData(
+            primarySwatch: Colors.lightBlue,
+            primaryTextTheme: TextTheme(
+                headline6: TextStyle(
+                    color: Const.UNSELECTED_COLOR
+                )
+            )
+        ),
           home: isRegistered == null ? RegisterForm() : CheckInHome()
       )
   );
@@ -36,6 +44,7 @@ class _CheckInState extends State<CheckInHome>{
   PageController _checkInPages = PageController(initialPage: 0);
   PersonalData _pData = PersonalData();
   FireBaseHelper _fbHelper = new FireBaseHelper();
+  int _selectedIndex = 0;
 
   @override
   void initState() {
@@ -48,6 +57,7 @@ class _CheckInState extends State<CheckInHome>{
   void _changePage(int index){
     setState(() {
       _checkInPages.jumpToPage(index);
+      _selectedIndex = index;
     });
   }
 
@@ -75,6 +85,9 @@ class _CheckInState extends State<CheckInHome>{
 
     return Scaffold(
       appBar:AppBar(
+        iconTheme: IconThemeData(
+            color: Const.UNSELECTED_COLOR
+        ),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.edit),
@@ -118,7 +131,8 @@ class _CheckInState extends State<CheckInHome>{
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.settings_overscan),
+
+        child: Icon(Icons.settings_overscan, color: Const.UNSELECTED_COLOR,),
         onPressed: _enterBuilding,
         backgroundColor: Colors.lightBlue,
       ),
@@ -130,10 +144,16 @@ class _CheckInState extends State<CheckInHome>{
           children: <Widget>[
             IconButton(
               icon: Icon(Icons.track_changes),
+              color: _selectedIndex == 0
+                  ? Const.SELECTED_COLOR
+                  : Const.UNSELECTED_COLOR,
               onPressed: (){_changePage(0);},
             ),
             IconButton(
               icon: Icon(Icons.person),
+              color: _selectedIndex == 1
+                  ? Const.SELECTED_COLOR
+                  : Const.UNSELECTED_COLOR,
               onPressed: (){_changePage(1);},
             ),
             Padding(
@@ -144,10 +164,17 @@ class _CheckInState extends State<CheckInHome>{
             ),
             IconButton(
               icon: Icon(Icons.notification_important),
+
+              color: _selectedIndex == 2
+                  ? Const.SELECTED_COLOR
+                  : Const.UNSELECTED_COLOR,
               onPressed: (){_changePage(2);},
             ),
             IconButton(
               icon: Icon(Icons.info),
+              color: _selectedIndex == 3
+                  ? Const.SELECTED_COLOR
+                  : Const.UNSELECTED_COLOR,
               onPressed: (){_changePage(3);},
             ),
           ],
