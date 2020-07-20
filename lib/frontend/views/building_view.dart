@@ -23,7 +23,7 @@ class BuildingView extends StatelessWidget {
               child: SingleChildScrollView(
                   child: Column(
                 children: <Widget>[
-                  CategoryList(),
+                  //CategoryList(),
                   model.busy
                       ? CircularProgressIndicator()
                       : SizedBox(
