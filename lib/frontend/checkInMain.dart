@@ -1,3 +1,6 @@
+import 'package:checkin/backend/sendNotification.dart';
+
+import 'notificationCenter.dart';
 import 'personalData.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -119,12 +122,12 @@ class _CheckInState extends State<CheckInHome>{
           ),
           Center(
             child: Container(
-              child: Text('Empty Body 2'),
+              child: PushMessagingExample(),
             ),
           ),
           Center(
             child: Container(
-              child: Text('Empty Body 3'),
+              child: SendNotificationPage(),//Text('Empty Body 3'),
             ),
           )
         ],
