@@ -1,4 +1,5 @@
 import 'package:checkin/backend/sendNotification.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 import 'notificationCenter.dart';
 import 'personalData.dart';
@@ -10,6 +11,7 @@ import '../util/const.dart';
 import '../util/fireBaseHelper.dart';
 import '../frontend/registration.dart';
 import '../frontend/visitedBuildings.dart';
+import '../util/dbHelper.dart';
 
 Future<void> main() async {
 
@@ -47,14 +49,50 @@ class _CheckInState extends State<CheckInHome>{
   PageController _checkInPages = PageController(initialPage: 0);
   PersonalData _pData = PersonalData();
   FireBaseHelper _fbHelper = new FireBaseHelper();
+  String _homeScreenText;
   int _selectedIndex = 0;
+  DBHelper _dbHelper = new DBHelper();
+  Map _notificationReceiver;
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
   @override
   void initState() {
     super.initState();
-    setState(() {
 
+    _firebaseMessaging.configure(
+      onMessage: (Map<String, dynamic> message) async {
+        getNotificationMessage(message);
+      },
+      onLaunch: (Map<String, dynamic> message) async {
+        getNotificationMessage(message);
+      },
+      onResume: (Map<String, dynamic> message) async {
+        getNotificationMessage(message);
+      },
+    );
+    _firebaseMessaging.requestNotificationPermissions(
+        const IosNotificationSettings(sound: true, badge: true, alert: true));
+    _firebaseMessaging.onIosSettingsRegistered
+        .listen((IosNotificationSettings settings) {
+      print("Settings registered: $settings");
     });
+    _firebaseMessaging.subscribeToTopic("all");
+    _firebaseMessaging.getToken().then((String token) {
+      assert(token != null);
+      setState(() {
+        _homeScreenText = "Push Messaging token: $token";
+      });
+      //print(_homeScreenText);
+    });
+
+  }
+
+  getNotificationMessage(Map message){
+    setState(() {
+      _notificationReceiver = message["data"];
+      _dbHelper.add(Notifications(null, _notificationReceiver['title'], _notificationReceiver['body']));
+    });
+    print("onMessage: $message ${_notificationReceiver['title'] }${_notificationReceiver['title'] }");
   }
 
   void _changePage(int index){

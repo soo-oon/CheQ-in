@@ -1,3 +1,4 @@
+import 'package:checkin/backend/sendNotification.dart';
 import 'package:flutter/material.dart';
 
 void main(){
@@ -29,7 +30,7 @@ class checkinBackEndMainPage extends StatelessWidget{
           ),
           body: TabBarView(
             children: <Widget>[
-              Container(),
+              SendNotificationPage(),
               Container(),
               Container(),
             ],

@@ -9,13 +9,8 @@ class PushMessagingExample extends StatefulWidget {
 
 class _PushMessagingExampleState extends State<PushMessagingExample> {
 
-  Map _not;
   Future<List<Notifications>> _notifications;
-  DBHelper _dbHelper;
-  String _homeScreenText = "Waiting for token...";
-  String _messageText = "Waiting for message...";
-  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
-
+  DBHelper _dbHelper = DBHelper();
 
   refreshNotificationList() {
     setState(() {
@@ -23,45 +18,13 @@ class _PushMessagingExampleState extends State<PushMessagingExample> {
     });
   }
 
-  getNotificationMessage(Map message){
-    setState(() {
-      print("");
-      _not = message["notification"];
-      _dbHelper.add(Notifications(null, _not['title'], _not['body']));
-      _messageText = "Push Messaging message: $message";
-    });
-    print("onMessage: $message ${_not['title'] }${_not['title'] }");
-  }
-
   @override
   void initState() {
     super.initState();
-    _dbHelper = DBHelper();
-    refreshNotificationList();
-    _firebaseMessaging.configure(
-      onMessage: (Map<String, dynamic> message) async {
-        getNotificationMessage(message);
-      },
-      onLaunch: (Map<String, dynamic> message) async {
-        getNotificationMessage(message);
-      },
-      onResume: (Map<String, dynamic> message) async {
-        getNotificationMessage(message);
-      },
-    );
-    _firebaseMessaging.requestNotificationPermissions(
-        const IosNotificationSettings(sound: true, badge: true, alert: true));
-    _firebaseMessaging.onIosSettingsRegistered
-        .listen((IosNotificationSettings settings) {
-      print("Settings registered: $settings");
+    setState(() {
+      refreshNotificationList();
     });
-    _firebaseMessaging.getToken().then((String token) {
-      assert(token != null);
-      setState(() {
-        _homeScreenText = "Push Messaging token: $token";
-      });
-      //print(_homeScreenText);
-    });
+
   }
   @override
   Widget build(BuildContext context) {
@@ -81,11 +44,6 @@ class _PushMessagingExampleState extends State<PushMessagingExample> {
                 }
             )
         ),
-        Row(children: <Widget>[
-          Expanded(
-            child: Text(_messageText),
-          ),
-        ])
       ],
     );
   }
