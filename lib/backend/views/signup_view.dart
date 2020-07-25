@@ -59,6 +59,14 @@ class SignUpView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     BusyButton(
+                      title: "Login",
+                      busy: model.busy,
+                      onPressed: () {
+                        model.navigateToLoginPage();
+                      },
+                    ),
+                    SizedBox(width: 10),
+                    BusyButton(
                       title: 'Sign Up',
                       busy: model.busy,
                       onPressed: () {

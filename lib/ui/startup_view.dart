@@ -13,6 +13,8 @@ class StartUpView extends StatelessWidget {
         backgroundColor: Colors.white,
         body: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
                 width: 300,

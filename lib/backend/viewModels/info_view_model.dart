@@ -5,12 +5,14 @@ import 'package:checkin/models/user.dart';
 import 'package:checkin/services/authentication_service.dart';
 import 'package:checkin/services/firestore_service.dart';
 import 'package:checkin/services/navigation_service.dart';
+import 'package:checkin/services/pushnotification_service.dart';
 
 class InfoViewModel extends BaseModel {
   final AuthenticationService _authenticationService = locator<AuthenticationService>();
   final NavigationService _navigationService = locator<NavigationService>();
-  
   final FirestoreService _firestoreService = locator<FirestoreService>();
+  final PushNotificationService _pushNotificationService = locator<PushNotificationService>();
+
   User user;
 
   init() async{
@@ -24,6 +26,12 @@ class InfoViewModel extends BaseModel {
     setBusy(true);
     _authenticationService.signOut();
     _navigationService.navigateTo(LoginViewRoute);
+    setBusy(false);
+  }
+
+  Future sendPush() async {
+    setBusy(true);
+    await _pushNotificationService.sendNotificationMessage();
     setBusy(false);
   }
 }

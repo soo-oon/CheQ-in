@@ -28,6 +28,12 @@ class InfoView extends StatelessWidget {
                     },
                   ),
                   RaisedButton(
+                    child: Text("send Push"),
+                    onPressed: () {
+                      model.sendPush();
+                    },
+                  ),
+                  RaisedButton(
                     child: Text("Sign Out"),
                     onPressed: () {
                       model.signOut();

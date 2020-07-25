@@ -93,4 +93,8 @@ class SignUpViewModel extends BaseModel {
       );
     }
   }
+
+  navigateToLoginPage() {
+    _navigationService.navigateTo(LoginViewRoute);
+  }
 }
