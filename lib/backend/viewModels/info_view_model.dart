@@ -17,7 +17,6 @@ class InfoViewModel extends BaseModel {
   TextEditingController titleController = TextEditingController();
   TextEditingController bodyController = TextEditingController();
 
-
   User user;
 
   init() async{

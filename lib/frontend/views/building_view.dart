@@ -96,6 +96,7 @@ Widget buildingCard(
               ],
             ),
             context: context,
+            
           );
       },
       child: Card(

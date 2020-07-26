@@ -1,6 +1,6 @@
 import 'package:checkin/backend/viewModels/visitor_view_model.dart';
 import 'package:flutter/material.dart';
-import 'package:line_awesome_icons/line_awesome_icons.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider_architecture/provider_architecture.dart';
 import 'package:json_table/json_table.dart';
 
@@ -78,7 +78,7 @@ class VisitorView extends StatelessWidget {
                                 },
                               ),
                               FlatButton(
-                                child: Icon(LineAwesomeIcons.search),
+                                child: Icon(FontAwesomeIcons.search),
                                 onPressed: () {},
                               )
                             ],

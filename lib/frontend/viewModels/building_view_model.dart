@@ -3,12 +3,15 @@ import 'package:checkin/models/log.dart';
 import 'package:checkin/services/firestore_service.dart';
 
 import 'package:checkin/locator.dart';
+import 'package:checkin/services/navigation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../backend/viewModels/base_model.dart';
 
 class BuildingViewModel extends BaseModel {
   final FirestoreService _firestoreService = locator<FirestoreService>();
+  final NavigationService navigationService = locator<NavigationService>();
+
   List<Building> _buildings;
   bool isAdmin = false;
   List<Building> get buildings => _buildings;
