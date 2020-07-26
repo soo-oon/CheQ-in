@@ -14,8 +14,8 @@ class FrontEndHomeView extends StatelessWidget {
         bottomNavigationBar: ConvexAppBar(
           style: TabStyle.react,
           items: [
-            TabItem(icon: Icons.location_searching, title: 'Visited'),
             TabItem(icon: Icons.home, title: 'Buildings'),
+            TabItem(icon: Icons.location_searching, title: 'Visited'),
             TabItem(icon: Icons.track_changes, title: 'QrReader'),
             TabItem(icon: Icons.message, title: 'Suggestion'),
             TabItem(icon: Icons.info, title: 'info'),

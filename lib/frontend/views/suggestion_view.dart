@@ -26,7 +26,7 @@ class SuggestionView extends StatelessWidget {
                   ),
                   Expanded(
                     child: RaisedButton(
-                      child: Text("clear"),
+                      child: Text("지우기"),
                       onPressed: () {
                         suggestionWidget.textController.clear();
                         suggestionWidget.titleController.clear();
@@ -38,7 +38,7 @@ class SuggestionView extends StatelessWidget {
                   ),
                   Expanded(
                     child: RaisedButton(
-                      child: Text("Send"),
+                      child: Text("보내기"),
                       onPressed: () {
                         model.addSuggestion(Suggestion(
                             content: suggestionWidget.textController.text,
@@ -53,12 +53,6 @@ class SuggestionView extends StatelessWidget {
                   ),
                 ],
               ),
-              RaisedButton(
-                child: Text("덕래관"),
-                onPressed: () {
-                  model.enterLog("덕래관");
-                },
-              )
             ],
           ),
         ),

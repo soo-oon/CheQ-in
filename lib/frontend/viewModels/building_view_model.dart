@@ -10,8 +10,10 @@ import '../../backend/viewModels/base_model.dart';
 class BuildingViewModel extends BaseModel {
   final FirestoreService _firestoreService = locator<FirestoreService>();
   List<Building> _buildings;
+  bool isAdmin = false;
   List<Building> get buildings => _buildings;
   init() {
+    if (currentUser.userRole == "Admin") isAdmin = true;
     listenToPosts();
   }
 

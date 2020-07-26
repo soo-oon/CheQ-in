@@ -13,8 +13,8 @@ import '../../locator.dart';
 
 class FrontEndHomeViewModel extends BaseModel {
   List<Widget> pages = [
-    VisitedView(),
     BuildingView(),
+    VisitedView(),
     SizedBox(),
     SuggestionView(),
     InfoView()

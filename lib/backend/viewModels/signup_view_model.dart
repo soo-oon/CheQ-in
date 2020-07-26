@@ -45,7 +45,6 @@ class SignUpViewModel extends BaseModel {
         } else {
           _navigationService.navigateTo(BackEndHomeViewRoute);
         }
-        
       } else {
         await _dialogService.showDialog(
           title: 'Sign Up Failure',
@@ -58,6 +57,10 @@ class SignUpViewModel extends BaseModel {
         description: result,
       );
     }
+  }
+
+  navigateToLoginPage() {
+    _navigationService.navigateTo(LoginViewRoute);
   }
 
   Future login({
@@ -92,9 +95,5 @@ class SignUpViewModel extends BaseModel {
         description: result,
       );
     }
-  }
-
-  navigateToLoginPage() {
-    _navigationService.navigateTo(LoginViewRoute);
   }
 }
