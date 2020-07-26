@@ -21,6 +21,7 @@ class VisitorViewModel extends BaseModel {
   DateTime startDate;
   DateTime endDate;
   String building;
+  int numberOfDates = 1;
 
   init() async {
     setBusy(true);

@@ -43,7 +43,7 @@ class PushNotificationService {
     });
   }
 
-  Future sendNotificationMessage() async {
+  Future sendNotificationMessage(String title, String body) async {
     try {
       await http.post(
       'https://fcm.googleapis.com/fcm/send',
@@ -54,13 +54,14 @@ class PushNotificationService {
       body: jsonEncode(
         <String, dynamic>{
           'notification': <String, dynamic>{
-            'body': 'Amazing Grace',
-            'title': 'I have done it'
+            'title': title,
+            'body': body,
+            'image': "https://www.mhns.co.kr/news/photo/201908/266445_371120_1913.jpg"
           },
           //'priority': 'high',
           'data': <String, dynamic>{
-            'body': 'Amazing Grace',
-            'title': 'weew',
+            'title': title,
+            'body': body,
             'click_action': 'FLUTTER_NOTIFICATION_CLICK',
             'id': '1',
             'status': 'done'
