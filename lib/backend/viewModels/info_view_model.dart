@@ -6,12 +6,17 @@ import 'package:checkin/services/authentication_service.dart';
 import 'package:checkin/services/firestore_service.dart';
 import 'package:checkin/services/navigation_service.dart';
 import 'package:checkin/services/pushnotification_service.dart';
+import 'package:flutter/cupertino.dart';
 
 class InfoViewModel extends BaseModel {
   final AuthenticationService _authenticationService = locator<AuthenticationService>();
   final NavigationService _navigationService = locator<NavigationService>();
   final FirestoreService _firestoreService = locator<FirestoreService>();
   final PushNotificationService _pushNotificationService = locator<PushNotificationService>();
+
+  TextEditingController titleController = TextEditingController();
+  TextEditingController bodyController = TextEditingController();
+
 
   User user;
 
@@ -29,9 +34,9 @@ class InfoViewModel extends BaseModel {
     setBusy(false);
   }
 
-  Future sendPush() async {
+  Future sendPush(String title, String body) async {
     setBusy(true);
-    await _pushNotificationService.sendNotificationMessage();
+    await _pushNotificationService.sendNotificationMessage(title, body);
     setBusy(false);
   }
 }
