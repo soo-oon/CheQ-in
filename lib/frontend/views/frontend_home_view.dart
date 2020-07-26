@@ -14,11 +14,11 @@ class FrontEndHomeView extends StatelessWidget {
         bottomNavigationBar: ConvexAppBar(
           style: TabStyle.react,
           items: [
-            TabItem(icon: Icons.home, title: 'Buildings'),
-            TabItem(icon: Icons.location_searching, title: 'Visited'),
+            TabItem(icon: Icons.home, title: '빌딩 상태'),
+            TabItem(icon: Icons.location_searching, title: '방문한 곳'),
             TabItem(icon: Icons.track_changes, title: 'QrReader'),
-            TabItem(icon: Icons.message, title: 'Suggestion'),
-            TabItem(icon: Icons.info, title: 'info'),
+            TabItem(icon: Icons.message, title: '제안'),
+            TabItem(icon: Icons.info, title: '계정'),
           ],
           initialActiveIndex: 0, //optional, default as 0
           onTap: (index) => model.setIndex(index),
