@@ -6,13 +6,5 @@ import 'package:checkin/backend/views/visitor_view.dart';
 import 'package:flutter/material.dart';
 
 class BackEndHomeViewModel extends BaseModel {
-  List<Widget> pages = [VisitorView(), SuggestionView(), PushView(), InfoView()];
-  int currentIndex = 0;
 
-  void setIndex(int index) {
-    setBusy(true);
-    currentIndex = index;
-    setBusy(false);
-    print(currentIndex);
-  }
 }

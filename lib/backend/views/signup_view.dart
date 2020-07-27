@@ -24,7 +24,9 @@ class SignUpView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(height: 150,),
+                SizedBox(
+                  height: 150,
+                ),
                 Text(
                   'Sign Up',
                   style: TextStyle(
@@ -46,7 +48,8 @@ class SignUpView extends StatelessWidget {
                   placeholder: 'Password',
                   password: true,
                   controller: passwordController,
-                  additionalNote: 'Password has to be a minimum of 6 characters.',
+                  additionalNote:
+                      'Password has to be a minimum of 6 characters.',
                 ),
                 verticalSpaceSmall,
                 ExpansionList<String>(
@@ -58,6 +61,14 @@ class SignUpView extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
+                    BusyButton(
+                      title: "Login",
+                      busy: model.busy,
+                      onPressed: () {
+                        model.navigateToLoginPage();
+                      },
+                    ),
+                    SizedBox(width: 10),
                     BusyButton(
                       title: 'Sign Up',
                       busy: model.busy,

@@ -23,7 +23,8 @@ class BuildingView extends StatelessWidget {
               child: SingleChildScrollView(
                   child: Column(
                 children: <Widget>[
-                  CategoryList(),
+                  Text("전체 건물 상태"),
+                  //CategoryList(),
                   model.busy
                       ? CircularProgressIndicator()
                       : SizedBox(
@@ -32,25 +33,15 @@ class BuildingView extends StatelessWidget {
                             scrollDirection: Axis.vertical,
                             itemCount: model.buildings.length,
                             itemBuilder: (context, index) {
-                              return Container(
-                                width: 200,
-                                child: Card(
-                                  color: Colors.white70,
-                                  child: ListTile(
-                                    title: Text(model.buildings[index].name),
-                                    trailing: Text("no problem"),
-                                  ),
-                                ),
-                              );
-                              // if (model.buildings[index].status == 0)
-                              //   return buildingCard(model, index, "is infected",
-                              //       Colors.redAccent);
-                              // else if (model.buildings[index].status == 1)
-                              //   return buildingCard(model, index, "is cleaned",
-                              //       Colors.yellowAccent);
-                              // else
-                              //   return buildingCard(
-                              //       model, index, "is green", Colors.black12);
+                              if (model.buildings[index].status == 0)
+                                return buildingCard(
+                                    model, index, Colors.redAccent, context);
+                              else if (model.buildings[index].status == 1)
+                                return buildingCard(
+                                    model, index, Colors.yellowAccent, context);
+                              else
+                                return buildingCard(
+                                    model, index, Colors.black12, context);
                             },
                           ),
                         )
@@ -61,13 +52,59 @@ class BuildingView extends StatelessWidget {
 }
 
 Widget buildingCard(
-    BuildingViewModel model, int index, String comment, Color color) {
+    BuildingViewModel model, int index, Color color, BuildContext context) {
   return Container(
-    child: Card(
-      color: color,
-      child: ListTile(
-        title: Text(model.buildings[index].name),
-        trailing: Text(comment),
+    width: 200,
+    child: GestureDetector(
+      onTap: () {
+        if (model.isAdmin)
+          showDialog(
+            child: AlertDialog(
+              title: Text("건물 상태변경"),
+              actions: <Widget>[
+                Column(
+                  children: <Widget>[
+                    RaisedButton(
+                      onPressed: () {
+                        model.buildings[index].status = 0;
+                        model
+                            .getFirestoreService()
+                            .updateBuilding(model.buildings[index]);
+                      },
+                      child: Text("감염"),
+                    ),
+                    RaisedButton(
+                      onPressed: () {
+                        model.buildings[index].status = 1;
+                        model
+                            .getFirestoreService()
+                            .updateBuilding(model.buildings[index]);
+                      },
+                      child: Text("안전"),
+                    ),
+                    RaisedButton(
+                      onPressed: () {
+                        model.buildings[index].status = 2;
+                        model
+                            .getFirestoreService()
+                            .updateBuilding(model.buildings[index]);
+                      },
+                      child: Text("방역 중"),
+                    ),
+                  ],
+                )
+              ],
+            ),
+            context: context,
+            
+          );
+      },
+      child: Card(
+        color: color,
+        child: ListTile(
+          title: Text(model.buildings[index].name),
+          trailing: Icon(Icons.location_on),
+        ),
       ),
     ),
   );

@@ -13,7 +13,7 @@ class SuggestionWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Text(
-            "Suggestion",
+            "제안",
             style: new TextStyle(fontSize: 40.0),
           ),
           Container(
@@ -25,7 +25,7 @@ class SuggestionWidget extends StatelessWidget {
                 maxLines: 2,
                 autocorrect: false,
                 decoration: InputDecoration(
-                  hintText: 'Write title',
+                  hintText: '제목을 입력하시오',
                   filled: true,
                   fillColor: Color(0xFFDBEDFF),
                   enabledBorder: OutlineInputBorder(
@@ -49,7 +49,7 @@ class SuggestionWidget extends StatelessWidget {
                 maxLines: 15,
                 autocorrect: false,
                 decoration: InputDecoration(
-                  hintText: 'Write contents',
+                  hintText: '내용을 입력하시오',
                   filled: true,
                   fillColor: Color(0xFFDBEDFF),
                   enabledBorder: OutlineInputBorder(

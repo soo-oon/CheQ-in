@@ -6,7 +6,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 
 import '../models/suggestion.dart';
-import '../models/suggestion.dart';
 
 class FirestoreService {
   final CollectionReference _usersCollectionReference =

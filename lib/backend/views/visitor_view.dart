@@ -1,6 +1,6 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:checkin/backend/viewModels/visitor_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider_architecture/provider_architecture.dart';
 import 'package:json_table/json_table.dart';
 
@@ -21,37 +21,37 @@ class VisitorView extends StatelessWidget {
                   ? SizedBox()
                   : Container(
                       child: ExpansionTile(
-                        // expandedAlignment: Alignment.centerLeft,
-                        // expandedCrossAxisAlignment: CrossAxisAlignment.start,
-                        // childrenPadding: EdgeInsets.all(20),
                         title: Text("Filter"),
                         children: [
-                          Text("Start"),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
+                              Text("날짜"),
+                              SizedBox(width: 10,),
                               Text(model.startDate.toString().substring(0, 10)),
                               FlatButton(
                                 child: Icon(Icons.calendar_today),
                                 onPressed: () {
                                   model.setStartDateTime(context);
                                 },
-                              )
-                            ],
-                          ),
-                          Text("End"),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(model.endDate.toString().substring(0, 10)),
-                              FlatButton(
-                                child: Icon(Icons.calendar_today),
-                                onPressed: () {
-                                  model.setEndDateTime(context);
-                                },
-                              )
+                              ),
+                              DropdownButton(
+                                value: model.numberOfDates,
+                                items: <int>[
+                                  1,
+                                  2,
+                                  3
+                                ].map<DropdownMenuItem<int>>((int value) {
+                                  return DropdownMenuItem<int>(
+                                    value: value,
+                                    child: Text(
+                                      value.toString(),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  );
+                                }).toList(),
+                              ),
                             ],
                           ),
                           Row(
@@ -77,18 +77,12 @@ class VisitorView extends StatelessWidget {
                                   model.setBuildingName(value);
                                 },
                               ),
-                            ],
-                          ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              RaisedButton(
-                                child: Text("Query Now"),
+                              FlatButton(
+                                child: Icon(FontAwesomeIcons.search),
                                 onPressed: () {},
                               )
                             ],
-                          )
+                          ),
                         ],
                       ),
                     ),

@@ -38,7 +38,13 @@ class SignUpViewModel extends BaseModel {
 
     if (result is bool) {
       if (result) {
-        _navigationService.navigateTo(LoginViewRoute);
+        await login(email: email, password: password);
+
+        if (_selectedRole == "User") {
+          _navigationService.navigateTo(FrontEndHomeViewRoute);
+        } else {
+          _navigationService.navigateTo(BackEndHomeViewRoute);
+        }
       } else {
         await _dialogService.showDialog(
           title: 'Sign Up Failure',
@@ -48,6 +54,44 @@ class SignUpViewModel extends BaseModel {
     } else {
       await _dialogService.showDialog(
         title: 'Sign Up Failure',
+        description: result,
+      );
+    }
+  }
+
+  navigateToLoginPage() {
+    _navigationService.navigateTo(LoginViewRoute);
+  }
+
+  Future login({
+    @required String email,
+    @required String password,
+  }) async {
+    setBusy(true);
+
+    var result = await _authenticationService.loginWithEmail(
+      email: email,
+      password: password,
+    );
+
+    setBusy(false);
+
+    if (result is bool) {
+      if (result) {
+        if (_authenticationService.currentUser.userRole == "Admin") {
+          _navigationService.navigateTo(BackEndHomeViewRoute);
+        } else {
+          _navigationService.navigateTo(FrontEndHomeViewRoute);
+        }
+      } else {
+        await _dialogService.showDialog(
+          title: 'Login Failure',
+          description: 'General login failure. Please try again later',
+        );
+      }
+    } else {
+      await _dialogService.showDialog(
+        title: 'Login Failure',
         description: result,
       );
     }
