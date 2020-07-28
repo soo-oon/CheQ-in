@@ -2,6 +2,7 @@ import 'package:checkin/ui/shared/ui_helpers.dart';
 import 'package:checkin/ui/widgets/busy_button.dart';
 import 'package:checkin/ui/widgets/expansion_list.dart';
 import 'package:checkin/ui/widgets/input_field.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider_architecture/provider_architecture.dart';
 import 'package:checkin/backend/viewModels/signup_view_model.dart';
@@ -10,33 +11,47 @@ class SignUpView extends StatelessWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final fullNameController = TextEditingController();
+  final phoneController = TextEditingController();
+  final addressController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return ViewModelProvider<SignUpViewModel>.withConsumer(
       viewModelBuilder: () => SignUpViewModel(),
       builder: (context, model, child) => Scaffold(
+        backgroundColor: Colors.lightBlue.shade100,
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 50.0),
+            padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 SizedBox(
-                  height: 150,
+                  height: 100,
                 ),
                 Text(
-                  'Sign Up',
+                  'Register',
                   style: TextStyle(
-                    fontSize: 38,
+                    fontSize: 30,
                   ),
                 ),
-                verticalSpaceLarge,
+                verticalSpaceSmall,
                 InputField(
                   placeholder: 'Full Name',
                   controller: fullNameController,
+                ),
+                verticalSpaceSmall,
+                InputField(
+                  placeholder: 'Phone',
+                  controller: phoneController,
+                  textInputType: TextInputType.numberWithOptions(),
+                ),
+                verticalSpaceSmall,
+                InputField(
+                  placeholder: 'Address',
+                  controller: addressController,
                 ),
                 verticalSpaceSmall,
                 InputField(
@@ -52,17 +67,18 @@ class SignUpView extends StatelessWidget {
                       'Password has to be a minimum of 6 characters.',
                 ),
                 verticalSpaceSmall,
+                /* No need for role right now
                 ExpansionList<String>(
                     items: ['Admin', 'User'],
                     title: model.selectedRole,
                     onItemSelected: model.setSelectedRole),
-                verticalSpaceMedium,
+                verticalSpaceMedium,*/
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     BusyButton(
-                      title: "Login",
+                      title: "Cancle",
                       busy: model.busy,
                       onPressed: () {
                         model.navigateToLoginPage();
@@ -70,13 +86,15 @@ class SignUpView extends StatelessWidget {
                     ),
                     SizedBox(width: 10),
                     BusyButton(
-                      title: 'Sign Up',
+                      title: 'Submit',
                       busy: model.busy,
                       onPressed: () {
                         model.signUp(
                             email: emailController.text,
                             password: passwordController.text,
-                            fullName: fullNameController.text);
+                            fullName: fullNameController.text,
+                            phoneNumber: phoneController.text,
+                            address: addressController.text);
                       },
                     )
                   ],

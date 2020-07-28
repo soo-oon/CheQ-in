@@ -31,6 +31,8 @@ class AuthenticationService {
     @required String email,
     @required String password,
     @required String fullName,
+    @required String address,
+    @required String phoneNumber,
     @required String role,
   }) async {
     try {
@@ -45,6 +47,8 @@ class AuthenticationService {
         email: email,
         fullName: fullName,
         userRole: role,
+        address: address,
+        phoneNumber: phoneNumber
       );
 
       await _firestoreService.createUser(_currentUser);

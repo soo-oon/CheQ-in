@@ -13,8 +13,8 @@ class SignUpViewModel extends BaseModel {
   final DialogService _dialogService = locator<DialogService>();
   final NavigationService _navigationService = locator<NavigationService>();
 
-  String _selectedRole = 'Select a User Role';
-  String get selectedRole => _selectedRole;
+  String _selectedRole = 'User';
+  //String get selectedRole => _selectedRole;
 
   void setSelectedRole(dynamic role) {
     _selectedRole = role;
@@ -25,6 +25,8 @@ class SignUpViewModel extends BaseModel {
     @required String email,
     @required String password,
     @required String fullName,
+    @required String address,
+    @required String phoneNumber,
   }) async {
     setBusy(true);
 
@@ -32,7 +34,9 @@ class SignUpViewModel extends BaseModel {
         email: email,
         password: password,
         fullName: fullName,
-        role: _selectedRole);
+        address: address,
+        phoneNumber: phoneNumber,
+        role: _selectedRole);//Maybe _selectedRole in the future
 
     setBusy(false);
 
