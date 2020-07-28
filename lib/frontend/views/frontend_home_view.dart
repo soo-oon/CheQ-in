@@ -38,7 +38,7 @@ class FrontEndHomeView extends StatelessWidget {
             floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
             floatingActionButton: FloatingActionButton(
 
-              child: Icon(Icons.settings_overscan, color: Const.UNSELECTED_COLOR,),
+              child: Icon(Icons.camera, color: Const.UNSELECTED_COLOR, size: 45,),
               onPressed: () => model.setIndex(2),
               backgroundColor: Colors.lightBlue,
             ),
