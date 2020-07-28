@@ -28,20 +28,20 @@ class BuildingView extends StatelessWidget {
                   model.busy
                       ? CircularProgressIndicator()
                       : SizedBox(
-                          height: 400,
+                          height: 600,
                           child: ListView.builder(
                             scrollDirection: Axis.vertical,
                             itemCount: model.buildings.length,
                             itemBuilder: (context, index) {
                               if (model.buildings[index].status == 0)
                                 return buildingCard(
-                                    model, index, Colors.redAccent, context);
+                                    model, index, Colors.redAccent.shade100, context);
                               else if (model.buildings[index].status == 1)
                                 return buildingCard(
-                                    model, index, Colors.yellowAccent, context);
+                                    model, index, Colors.lightBlue.shade100, context);
                               else
                                 return buildingCard(
-                                    model, index, Colors.black12, context);
+                                    model, index, Colors.white, context);
                             },
                           ),
                         )

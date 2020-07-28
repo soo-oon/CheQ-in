@@ -2,6 +2,7 @@ import 'package:checkin/frontend/viewModels/frontend_home_view_Model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider_architecture/provider_architecture.dart';
+import 'package:checkin/constants/route_names.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 
 class FrontEndHomeView extends StatelessWidget {
@@ -30,20 +31,62 @@ class FrontEndHomeView extends StatelessWidget {
           );
         },
         child: Scaffold(
+          appBar: AppBar(
+            title: Text("KMU CI"),
+            backgroundColor: Colors.lightBlue,
+          ),
+            floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+            floatingActionButton: FloatingActionButton(
+
+              child: Icon(Icons.settings_overscan, color: Const.UNSELECTED_COLOR,),
+              onPressed: () => model.setIndex(2),
+              backgroundColor: Colors.lightBlue,
+            ),
           backgroundColor: Colors.white,
           body: model.pages[model.currentIndex],
-          bottomNavigationBar: ConvexAppBar(
-            style: TabStyle.react,
-            items: [
-              TabItem(icon: Icons.home, title: '빌딩 상태'),
-              TabItem(icon: Icons.location_searching, title: '방문한 곳'),
-              TabItem(icon: Icons.track_changes, title: 'QrReader'),
-              TabItem(icon: Icons.message, title: '제안'),
-              TabItem(icon: Icons.info, title: '계정'),
-            ],
-            initialActiveIndex: 0, //optional, default as 0
-            onTap: (index) => model.setIndex(index),
-          ),
+          bottomNavigationBar: BottomAppBar(
+              shape: CircularNotchedRectangle(),
+              color: Colors.lightBlue,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.home),
+                    color: model.currentIndex  == 0
+                        ? Const.SELECTED_COLOR
+                        : Const.UNSELECTED_COLOR,
+                    onPressed: () => model.setIndex(0),
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.track_changes),
+                    color: model.currentIndex  == 1
+                        ? Const.SELECTED_COLOR
+                        : Const.UNSELECTED_COLOR,
+                    onPressed: () => model.setIndex(1),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(16.0),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(16.0),
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.comment),
+                    color: model.currentIndex  == 3
+                        ? Const.SELECTED_COLOR
+                        : Const.UNSELECTED_COLOR,
+                    onPressed: () => model.setIndex(3),
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.info),
+                    color: model.currentIndex  == 4
+                        ? Const.SELECTED_COLOR
+                        : Const.UNSELECTED_COLOR,
+                    onPressed: () => model.setIndex(4),
+                  ),
+                ],
+              )
+          )
         ),
       ),
     );
