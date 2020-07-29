@@ -54,7 +54,7 @@ class SuggestionView extends StatelessWidget {
                 ],
               ),
               RaisedButton(
-                onPressed: () => model.enterLog("의양관"),
+                onPressed: () => model.enterLog("영암관"),
                 child: Text("덕래관"),
               )
             ],
