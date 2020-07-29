@@ -9,7 +9,7 @@ import '../../services/firestore_service.dart';
 class VisitedViewModel extends BaseModel {
   final FirestoreService _firestoreService = locator<FirestoreService>();
   SharedPreferences _prefs;
-  List<String> visitedBuildings;
+  List<String> visitedBuildings = [];
   int isToday;
   init() async {
     setBusy(true);
@@ -27,7 +27,9 @@ class VisitedViewModel extends BaseModel {
   void updateBuilding() {
     if (_firestoreService.visitedBuildingNames != null) {
       if (_firestoreService.visitedBuildingNames.isNotEmpty) {
-        visitedBuildings.addAll(_firestoreService.visitedBuildingNames);
+        for (var i in _firestoreService.visitedBuildingNames) {
+          if (!visitedBuildings.contains(i)) visitedBuildings.add(i);
+        }
         _prefs.setStringList("buildings", visitedBuildings);
         _firestoreService.visitedBuildingNames.clear();
       }

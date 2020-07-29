@@ -1,12 +1,10 @@
 import 'package:checkin/models/building.dart';
-import 'package:checkin/models/log.dart';
 import 'package:checkin/services/firestore_service.dart';
 
 import 'package:checkin/locator.dart';
 import 'package:checkin/services/navigation_service.dart';
 import 'package:checkin/services/pushnotification_service.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import '../../backend/viewModels/base_model.dart';
 
 class BuildingViewModel extends BaseModel {

@@ -21,13 +21,13 @@ class VisitedView extends StatelessWidget {
                     child: Text("금일 방문한 곳"),
                   ),
                   SizedBox(
-                    height: 400,
+                    height: MediaQuery.of(context).size.height / 2,
                     child: ListView.builder(
                         scrollDirection: Axis.vertical,
                         itemCount: model.visitedBuildings.length,
                         itemBuilder: (context, index) => Container(
-                              height: 50,
-                              width: 200,
+                              height: MediaQuery.of(context).size.height / 12,
+                              width: MediaQuery.of(context).size.width,
                               child: Card(
                                 child: Row(
                                   children: <Widget>[
@@ -43,15 +43,34 @@ class VisitedView extends StatelessWidget {
                                     ),
                                     Text(model.visitedBuildings[index]),
                                     SizedBox(
-                                      width: 240,
+                                      width: MediaQuery.of(context).size.width /
+                                          1.5,
                                     ),
-                                    Icon(Icons.my_location),
+                                    iconColor(index, model),
                                   ],
                                 ),
                               ),
                             )),
                   ),
+                  RaisedButton(
+                      onPressed: () {
+                        model.visitedBuildings.clear();
+                      },
+                      child: Text("test delete"))
                 ],
               ))));
+  }
+}
+
+Widget iconColor(int index, VisitedViewModel model) {
+  if (index == model.visitedBuildings.length - 1) {
+    return Icon(
+      Icons.my_location,
+      color: Colors.redAccent,
+    );
+  } else {
+    return Icon(
+      Icons.my_location,
+    );
   }
 }

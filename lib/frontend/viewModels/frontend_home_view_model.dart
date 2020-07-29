@@ -60,11 +60,10 @@ class FrontEndHomeViewModel extends BaseModel {
           _logs = [];
         }
         _firestoreService.visitedBuildings(buildingName);
-        _logs.add(Log(
+        _firestoreService.updateLogs(Log(
             userName: currentUser.fullName,
             buildingName: buildingName,
             time: DateTime.now().toString()));
-        _firestoreService.updateBuilding(building);
       }
     }
     setBusy(false);
