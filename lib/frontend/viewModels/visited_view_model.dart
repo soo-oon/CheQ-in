@@ -10,6 +10,7 @@ class VisitedViewModel extends BaseModel {
   final FirestoreService _firestoreService = locator<FirestoreService>();
   SharedPreferences _prefs;
   List<String> visitedBuildings = [];
+  String lastStop;
   int isToday;
   init() async {
     setBusy(true);
@@ -30,6 +31,8 @@ class VisitedViewModel extends BaseModel {
         for (var i in _firestoreService.visitedBuildingNames) {
           if (!visitedBuildings.contains(i)) visitedBuildings.add(i);
         }
+        lastStop = _firestoreService.visitedBuildingNames[
+            _firestoreService.visitedBuildingNames.length - 1];
         _prefs.setStringList("buildings", visitedBuildings);
         _firestoreService.visitedBuildingNames.clear();
       }
