@@ -40,17 +40,14 @@ class AuthenticationService {
         email: email,
         password: password,
       );
-
       // create a new user profile on firestore
       _currentUser = User(
-        id: authResult.user.uid,
-        email: email,
-        fullName: fullName,
-        userRole: role,
-        address: address,
-        phoneNumber: phoneNumber
-      );
-
+          id: authResult.user.uid,
+          email: email,
+          fullName: fullName,
+          userRole: role,
+          address: address,
+          phoneNumber: phoneNumber);
       await _firestoreService.createUser(_currentUser);
 
       return authResult.user != null;
@@ -64,6 +61,18 @@ class AuthenticationService {
     if (user != null) await _populateCurrentUser(user);
 
     return user != null;
+  }
+
+  Future changePassword(String password) async {
+    try {
+      var firebaseUser = await _firebaseAuth.currentUser();
+
+      var result = firebaseUser.updatePassword(password);
+
+      return result;
+    } catch (e) {
+      return e.message;
+    }
   }
 
   Future _populateCurrentUser(FirebaseUser user) async {

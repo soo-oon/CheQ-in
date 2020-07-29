@@ -4,6 +4,7 @@ import 'package:checkin/services/firestore_service.dart';
 
 import 'package:checkin/locator.dart';
 import 'package:checkin/services/navigation_service.dart';
+import 'package:checkin/services/pushnotification_service.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../backend/viewModels/base_model.dart';
@@ -11,6 +12,8 @@ import '../../backend/viewModels/base_model.dart';
 class BuildingViewModel extends BaseModel {
   final FirestoreService _firestoreService = locator<FirestoreService>();
   final NavigationService navigationService = locator<NavigationService>();
+  final PushNotificationService _pushNotificationService =
+      locator<PushNotificationService>();
 
   List<Building> _buildings;
   bool isAdmin = false;
@@ -20,6 +23,11 @@ class BuildingViewModel extends BaseModel {
     listenToPosts();
   }
 
+  Future sendPush(String title, String body) async {
+    setBusy(true);
+    await _pushNotificationService.sendNotificationMessage(title, body);
+    setBusy(false);
+  }
   // void enterLog(String buildingName) {
   //   setBusy(true);
   //   for (var building in buildings) {

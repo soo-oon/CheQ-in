@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:provider_architecture/provider_architecture.dart';
 import 'package:checkin/backend/viewModels/signup_view_model.dart';
 
-class SignUpView extends StatelessWidget {
+class ModifyView extends StatelessWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final fullNameController = TextEditingController();
@@ -62,12 +62,6 @@ class SignUpView extends StatelessWidget {
                     controller: addressController,
                     fieldFocusNode: addressFocusNode,
                     nextFocusNode: emailFocusNode),
-                verticalSpaceSmall,
-                InputField(
-                    placeholder: 'Email',
-                    controller: emailController,
-                    fieldFocusNode: emailFocusNode,
-                    nextFocusNode: passwordFocusNode),
                 verticalSpaceSmall,
                 InputField(
                   placeholder: 'Password',

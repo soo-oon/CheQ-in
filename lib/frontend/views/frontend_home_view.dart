@@ -9,6 +9,7 @@ class FrontEndHomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelProvider<FrontEndHomeViewModel>.withConsumer(
+      onModelReady: (model) => model.init(),
       viewModelBuilder: () => FrontEndHomeViewModel(),
       builder: (context, model, child) => WillPopScope(
         onWillPop: () {
@@ -31,63 +32,65 @@ class FrontEndHomeView extends StatelessWidget {
           );
         },
         child: Scaffold(
-          appBar: AppBar(
-            title: Text("KMU CI"),
-            backgroundColor: Colors.lightBlue,
-          ),
-            floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+            appBar: AppBar(
+              title: Text("KMU CI"),
+              backgroundColor: Colors.lightBlue,
+            ),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerDocked,
             floatingActionButton: FloatingActionButton(
-
-              child: Icon(Icons.camera, color: Const.UNSELECTED_COLOR, size: 45,),
+              child: Icon(
+                Icons.camera,
+                color: Const.UNSELECTED_COLOR,
+                size: 45,
+              ),
               onPressed: () => model.setIndex(2),
               backgroundColor: Colors.lightBlue,
             ),
-          backgroundColor: Colors.white,
-          body: model.pages[model.currentIndex],
-          bottomNavigationBar: BottomAppBar(
-              shape: CircularNotchedRectangle(),
-              color: Colors.lightBlue,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  IconButton(
-                    icon: Icon(Icons.home),
-                    color: model.currentIndex  == 0
-                        ? Const.SELECTED_COLOR
-                        : Const.UNSELECTED_COLOR,
-                    onPressed: () => model.setIndex(0),
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.track_changes),
-                    color: model.currentIndex  == 1
-                        ? Const.SELECTED_COLOR
-                        : Const.UNSELECTED_COLOR,
-                    onPressed: () => model.setIndex(1),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(16.0),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(16.0),
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.comment),
-                    color: model.currentIndex  == 3
-                        ? Const.SELECTED_COLOR
-                        : Const.UNSELECTED_COLOR,
-                    onPressed: () => model.setIndex(3),
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.info),
-                    color: model.currentIndex  == 4
-                        ? Const.SELECTED_COLOR
-                        : Const.UNSELECTED_COLOR,
-                    onPressed: () => model.setIndex(4),
-                  ),
-                ],
-              )
-          )
-        ),
+            backgroundColor: Colors.white,
+            body: model.pages[model.currentIndex],
+            bottomNavigationBar: BottomAppBar(
+                shape: CircularNotchedRectangle(),
+                color: Colors.lightBlue,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    IconButton(
+                      icon: Icon(Icons.home),
+                      color: model.currentIndex == 0
+                          ? Const.SELECTED_COLOR
+                          : Const.UNSELECTED_COLOR,
+                      onPressed: () => model.setIndex(0),
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.track_changes),
+                      color: model.currentIndex == 1
+                          ? Const.SELECTED_COLOR
+                          : Const.UNSELECTED_COLOR,
+                      onPressed: () => model.setIndex(1),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(16.0),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(16.0),
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.comment),
+                      color: model.currentIndex == 3
+                          ? Const.SELECTED_COLOR
+                          : Const.UNSELECTED_COLOR,
+                      onPressed: () => model.setIndex(3),
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.info),
+                      color: model.currentIndex == 4
+                          ? Const.SELECTED_COLOR
+                          : Const.UNSELECTED_COLOR,
+                      onPressed: () => model.setIndex(4),
+                    ),
+                  ],
+                ))),
       ),
     );
   }
