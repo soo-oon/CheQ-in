@@ -20,6 +20,7 @@ class VisitedView extends StatelessWidget {
                   Container(
                     child: Text("금일 방문한 곳"),
                   ),
+
                   SizedBox(
                     height: MediaQuery.of(context).size.height / 2,
                     child: ListView.builder(
@@ -29,26 +30,14 @@ class VisitedView extends StatelessWidget {
                               height: MediaQuery.of(context).size.height / 12,
                               width: MediaQuery.of(context).size.width,
                               child: Card(
-                                child: Row(
-                                  children: <Widget>[
-                                    SizedBox(
-                                      width: 7,
-                                    ),
-                                    Icon(
+                                  child:ListTile(
+                                    leading: Icon(
                                       Icons.check_circle_outline,
                                       color: primaryColor,
                                     ),
-                                    SizedBox(
-                                      width: 7,
-                                    ),
-                                    Text(model.visitedBuildings[index]),
-                                    SizedBox(
-                                      width: MediaQuery.of(context).size.width /
-                                          1.5,
-                                    ),
-                                    iconColor(index, model),
-                                  ],
-                                ),
+                                    title: Text(model.visitedBuildings[index]),
+                                    trailing: iconColor(index, model),
+                                  ),
                               ),
                             )),
                   ),
