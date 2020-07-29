@@ -1,4 +1,5 @@
 import 'package:checkin/backend/viewModels/info_view_model.dart';
+import 'package:checkin/backend/views/modify_view.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider_architecture/provider_architecture.dart';
@@ -74,7 +75,13 @@ class InfoView extends StatelessWidget {
                       ),
                       RaisedButton(
                         child: Text("계정정보 수정하기"),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ModifyView()),
+                          );
+                        },
                       ),
                       Card(
                           margin: EdgeInsets.symmetric(

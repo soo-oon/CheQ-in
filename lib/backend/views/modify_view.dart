@@ -83,7 +83,7 @@ class ModifyView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     BusyButton(
-                      title: "Cancle",
+                      title: "Cancel",
                       busy: model.busy,
                       onPressed: () {
                         model.navigateToLoginPage();
@@ -91,17 +91,15 @@ class ModifyView extends StatelessWidget {
                     ),
                     SizedBox(width: 10),
                     BusyButton(
-                      title: 'Submit',
-                      busy: model.busy,
-                      onPressed: () {
-                        model.signUp(
-                            email: emailController.text,
-                            password: passwordController.text,
-                            fullName: fullNameController.text,
-                            phoneNumber: phoneController.text,
-                            address: addressController.text);
-                      },
-                    )
+                        title: 'Submit',
+                        busy: model.busy,
+                        onPressed: () {
+                          model.currentUser.address = addressController.text;
+                          model.currentUser.fullName = fullNameController.text;
+                          model.currentUser.phoneNumber = phoneController.text;
+                          model.updateUserdata(passwordController.text);
+                          Navigator.of(context).pop(true);
+                        })
                   ],
                 )
               ],
