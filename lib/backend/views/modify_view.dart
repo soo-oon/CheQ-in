@@ -38,27 +38,27 @@ class ModifyView extends StatelessWidget {
                   height: 100,
                 ),
                 Text(
-                  'Register',
+                  '개인정보 수정',
                   style: TextStyle(
                     fontSize: 30,
                   ),
                 ),
                 verticalSpaceSmall,
                 InputField(
-                    placeholder: 'Full Name',
+                    placeholder: model.currentUser.fullName,
                     controller: fullNameController,
                     fieldFocusNode: fullNameFocusNode,
                     nextFocusNode: phoneFocusNode),
                 verticalSpaceSmall,
                 InputField(
-                    placeholder: 'Phone',
+                    placeholder: model.currentUser.phoneNumber,
                     controller: phoneController,
                     textInputType: TextInputType.numberWithOptions(),
                     fieldFocusNode: phoneFocusNode,
                     nextFocusNode: addressFocusNode),
                 verticalSpaceSmall,
                 InputField(
-                    placeholder: 'Address',
+                    placeholder: model.currentUser.address,
                     controller: addressController,
                     fieldFocusNode: addressFocusNode,
                     nextFocusNode: emailFocusNode),
@@ -83,21 +83,27 @@ class ModifyView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     BusyButton(
-                      title: "Cancel",
+                      title: "취소",
                       busy: model.busy,
                       onPressed: () {
-                        model.navigateToLoginPage();
+                        Navigator.of(context).pop(true);
                       },
                     ),
                     SizedBox(width: 10),
                     BusyButton(
-                        title: 'Submit',
+                        title: '보내기',
                         busy: model.busy,
                         onPressed: () {
-                          model.currentUser.address = addressController.text;
-                          model.currentUser.fullName = fullNameController.text;
-                          model.currentUser.phoneNumber = phoneController.text;
-                          model.updateUserdata(passwordController.text);
+                          if (addressController.text != null)
+                            model.currentUser.address = addressController.text;
+                          if (fullNameController.text != null)
+                            model.currentUser.fullName =
+                                fullNameController.text;
+                          if (phoneController.text != null)
+                            model.currentUser.phoneNumber =
+                                phoneController.text;
+                          if (passwordController.text != null)
+                            model.updateUserdata(passwordController.text);
                           Navigator.of(context).pop(true);
                         })
                   ],

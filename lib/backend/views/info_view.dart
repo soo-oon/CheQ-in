@@ -73,15 +73,25 @@ class InfoView extends StatelessWidget {
                           ),
                         ],
                       ),
-                      RaisedButton(
-                        child: Text("계정정보 수정하기"),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ModifyView()),
-                          );
-                        },
+                      Row(
+                        children: <Widget>[
+                          RaisedButton(
+                            child: Text("계정정보 수정하기"),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ModifyView()),
+                              );
+                            },
+                          ),
+                          RaisedButton(
+                            child: Text("로그아웃"),
+                            onPressed: () {
+                              model.signOut();
+                            },
+                          )
+                        ],
                       ),
                       Card(
                           margin: EdgeInsets.symmetric(
@@ -106,12 +116,6 @@ class InfoView extends StatelessWidget {
                           model.bodyController.clear();
                         },
                       ),
-                      RaisedButton(
-                        child: Text("로그아웃"),
-                        onPressed: () {
-                          model.signOut();
-                        },
-                      )
                     ],
                   ),
                 ),

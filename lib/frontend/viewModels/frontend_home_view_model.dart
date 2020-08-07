@@ -50,6 +50,7 @@ class FrontEndHomeViewModel extends BaseModel {
     String scannedBuilding = await scanner.scan();
 
     enterLog(scannedBuilding);
+    setIndex(currentIndex);
   }
 
   void enterLog(String buildingName) {
