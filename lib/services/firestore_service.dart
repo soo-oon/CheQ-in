@@ -57,7 +57,8 @@ class FirestoreService {
   }
 
   void visitedBuildings(String buildingName) {
-    visitedBuildingNames.add(buildingName);
+    if (!visitedBuildingNames.contains(buildingName))
+      visitedBuildingNames.add(buildingName);
   }
 
   Future updateLogs(Log log) async {

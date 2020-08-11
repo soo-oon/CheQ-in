@@ -2,6 +2,7 @@ import 'package:checkin/constants/route_names.dart';
 import 'package:checkin/locator.dart';
 import 'package:checkin/services/authentication_service.dart';
 import 'package:checkin/services/dialog_service.dart';
+import 'package:checkin/services/firestore_service.dart';
 import 'package:checkin/services/navigation_service.dart';
 import 'package:flutter/foundation.dart';
 
@@ -11,10 +12,16 @@ class SignUpViewModel extends BaseModel {
   final AuthenticationService _authenticationService =
       locator<AuthenticationService>();
   final DialogService _dialogService = locator<DialogService>();
+  final FirestoreService _firestoreService = locator<FirestoreService>();
   final NavigationService _navigationService = locator<NavigationService>();
 
-  String _selectedRole = 'Select a User Role';
-  String get selectedRole => _selectedRole;
+  String _selectedRole = 'User';
+  //String get selectedRole => _selectedRole;
+
+  Future updateUserdata(String password) async {
+    await _firestoreService.createUser(currentUser);
+    await _authenticationService.changePassword(password);
+  }
 
   void setSelectedRole(dynamic role) {
     _selectedRole = role;
@@ -25,6 +32,8 @@ class SignUpViewModel extends BaseModel {
     @required String email,
     @required String password,
     @required String fullName,
+    @required String address,
+    @required String phoneNumber,
   }) async {
     setBusy(true);
 
@@ -32,7 +41,9 @@ class SignUpViewModel extends BaseModel {
         email: email,
         password: password,
         fullName: fullName,
-        role: _selectedRole);
+        address: address,
+        phoneNumber: phoneNumber,
+        role: _selectedRole); //Maybe _selectedRole in the future
 
     setBusy(false);
 

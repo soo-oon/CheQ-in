@@ -1,6 +1,7 @@
 import 'package:checkin/backend/viewModels/base_model.dart';
 import 'package:checkin/backend/views/info_view.dart';
 import 'package:checkin/frontend/views/building_view.dart';
+import 'package:checkin/frontend/views/front_info_view.dart';
 import 'package:checkin/frontend/views/suggestion_view.dart';
 import 'package:checkin/frontend/views/visited_view.dart';
 import 'package:checkin/models/building.dart';
@@ -17,7 +18,7 @@ class FrontEndHomeViewModel extends BaseModel {
     VisitedView(),
     SizedBox(),
     SuggestionView(),
-    InfoView()
+    FrontInfoView()
   ];
   int currentIndex = 0;
 
@@ -26,10 +27,11 @@ class FrontEndHomeViewModel extends BaseModel {
   List<Building> get buildings => _buildings;
   var _logs;
 
-  init() {
-    listenToPosts();
+  init() async {
+    setBusy(true);
+    _buildings = await _firestoreService.getBuildings();
     _logs = _firestoreService.getLogs();
-    print(1);
+    setBusy(false);
   }
 
   void setIndex(int index) {
@@ -48,6 +50,7 @@ class FrontEndHomeViewModel extends BaseModel {
     String scannedBuilding = await scanner.scan();
 
     enterLog(scannedBuilding);
+    setIndex(currentIndex);
   }
 
   void enterLog(String buildingName) {
@@ -57,11 +60,11 @@ class FrontEndHomeViewModel extends BaseModel {
         if (_logs == null) {
           _logs = [];
         }
-        _logs.add(Log(
+        _firestoreService.visitedBuildings(buildingName);
+        _firestoreService.updateLogs(Log(
             userName: currentUser.fullName,
             buildingName: buildingName,
             time: DateTime.now().toString()));
-        _firestoreService.updateBuilding(building);
       }
     }
     setBusy(false);

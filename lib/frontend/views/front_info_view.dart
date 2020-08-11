@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider_architecture/provider_architecture.dart';
 
-class InfoView extends StatelessWidget {
+class FrontInfoView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelProvider<InfoViewModel>.withConsumer(
@@ -74,6 +74,8 @@ class InfoView extends StatelessWidget {
                         ],
                       ),
                       Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           RaisedButton(
                             child: Text("계정정보 수정하기"),
@@ -93,28 +95,10 @@ class InfoView extends StatelessWidget {
                           )
                         ],
                       ),
-                      Card(
-                          margin: EdgeInsets.symmetric(
-                              vertical: 10.0, horizontal: 25),
-                          child: TextField(
-                            controller: model.titleController,
-                            decoration: InputDecoration(hintText: "푸시알림 제목"),
-                          )),
-                      Card(
-                          margin: EdgeInsets.symmetric(
-                              vertical: 10.0, horizontal: 25),
-                          child: TextField(
-                            controller: model.bodyController,
-                            decoration: InputDecoration(hintText: "푸시알림 내용"),
-                          )),
-                      RaisedButton(
-                        child: Text("send Push"),
-                        onPressed: () {
-                          model.sendPush(model.titleController.text,
-                              model.bodyController.text);
-                          model.titleController.clear();
-                          model.bodyController.clear();
-                        },
+                      SizedBox(
+                        width: 300,
+                        height: 100,
+                        child: Image.asset('assets/images/logo.jpg'),
                       ),
                     ],
                   ),
