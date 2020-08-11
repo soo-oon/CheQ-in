@@ -1,5 +1,3 @@
-import 'package:checkin/models/building.dart';
-import 'package:checkin/ui/widgets/catagories.dart';
 import 'package:flutter/material.dart';
 
 import '../viewModels/building_view_model.dart';
@@ -110,7 +108,7 @@ Widget buildingCard(
   );
 }
 
-Widget Catagories() {
+Widget buildCatagories() {
   return Container(
     margin: EdgeInsets.symmetric(vertical: 20),
     height: 30,

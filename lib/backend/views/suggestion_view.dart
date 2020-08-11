@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider_architecture/provider_architecture.dart';
 
 class SuggestionView extends StatelessWidget {
-  Set<DataRow> rows;
   @override
   Widget build(BuildContext context) {
     return ViewModelProvider<SuggestionViewModel>.withConsumer(

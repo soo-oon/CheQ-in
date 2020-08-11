@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:checkin/backend/viewModels/base_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';

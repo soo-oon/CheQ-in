@@ -20,7 +20,7 @@ class SuggestionViewModel extends BaseModel {
     for(var i in _suggestions)
     {
       rows.add(DataRow(
-        cells: [DataCell(Text("${n}")),
+        cells: [DataCell(Text("$n")),
       DataCell(Text(i.title)),
       DataCell(Text(i.content))]));
       n+=1;
