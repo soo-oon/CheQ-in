@@ -12,11 +12,7 @@ class InfoViewModel extends BaseModel {
   final AuthenticationService _authenticationService = locator<AuthenticationService>();
   final NavigationService _navigationService = locator<NavigationService>();
   final FirestoreService _firestoreService = locator<FirestoreService>();
-  final PushNotificationService _pushNotificationService = locator<PushNotificationService>();
-
-  TextEditingController titleController = TextEditingController();
-  TextEditingController bodyController = TextEditingController();
-
+  
   User user;
 
   init() async{
@@ -33,9 +29,5 @@ class InfoViewModel extends BaseModel {
     setBusy(false);
   }
 
-  Future sendPush(String title, String body) async {
-    setBusy(true);
-    await _pushNotificationService.sendNotificationMessage(title, body);
-    setBusy(false);
-  }
+
 }

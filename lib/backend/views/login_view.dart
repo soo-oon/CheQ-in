@@ -24,12 +24,12 @@ class LoginView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 InputField(
-                  placeholder: 'Email',
+                  placeholder: '이메일',
                   controller: emailController,
                 ),
                 verticalSpaceSmall,
                 InputField(
-                  placeholder: 'Password',
+                  placeholder: '비밀번호',
                   password: true,
                   controller: passwordController,
                 ),
@@ -38,8 +38,17 @@ class LoginView extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
+                    TextLink(
+                      '회원가입',
+                      onPressed: () {
+                        model.navigateToSignUp();
+                      },
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
                     BusyButton(
-                      title: 'Login',
+                      title: '로그인',
                       busy: model.busy,
                       onPressed: () {
                         model.login(
@@ -47,16 +56,10 @@ class LoginView extends StatelessWidget {
                           password: passwordController.text,
                         );
                       },
-                    )
+                    ),
                   ],
                 ),
                 verticalSpaceMedium,
-                TextLink(
-                  'Create an Account if you\'re new.',
-                  onPressed: () {
-                    model.navigateToSignUp();
-                  },
-                )
               ],
             ),
           )),

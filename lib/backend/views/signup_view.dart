@@ -1,6 +1,5 @@
 import 'package:checkin/ui/shared/ui_helpers.dart';
 import 'package:checkin/ui/widgets/busy_button.dart';
-import 'package:checkin/ui/widgets/expansion_list.dart';
 import 'package:checkin/ui/widgets/input_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -38,44 +37,44 @@ class SignUpView extends StatelessWidget {
                   height: 100,
                 ),
                 Text(
-                  'Register',
+                  '회원가입',
                   style: TextStyle(
                     fontSize: 30,
                   ),
                 ),
-                verticalSpaceSmall,
+                verticalSpaceMedium,
                 InputField(
-                    placeholder: 'Full Name',
+                    placeholder: '이름',
                     controller: fullNameController,
                     fieldFocusNode: fullNameFocusNode,
                     nextFocusNode: phoneFocusNode),
                 verticalSpaceSmall,
                 InputField(
-                    placeholder: 'Phone',
+                    placeholder: '휴대폰 번호',
                     controller: phoneController,
                     textInputType: TextInputType.numberWithOptions(),
                     fieldFocusNode: phoneFocusNode,
                     nextFocusNode: addressFocusNode),
                 verticalSpaceSmall,
                 InputField(
-                    placeholder: 'Address',
+                    placeholder: '주소',
                     controller: addressController,
                     fieldFocusNode: addressFocusNode,
                     nextFocusNode: emailFocusNode),
                 verticalSpaceSmall,
                 InputField(
-                    placeholder: 'Email',
+                    placeholder: '이메일',
                     controller: emailController,
                     fieldFocusNode: emailFocusNode,
                     nextFocusNode: passwordFocusNode),
                 verticalSpaceSmall,
                 InputField(
-                  placeholder: 'Password',
+                  placeholder: '비밀번호',
                   password: true,
                   controller: passwordController,
                   fieldFocusNode: passwordFocusNode,
                   additionalNote:
-                      'Password has to be a minimum of 6 characters.',
+                      '비밀번호는 최소 6자리 이상입니다.',
                 ),
                 verticalSpaceSmall,
                 /* No need for role right now
@@ -89,7 +88,7 @@ class SignUpView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     BusyButton(
-                      title: "Cancle",
+                      title: "취소",
                       busy: model.busy,
                       onPressed: () {
                         model.navigateToLoginPage();
@@ -97,7 +96,7 @@ class SignUpView extends StatelessWidget {
                     ),
                     SizedBox(width: 10),
                     BusyButton(
-                      title: 'Submit',
+                      title: '회원가입',
                       busy: model.busy,
                       onPressed: () {
                         model.signUp(

@@ -18,7 +18,11 @@ class VisitedView extends StatelessWidget {
                     child: Column(
                 children: <Widget>[
                   Container(
-                    child: Text("금일 방문한 곳"),
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      "금일 방문한 곳",
+                      style: TextStyle(fontSize: 20),
+                    ),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height / 2,
@@ -40,11 +44,6 @@ class VisitedView extends StatelessWidget {
                               ),
                             )),
                   ),
-                  RaisedButton(
-                      onPressed: () {
-                        model.visitedBuildings.clear();
-                      },
-                      child: Text("test delete"))
                 ],
               ))));
   }

@@ -20,25 +20,33 @@ class SuggestionView extends StatelessWidget {
                 columns: [
                   DataColumn(
                       label: Text(
-                    "NO",
+                    "번호",
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 14),
                   )),
                   DataColumn(
                       label: Text(
-                    "title",
+                    "제목",
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 14),
                   )),
                   DataColumn(
                       label: Text(
-                    "Content",
+                    "내용",
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 14),
                   )),
                 ],
                 rows: model.rows,
+              ),
+              SizedBox(height: 400,),
+              RaisedButton(
+                child: Text("로그아웃"),
+                onPressed: () {
+                  model.navigateToLogin();
+                },
               )
+
             ],
           ),
         ),

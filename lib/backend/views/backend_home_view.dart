@@ -1,5 +1,6 @@
 import 'package:checkin/backend/viewModels/backend_home_viewModel.dart';
 import 'package:checkin/backend/views/info_view.dart';
+import 'package:checkin/backend/views/push_view.dart';
 import 'package:checkin/backend/views/suggestion_view.dart';
 import 'package:checkin/backend/views/visitor_view.dart';
 import 'package:checkin/frontend/views/building_view.dart';
@@ -44,21 +45,21 @@ class BackEndHomeView extends StatelessWidget {
                   //indicatorColor: Colors.transparent,
                   tabs: [
                     Tab(
-                        text: "Table",
+                        text: "기록",
                         icon: Icon(
                           Icons.table_chart,
                           color: Colors.white,
                         )),
                     Tab(
-                        text: "Sugg",
-                        icon: Icon(Icons.notification_important,
+                        text: "빌딩",
+                        icon: Icon(Icons.build,
                             color: Colors.white)),
                     Tab(
-                        text: "Building",
-                        icon: Icon(Icons.build, color: Colors.white)),
+                        text: "알림",
+                        icon: Icon(Icons.notification_important, color: Colors.white)),
                     Tab(
-                        text: "Info",
-                        icon: Icon(Icons.person, color: Colors.white))
+                        text: "제안",
+                        icon: Icon(Icons.question_answer, color: Colors.white)),
                   ],
                 ),
               ),
@@ -66,9 +67,9 @@ class BackEndHomeView extends StatelessWidget {
             body: TabBarView(
               children: [
                 VisitorView(),
-                SuggestionView(),
                 BuildingView(),
-                InfoView(),
+                PushView(),
+                SuggestionView(),
               ],
             ),
           ),

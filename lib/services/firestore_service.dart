@@ -23,6 +23,25 @@ class FirestoreService {
 
   final StreamController<List<Building>> _buildingsController =
       StreamController<List<Building>>.broadcast();
+  final StreamController<List<Log>> _logsController =
+      StreamController<List<Log>>.broadcast();
+  final StreamController<List<Suggestion>> _suggestionsController =
+      StreamController<List<Suggestion>>.broadcast();
+
+
+  Stream listenToLogsRealTime() {
+    _logsCollectionReference.snapshots().listen((logsSnaphots) {
+      if (logsSnaphots.documents.isNotEmpty) {
+        var logs = logsSnaphots.documents
+            .map((snapshot) => Log.fromJson(snapshot.data))
+            .toList();
+        _logsController.add(logs);
+      }
+    });
+    
+    return _logsController.stream;
+  }
+
   Stream listenToBuildingsRealTime() {
     // Register the handler for when the posts data changes
     _buildingsCollectionReference.snapshots().listen((postsSnapshot) {

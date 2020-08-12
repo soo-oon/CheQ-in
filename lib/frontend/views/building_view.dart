@@ -25,7 +25,9 @@ class BuildingView extends StatelessWidget {
               child: SingleChildScrollView(
                   child: Column(
                 children: <Widget>[
-                  Text("전체 건물 상태"),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    child: Text("전체 건물 상태" ,style: TextStyle(fontSize: 20),)),
                   //CategoryList(),
                   model.busy
                       ? CircularProgressIndicator()

@@ -16,10 +16,13 @@ class SuggestionView extends StatelessWidget {
       builder: (context, model, child) => SafeArea(
         child: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               suggestionWidget,
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   SizedBox(
                     width: 7,
@@ -53,10 +56,6 @@ class SuggestionView extends StatelessWidget {
                   ),
                 ],
               ),
-              RaisedButton(
-                onPressed: () => model.enterLog("영암관"),
-                child: Text("덕래관"),
-              )
             ],
           ),
         ),

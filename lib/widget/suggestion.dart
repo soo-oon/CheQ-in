@@ -12,9 +12,12 @@ class SuggestionWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Text(
-            "제안",
-            style: new TextStyle(fontSize: 40.0),
+          Container(
+            padding: EdgeInsets.all(10),
+            child: Text(
+              "제안",
+              style: new TextStyle(fontSize: 30.0),
+            ),
           ),
           Container(
             child: Padding(

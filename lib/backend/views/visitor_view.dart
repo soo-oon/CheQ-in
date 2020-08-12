@@ -18,7 +18,7 @@ class VisitorView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               model.busy
-                  ? SizedBox()
+                  ? SizedBox(height: MediaQuery.of(context).size.height/2 - 50,)
                   : Container(
                       child: ExpansionTile(
                         title: Text("Filter"),
@@ -93,7 +93,7 @@ class VisitorView extends StatelessWidget {
                       showColumnToggle: false,
                       allowRowHighlight: true,
                       rowHighlightColor: Colors.yellow[500].withOpacity(0.7),
-                      paginationRowCount: 11,
+                      paginationRowCount: 15,
                       tableHeaderBuilder: (String header) {
                         if (header == "userName")
                           header = "이름";

@@ -77,7 +77,6 @@ class FrontEndHomeViewModel extends BaseModel {
       List<Building> updatedPosts = postsData;
       if (updatedPosts != null && updatedPosts.length > 0) {
         _buildings = updatedPosts;
-        notifyListeners();
       }
 
       setBusy(false);

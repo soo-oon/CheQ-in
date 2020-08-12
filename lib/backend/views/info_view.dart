@@ -28,7 +28,7 @@ class InfoView extends StatelessWidget {
                                 color: Colors.blue[300],
                               ),
                               title: Text(
-                                model.currentUser.fullName,
+                                model.currentUser.fullName == null ? "" : model.currentUser.fullName,
                               ),
                             ),
                           ),
@@ -41,7 +41,7 @@ class InfoView extends StatelessWidget {
                                 color: Colors.blue[300],
                               ),
                               title: Text(
-                                model.currentUser.email,
+                                model.currentUser.email == null ? "" : model.currentUser.email,
                               ),
                             ),
                           ),
@@ -54,7 +54,7 @@ class InfoView extends StatelessWidget {
                                 color: Colors.blue[300],
                               ),
                               title: Text(
-                                model.currentUser.phoneNumber,
+                                model.currentUser.phoneNumber == null ? "" : model.currentUser.phoneNumber,
                               ),
                             ),
                           ),
@@ -67,7 +67,7 @@ class InfoView extends StatelessWidget {
                                 color: Colors.blue[300],
                               ),
                               title: Text(
-                                model.currentUser.address,
+                                model.currentUser.address == null ? "" : model.currentUser.address,
                               ),
                             ),
                           ),
@@ -93,29 +93,7 @@ class InfoView extends StatelessWidget {
                           )
                         ],
                       ),
-                      Card(
-                          margin: EdgeInsets.symmetric(
-                              vertical: 10.0, horizontal: 25),
-                          child: TextField(
-                            controller: model.titleController,
-                            decoration: InputDecoration(hintText: "푸시알림 제목"),
-                          )),
-                      Card(
-                          margin: EdgeInsets.symmetric(
-                              vertical: 10.0, horizontal: 25),
-                          child: TextField(
-                            controller: model.bodyController,
-                            decoration: InputDecoration(hintText: "푸시알림 내용"),
-                          )),
-                      RaisedButton(
-                        child: Text("send Push"),
-                        onPressed: () {
-                          model.sendPush(model.titleController.text,
-                              model.bodyController.text);
-                          model.titleController.clear();
-                          model.bodyController.clear();
-                        },
-                      ),
+                      
                     ],
                   ),
                 ),

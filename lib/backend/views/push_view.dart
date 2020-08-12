@@ -11,48 +11,38 @@ class PushView extends StatelessWidget {
         onModelReady: (model) => model.init(),
         builder: (context, model, child) => Center(
                 child: SingleChildScrollView(
-                    child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
+              child: Column(children: <Widget>[
                 Text(
-                  "Push Notification",
+                  "푸시 알림",
                   style: TextStyle(fontSize: 30),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    FlatButton(
-                      child: Text("Building"),
-                      onPressed: () {},
-                    ),
-                    FlatButton(
-                      child: Text("Status"),
-                      onPressed: () {},
-                    ),
-                  ],
+                SizedBox(
+                  height: 40,
                 ),
-                TextField(
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide:
-                              BorderSide(width: 2, color: Colors.black))),
-                  maxLines: 10,
+                Card(
+                    margin:
+                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
+                    child: TextField(
+                      controller: model.titleController,
+                      decoration: InputDecoration(hintText: "푸시알림 제목"),
+                    )),
+                Card(
+                    margin:
+                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 25),
+                    child: TextField(
+                      controller: model.bodyController,
+                      decoration: InputDecoration(hintText: "푸시알림 내용"),
+                    )),
+                RaisedButton(
+                  child: Text("보내기"),
+                  onPressed: () {
+                    model.sendPush(
+                        model.titleController.text, model.bodyController.text);
+                    model.titleController.clear();
+                    model.bodyController.clear();
+                  },
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    FlatButton(
-                      child: Text("Clear"),
-                      onPressed: () {},
-                    ),
-                    FlatButton(
-                      child: Text("Send"),
-                      onPressed: () {},
-                    ),
-                  ],
-                ),
-              ],
-            ))));
+              ]),
+            )));
   }
 }
