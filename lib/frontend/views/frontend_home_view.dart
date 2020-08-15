@@ -33,25 +33,29 @@ class FrontEndHomeView extends StatelessWidget {
         },
         child: Scaffold(
             appBar: AppBar(
-              title: Text("KMU CI"),
-              backgroundColor: Colors.lightBlue,
+              title: Text(
+                "KMU CI",
+                style: TextStyle(color: Colors.white),
+              ),
+              centerTitle: true,
+              backgroundColor: Colors.blue,
             ),
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerDocked,
             floatingActionButton: FloatingActionButton(
               child: Icon(
                 Icons.camera,
-                color: Const.UNSELECTED_COLOR,
+                color: Const.SELECTED_COLOR,
                 size: 45,
               ),
               onPressed: () => model.setIndex(2),
-              backgroundColor: Colors.lightBlue,
+              backgroundColor: Colors.white,
             ),
             backgroundColor: Colors.white,
             body: model.pages[model.currentIndex],
             bottomNavigationBar: BottomAppBar(
                 shape: CircularNotchedRectangle(),
-                color: Colors.lightBlue,
+                color: Colors.white,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
