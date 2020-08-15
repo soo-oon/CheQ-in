@@ -14,7 +14,6 @@ class _CategoryListState extends State<CategoryList> {
   List selectedIndexs = [true, false, false, false, false];
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Container(
       margin: EdgeInsets.symmetric(vertical: 20),
       height: 30,

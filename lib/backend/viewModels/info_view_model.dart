@@ -5,8 +5,6 @@ import 'package:checkin/models/user.dart';
 import 'package:checkin/services/authentication_service.dart';
 import 'package:checkin/services/firestore_service.dart';
 import 'package:checkin/services/navigation_service.dart';
-import 'package:checkin/services/pushnotification_service.dart';
-import 'package:flutter/cupertino.dart';
 
 class InfoViewModel extends BaseModel {
   final AuthenticationService _authenticationService = locator<AuthenticationService>();

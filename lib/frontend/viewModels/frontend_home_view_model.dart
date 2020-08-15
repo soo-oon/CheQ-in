@@ -1,6 +1,6 @@
 import 'package:checkin/backend/viewModels/base_model.dart';
-import 'package:checkin/backend/views/info_view.dart';
 import 'package:checkin/frontend/views/building_view.dart';
+import 'package:checkin/frontend/views/covid_view.dart';
 import 'package:checkin/frontend/views/front_info_view.dart';
 import 'package:checkin/frontend/views/suggestion_view.dart';
 import 'package:checkin/frontend/views/visited_view.dart';
@@ -14,7 +14,8 @@ import '../../locator.dart';
 
 class FrontEndHomeViewModel extends BaseModel {
   List<Widget> pages = [
-    BuildingView(),
+    CovidView(),
+    //BuildingView(),
     VisitedView(),
     SizedBox(),
     SuggestionView(),

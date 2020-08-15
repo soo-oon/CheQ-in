@@ -18,6 +18,10 @@ class LoginViewModel extends BaseModel {
   }) async {
     setBusy(true);
 
+    if(email.endsWith(" ")){
+      email = email.substring(0, email.length-1);
+    }
+  
     var result = await _authenticationService.loginWithEmail(
       email: email,
       password: password,

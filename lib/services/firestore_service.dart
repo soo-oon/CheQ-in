@@ -25,9 +25,6 @@ class FirestoreService {
       StreamController<List<Building>>.broadcast();
   final StreamController<List<Log>> _logsController =
       StreamController<List<Log>>.broadcast();
-  final StreamController<List<Suggestion>> _suggestionsController =
-      StreamController<List<Suggestion>>.broadcast();
-
 
   Stream listenToLogsRealTime() {
     _logsCollectionReference.snapshots().listen((logsSnaphots) {

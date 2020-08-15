@@ -5,6 +5,7 @@ import 'package:provider_architecture/provider_architecture.dart';
 import '../../models/suggestion.dart';
 import '../../widget/suggestion.dart';
 
+// ignore: must_be_immutable
 class SuggestionView extends StatelessWidget {
   SuggestionWidget suggestionWidget = new SuggestionWidget();
   @override

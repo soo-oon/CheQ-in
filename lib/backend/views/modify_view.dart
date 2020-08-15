@@ -1,6 +1,5 @@
 import 'package:checkin/ui/shared/ui_helpers.dart';
 import 'package:checkin/ui/widgets/busy_button.dart';
-import 'package:checkin/ui/widgets/expansion_list.dart';
 import 'package:checkin/ui/widgets/input_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

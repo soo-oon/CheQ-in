@@ -38,6 +38,7 @@ class VisitorView extends StatelessWidget {
                               ),
                               DropdownButton(
                                 value: model.numberOfDates,
+                                onChanged: (value) {},
                                 items: <int>[
                                   1,
                                   2,

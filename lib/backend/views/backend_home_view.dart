@@ -31,6 +31,7 @@ class BackEndHomeView extends StatelessWidget {
               ],
             ),
           );
+          return;
         },
         child: SafeArea(
             child: DefaultTabController(
@@ -40,21 +41,20 @@ class BackEndHomeView extends StatelessWidget {
               backgroundColor: Colors.blue,
               flexibleSpace: SafeArea(
                 child: TabBar(
-                  indicatorSize: TabBarIndicatorSize.label,
-                  //indicatorColor: Colors.transparent,
+                  indicatorSize: TabBarIndicatorSize.tab,
+                  indicatorWeight: 2.3,
+                  labelPadding: const EdgeInsets.only(top: 7),
                   tabs: [
                     Tab(
                         icon: Icon(
-                          Icons.table_chart,
-                          color: Colors.white,
-                        )),
+                      Icons.table_chart,
+                      color: Colors.white,
+                    )),
+                    Tab(icon: Icon(Icons.build, color: Colors.white)),
                     Tab(
-                        icon: Icon(Icons.build,
+                        icon: Icon(Icons.notification_important,
                             color: Colors.white)),
-                    Tab(
-                        icon: Icon(Icons.notification_important, color: Colors.white)),
-                    Tab(
-                        icon: Icon(Icons.question_answer, color: Colors.white)),
+                    Tab(icon: Icon(Icons.question_answer, color: Colors.white)),
                   ],
                 ),
               ),
