@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider_architecture/provider_architecture.dart';
 import 'package:checkin/constants/route_names.dart';
-import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+//import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 
 class FrontEndHomeView extends StatelessWidget {
   @override
