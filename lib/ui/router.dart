@@ -1,5 +1,6 @@
 import 'package:checkin/backend/views/backend_home_view.dart';
 import 'package:checkin/frontend/views/frontend_home_view.dart';
+import 'package:checkin/frontend/views/visited_view.dart';
 import 'package:flutter/material.dart';
 import 'package:checkin/constants/route_names.dart';
 import 'package:checkin/backend/views/login_view.dart';
@@ -26,6 +27,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(
         routeName: settings.name,
         viewToShow: FrontEndHomeView(),
+      );
+    case VisitedViewRoute:
+      return _getPageRoute(
+        routeName: settings.name,
+        viewToShow: VisitedView(),
       );
     default:
       return MaterialPageRoute(

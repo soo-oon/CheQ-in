@@ -1,5 +1,5 @@
-
 import 'package:checkin/backend/viewModels/base_model.dart';
+import 'package:checkin/models/building.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../locator.dart';
@@ -11,8 +11,16 @@ class VisitedViewModel extends BaseModel {
   List<String> visitedBuildings = [];
   String lastStop = "";
   int isToday;
+  List<Building> _buildings;
+  List<Building> get buildings => _buildings;
+
+  void fetchBuildings() async {
+    _buildings = await _firestoreService.getBuildings();
+  }
+
   init() async {
     setBusy(true);
+    _buildings = await _firestoreService.getBuildings();
     _prefs = await SharedPreferences.getInstance();
     if (lastStop == "") lastStop = _prefs.getString("last");
     if (_prefs.getInt("today") == DateTime.now().day) {

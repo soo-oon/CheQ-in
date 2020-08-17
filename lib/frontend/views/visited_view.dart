@@ -33,12 +33,14 @@ class VisitedView extends StatelessWidget {
                               height: MediaQuery.of(context).size.height / 12,
                               width: MediaQuery.of(context).size.width,
                               child: Card(
+                                color: cardColor(index, model),
                                 child: ListTile(
                                   leading: Icon(
                                     Icons.check_circle_outline,
                                     color: primaryColor,
                                   ),
                                   title: Text(model.visitedBuildings[index]),
+                                  subtitle: buildingsubtitle(index, model),
                                   trailing: iconColor(index, model),
                                 ),
                               ),
@@ -59,4 +61,31 @@ Widget iconColor(int index, VisitedViewModel model) {
     return Icon(
       Icons.my_location,
     );
+}
+
+Color cardColor(int index, VisitedViewModel model) {
+  String i = model.visitedBuildings[index];
+  Color color;
+  model.buildings.forEach((element) {
+    if (i == element.name) {
+      if (element.status == 0)
+        color = Colors.redAccent.shade100;
+      else if (element.status == 1)
+        color = Colors.lightBlue.shade100;
+      else
+        color = Colors.white;
+    }
+  });
+  return color;
+}
+
+Text buildingsubtitle(int index, VisitedViewModel model) {
+  String i = model.visitedBuildings[index];
+  String english_name;
+  model.buildings.forEach((element) {
+    if (i == element.name) {
+      english_name = element.english_name;
+    }
+  });
+  return Text(english_name);
 }

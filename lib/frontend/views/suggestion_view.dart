@@ -57,6 +57,9 @@ class SuggestionView extends StatelessWidget {
                   ),
                 ],
               ),
+              RaisedButton(
+                onPressed: () => model.enterLog("공대1호관"),
+              )
             ],
           ),
         ),

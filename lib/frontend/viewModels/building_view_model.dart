@@ -12,8 +12,8 @@ class BuildingViewModel extends BaseModel {
   final PushNotificationService _pushNotificationService =
       locator<PushNotificationService>();
 
-  List<Building> _buildings;
   bool isAdmin = false;
+  List<Building> _buildings;
   List<Building> get buildings => _buildings;
   init() {
     if (currentUser.userRole == "Admin") isAdmin = true;

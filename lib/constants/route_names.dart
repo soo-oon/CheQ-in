@@ -4,9 +4,10 @@ const String LoginViewRoute = "LoginView";
 const String SignUpViewRoute = "SignUp";
 const String FrontEndHomeViewRoute = "FrontEndHomeView";
 const String BackEndHomeViewRoute = "BackEndHomeView";
+const String VisitedViewRoute = "VisitedView";
 // Generate the views here
 
-class Const{
+class Const {
   // ignore: non_constant_identifier_names
   static final IS_VISITED = 1;
   // ignore: non_constant_identifier_names
