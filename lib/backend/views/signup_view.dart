@@ -108,6 +108,12 @@ class SignUpView extends StatelessWidget {
                       },
                     )
                   ],
+                ),
+                RaisedButton(
+                  child: Text("이미 회원이신가요?"),
+                  onPressed: () {
+                    model.navigateToLogin();
+                  },
                 )
               ],
             ),

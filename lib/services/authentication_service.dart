@@ -11,6 +11,16 @@ class AuthenticationService {
   User _currentUser;
   User get currentUser => _currentUser;
 
+  // Future loginWithPhone({@required String phoneNumber}) async {
+  //   try {
+  //     var authResult = await _firebaseAuth.signin
+
+
+  //   } catch(e) {
+  //     return e.message;
+  //   }
+  // }
+
   Future loginWithEmail({
     @required String email,
     @required String password,
