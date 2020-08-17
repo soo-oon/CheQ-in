@@ -18,14 +18,14 @@ class CovidView extends StatelessWidget {
         builder: (context, model, child) => CustomScrollView(
               physics: ClampingScrollPhysics(),
               slivers: [
-                _buildHeader(screenHeight),
+                _buildHeader(model.currentUser.fullName, screenHeight),
                 _buildPreventionTips(screenHeight),
                 _buildYourOwnText(screenHeight),
               ],
             ));
   }
 
-  SliverToBoxAdapter _buildHeader(double screenHeight) {
+  SliverToBoxAdapter _buildHeader(String userName, double screenHeight) {
     return SliverToBoxAdapter(
       child: Container(
         padding: const EdgeInsets.all(20.0),
@@ -42,7 +42,7 @@ class CovidView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '코로나19',
+                  userName + " 님",
                   style: const TextStyle(
                       color: Colors.white,
                       fontSize: 25.0,

@@ -2,13 +2,19 @@ import 'package:checkin/ui/startup_view.dart';
 import 'package:flutter/material.dart';
 import 'package:checkin/services/navigation_service.dart';
 import 'package:checkin/services/dialog_service.dart';
+import 'package:flutter/services.dart';
 import 'managers/dialog_manager.dart';
 import 'ui/router.dart';
 import 'locator.dart';
 
 void main() {
   setupLocator();
-  runApp(MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitDown,
+    DeviceOrientation.portraitUp
+  ]).then((_) => runApp(new MyApp()));
+  
 }
 
 class MyApp extends StatelessWidget {

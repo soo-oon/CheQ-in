@@ -87,8 +87,8 @@ class VisitorView extends StatelessWidget {
                         ],
                       ),
                     ),
-              model.busy
-                  ? CircularProgressIndicator()
+              model.logDecodedJsonData == null
+                  ? Center(child:CircularProgressIndicator())
                   : JsonTable(
                       model.logDecodedJsonData,
                       showColumnToggle: false,
@@ -100,6 +100,8 @@ class VisitorView extends StatelessWidget {
                           header = "이름";
                         else if (header == "buildingName")
                           header = "건물";
+                        else if (header == "phoneNumber")
+                          header = "번호";
                         else
                           header = "시간";
                         return Container(
