@@ -18,7 +18,8 @@ class FrontEndHomeViewModel extends BaseModel {
     CovidView(),
     //BuildingView(),
     VisitedView(),
-    EnterView(),
+    SizedBox(),
+    //EnterView(),
     SuggestionView(),
     FrontInfoView()
   ];
@@ -68,7 +69,7 @@ class FrontEndHomeViewModel extends BaseModel {
             userName: currentUser.fullName,
             buildingName: buildingName,
             phoneNumber: currentUser.phoneNumber,
-            time: DateTime.now().toString().substring(0,19)));
+            time: DateTime.now().toString().substring(0, 19)));
       }
     }
     setBusy(false);
