@@ -12,17 +12,14 @@ class VisitedView extends StatelessWidget {
         disposeViewModel: false,
         onModelReady: (model) => model.init(),
         builder: (context, model, child) => model.busy
-            ? CircularProgressIndicator()
+            ? Center(child:CircularProgressIndicator())
             : SafeArea(
                 child: SingleChildScrollView(
                     child: Column(
                 children: <Widget>[
-                  Container(
-                    padding: EdgeInsets.all(10),
-                    child: Text(
-                      "금일 방문한 곳",
-                      style: TextStyle(fontSize: 20),
-                    ),
+                  buildheader(model.currentUser.fullName, context),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.03,
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height / 2,
@@ -30,8 +27,8 @@ class VisitedView extends StatelessWidget {
                         scrollDirection: Axis.vertical,
                         itemCount: model.visitedBuildings.length,
                         itemBuilder: (context, index) => Container(
-                              height: MediaQuery.of(context).size.height / 12,
-                              width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.height * 0.1,
+                              width: MediaQuery.of(context).size.width * 0.97,
                               child: Card(
                                 color: cardColor(index, model),
                                 child: ListTile(
@@ -88,4 +85,37 @@ Text buildingsubtitle(int index, VisitedViewModel model) {
     }
   });
   return Text(english_name);
+}
+
+Widget buildheader(String userName, BuildContext context) {
+  return Container(
+      padding: const EdgeInsets.all(20.0),
+      decoration: BoxDecoration(
+        color: Colors.blue,
+        borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(40.0),
+            bottomRight: Radius.circular(40.0)),
+      ),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              userName + " 님",
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 25.0,
+                  fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.03,
+        ),
+        Text(
+          "금일 방문한 곳",
+          style: TextStyle(
+              color: Colors.white, fontSize: 25.0, fontWeight: FontWeight.bold),
+        ),
+      ]));
 }

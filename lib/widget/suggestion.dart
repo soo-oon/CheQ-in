@@ -13,13 +13,6 @@ class SuggestionWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Container(
-            padding: EdgeInsets.all(10),
-            child: Text(
-              "제안",
-              style: new TextStyle(fontSize: 30.0),
-            ),
-          ),
-          Container(
             child: Padding(
               padding: const EdgeInsets.all(15.0),
               child: TextField(
