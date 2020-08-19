@@ -1,7 +1,5 @@
 import 'package:checkin/backend/viewModels/base_model.dart';
-import 'package:checkin/frontend/views/building_view.dart';
 import 'package:checkin/frontend/views/covid_view.dart';
-import 'package:checkin/frontend/views/enter_view.dart';
 import 'package:checkin/frontend/views/front_info_view.dart';
 import 'package:checkin/frontend/views/suggestion_view.dart';
 import 'package:checkin/frontend/views/visited_view.dart';
@@ -21,10 +19,11 @@ class FrontEndHomeViewModel extends BaseModel {
     SizedBox(),
     //EnterView(),
     SuggestionView(),
-    FrontInfoView()
+    FrontInfoView(),
   ];
   int currentIndex = 0;
 
+  bool isVisited = false;
   final FirestoreService _firestoreService = locator<FirestoreService>();
   List<Building> _buildings;
   List<Building> get buildings => _buildings;
@@ -43,6 +42,7 @@ class FrontEndHomeViewModel extends BaseModel {
     if (index == 2) {
       _enterBuilding();
       //currentIndex = index;
+      currentIndex = 2;
     } else {
       currentIndex = index;
     }
@@ -54,7 +54,7 @@ class FrontEndHomeViewModel extends BaseModel {
     String scannedBuilding = await scanner.scan();
 
     enterLog(scannedBuilding);
-    setIndex(0);
+    setIndex(1);
   }
 
   void enterLog(String buildingName) {
