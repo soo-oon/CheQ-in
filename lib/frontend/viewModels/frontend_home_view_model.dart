@@ -1,6 +1,7 @@
 import 'package:checkin/backend/viewModels/base_model.dart';
 import 'package:checkin/frontend/views/covid_view.dart';
 import 'package:checkin/frontend/views/front_info_view.dart';
+import 'package:checkin/frontend/views/qr_view.dart';
 import 'package:checkin/frontend/views/suggestion_view.dart';
 import 'package:checkin/frontend/views/visited_view.dart';
 import 'package:checkin/models/building.dart';
@@ -16,7 +17,7 @@ class FrontEndHomeViewModel extends BaseModel {
     CovidView(),
     //BuildingView(),
     VisitedView(),
-    SizedBox(),
+    QRViewExample(),
     //EnterView(),
     SuggestionView(),
     FrontInfoView(),
@@ -39,13 +40,14 @@ class FrontEndHomeViewModel extends BaseModel {
   void setIndex(int index) {
     setBusy(true);
 
-    if (index == 2) {
+    /*if (index == 2) {
+      print("was here");
       _enterBuilding();
       //currentIndex = index;
       currentIndex = 2;
-    } else {
+    } else {*/
       currentIndex = index;
-    }
+    //}
     setBusy(false);
   }
 
@@ -54,6 +56,7 @@ class FrontEndHomeViewModel extends BaseModel {
     String scannedBuilding = await scanner.scan();
 
     enterLog(scannedBuilding);
+
     setIndex(1);
   }
 
