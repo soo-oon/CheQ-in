@@ -41,7 +41,7 @@ class FrontEndHomeView extends StatelessWidget {
                   color: Const.SELECTED_COLOR,
                   size: 45,
                 ),
-                onPressed: () => model.setIndex(2),
+                onPressed: () => model.setIndex(2),                
                 backgroundColor: Colors.white,
               ),
               backgroundColor: Colors.white,
@@ -54,14 +54,14 @@ class FrontEndHomeView extends StatelessWidget {
                     children: <Widget>[
                       IconButton(
                         icon: Icon(Icons.home),
-                        color: model.currentIndex == 0
+                        color: model.screenCurrnetIndex == 0
                             ? Const.SELECTED_COLOR
                             : Const.UNSELECTED_COLOR,
                         onPressed: () => model.setIndex(0),
                       ),
                       IconButton(
                         icon: Icon(Icons.track_changes),
-                        color: model.currentIndex == 1
+                        color: model.screenCurrnetIndex == 1
                             ? Const.SELECTED_COLOR
                             : Const.UNSELECTED_COLOR,
                         onPressed: () => model.setIndex(1),
@@ -74,14 +74,14 @@ class FrontEndHomeView extends StatelessWidget {
                       ),
                       IconButton(
                         icon: Icon(Icons.comment),
-                        color: model.currentIndex == 3
+                        color: model.screenCurrnetIndex == 3
                             ? Const.SELECTED_COLOR
                             : Const.UNSELECTED_COLOR,
                         onPressed: () => model.setIndex(3),
                       ),
                       IconButton(
                         icon: Icon(Icons.info),
-                        color: model.currentIndex == 4
+                        color: model.screenCurrnetIndex == 4
                             ? Const.SELECTED_COLOR
                             : Const.UNSELECTED_COLOR,
                         onPressed: () => model.setIndex(4),

@@ -6,3 +6,4 @@ export 'input_field.dart';
 export 'note_text.dart';
 export 'text_link.dart';
 export 'header.dart';
+export 'suggestion.dart';

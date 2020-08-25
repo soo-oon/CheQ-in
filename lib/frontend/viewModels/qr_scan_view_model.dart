@@ -1,33 +1,39 @@
+import 'package:checkin/constants/route_names.dart';
 import 'package:checkin/models/models.dart';
 import 'package:checkin/services/services.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:flutter/material.dart';
 
-class QRViewModel extends BaseModel {
-  final NavigationService navigationService = locator<NavigationService>();
+class QRScanViewModel extends BaseModel {
+  final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   final FirestoreService _firestoreService = locator<FirestoreService>();
-
-  QRViewController controller;
-  String qrText = '';
+  final NavigationService _navigationService = locator<NavigationService>();
 
   List<Building> _buildings;
   List<Building> get buildings => _buildings;
   var _logs;
+  var qrText = '';
+  QRViewController controller;
 
-  init() async {}
+  void init() async {
+    _buildings = await _firestoreService.getBuildings();
+    _logs = await _firestoreService.getLogs();
+  }
 
   void enterBuilding(QRViewController controller) {
     this.controller = controller;
-    controller.scannedDataStream.listen((scanData, {enterlog()}) {
+    controller.scannedDataStream.listen((scanData) {
       if (scanData.isNotEmpty) {
+        qrText = scanData;
         controller.pauseCamera();
-        print("scanned");
+        enterLog(qrText);
+        setQrScanned(true);
+        _navigationService.navigateTo(FrontEndHomeViewRoute);
       }
-      qrText = scanData;
     });
   }
 
   void enterLog(String buildingName) {
-    setBusy(true);
     for (var building in buildings) {
       if (building.name == buildingName) {
         if (_logs == null) {
@@ -37,9 +43,11 @@ class QRViewModel extends BaseModel {
         _firestoreService.updateLogs(Log(
             userName: currentUser.fullName,
             buildingName: buildingName,
-            time: DateTime.now().toString()));
+            phoneNumber: currentUser.phoneNumber,
+            time: DateTime.now().toString().substring(0,19)));
       }
     }
-    setBusy(false);
   }
+
+
 }

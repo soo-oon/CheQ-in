@@ -1,4 +1,5 @@
 import 'package:checkin/backend/views/backend_home_view.dart';
+import 'package:checkin/frontend/views/front_views.dart';
 import 'package:checkin/frontend/views/frontend_home_view.dart';
 import 'package:checkin/frontend/views/visited_view.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +33,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(
         routeName: settings.name,
         viewToShow: VisitedView(),
+      );
+    case QRScanViewRoute:
+      return _getPageRoute(
+        routeName: settings.name,
+        viewToShow: QRScanView(),
       );
     default:
       return MaterialPageRoute(

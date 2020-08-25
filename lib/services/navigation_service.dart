@@ -13,4 +13,7 @@ class NavigationService {
     return _navigationKey.currentState.pushReplacementNamed(routeName);
         //.pushNamed(routeName, arguments: arguments);
   }
+  Future<dynamic> navigateToNotReplaced(BuildContext context, String routeName, {dynamic arguments}) {
+    return Navigator.pushNamed(context, routeName, arguments: arguments);
+  }
 }

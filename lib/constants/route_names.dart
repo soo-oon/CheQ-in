@@ -5,6 +5,7 @@ const String SignUpViewRoute = "SignUp";
 const String FrontEndHomeViewRoute = "FrontEndHomeView";
 const String BackEndHomeViewRoute = "BackEndHomeView";
 const String VisitedViewRoute = "VisitedView";
+const String QRScanViewRoute = "QRScanView";
 // Generate the views here
 
 class Const {

@@ -10,6 +10,21 @@ class BaseModel extends ChangeNotifier {
   final AuthenticationService _authenticationService = locator<AuthenticationService>();
   final NavigationService _navigationService = locator<NavigationService>();
 
+  bool qrScanned = false;
+  bool get isQRScanned => qrScanned;
+  void setQrScanned(bool val) {
+    qrScanned = val;
+  }
+
+  int screenCurrnetIndex = 0;
+  int get currentIndex => screenCurrnetIndex;
+
+  void setIndex(int index) {
+    setBusy(true);
+    screenCurrnetIndex = index;
+    setBusy(false);
+  }
+
   User get currentUser => _authenticationService.currentUser;
 
   bool _busy = false;
