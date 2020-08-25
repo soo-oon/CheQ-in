@@ -20,6 +20,7 @@ class SuggestionWidget extends StatelessWidget {
                 minLines: 1,
                 maxLines: 2,
                 autocorrect: false,
+                textInputAction: TextInputAction.done,
                 decoration: InputDecoration(
                   hintText: '제목을 입력하시오',
                   filled: true,
@@ -44,6 +45,7 @@ class SuggestionWidget extends StatelessWidget {
                 minLines: 10,
                 maxLines: 15,
                 autocorrect: false,
+                textInputAction: TextInputAction.done,
                 decoration: InputDecoration(
                   hintText: '내용을 입력하시오',
                   filled: true,

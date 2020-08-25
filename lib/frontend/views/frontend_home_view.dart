@@ -33,6 +33,7 @@ class FrontEndHomeView extends StatelessWidget {
         },
         child: SafeArea(
           child: Scaffold(
+              resizeToAvoidBottomInset: false,
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.centerDocked,
               floatingActionButton: FloatingActionButton(
