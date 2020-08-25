@@ -33,14 +33,6 @@ class FrontEndHomeView extends StatelessWidget {
         },
         child: SafeArea(
           child: Scaffold(
-              // appBar: AppBar(
-              //   title: Text(
-              //     "KMU CI",
-              //     style: TextStyle(color: Colors.white),
-              //   ),
-              //   centerTitle: true,
-              //   backgroundColor: Colors.blue,
-              // ),
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.centerDocked,
               floatingActionButton: FloatingActionButton(

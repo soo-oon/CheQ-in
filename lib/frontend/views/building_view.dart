@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../viewModels/building_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider_architecture/_viewmodel_provider.dart';
@@ -22,9 +21,11 @@ class BuildingView extends StatelessWidget {
                   child: Column(
                 children: <Widget>[
                   Container(
-                    padding: EdgeInsets.all(10),
-                    child: Text("전체 건물 상태" ,style: TextStyle(fontSize: 20),)),
-                  //CategoryList(),
+                      padding: EdgeInsets.all(10),
+                      child: Text(
+                        "전체 건물 상태",
+                        style: TextStyle(fontSize: 20),
+                      )),
                   model.busy
                       ? CircularProgressIndicator()
                       : SizedBox(
@@ -117,36 +118,5 @@ Widget buildingCard(
         ),
       ),
     ),
-  );
-}
-
-Widget buildCatagories() {
-  return Container(
-    margin: EdgeInsets.symmetric(vertical: 20),
-    height: 30,
-    child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: catagories.length,
-        itemBuilder: (context, index) => GestureDetector(
-              onTap: () {
-                // setState(() {
-                //   selectedIndex = index;
-                //   selectedIndexs[index] = !selectedIndexs[index];
-                //   if (selectedIndexs[index])
-                //     tabColor = Colors.blueAccent.withOpacity(0.4);
-                //   else {
-                //     tabColor = Colors.transparent;
-                //   }
-                // });
-              },
-              child: Container(
-                alignment: Alignment.center,
-                margin: EdgeInsets.only(
-                    left: 15, right: index == catagories.length - 1 ? 15 : 0),
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                decoration: BoxDecoration(color: tabColor),
-                child: Text(catagories[index]),
-              ),
-            )),
   );
 }

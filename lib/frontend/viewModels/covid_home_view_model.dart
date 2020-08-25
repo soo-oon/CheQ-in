@@ -1,6 +1,3 @@
-import '../../backend/viewModels/base_model.dart';
+import 'package:checkin/models/models.dart';
 
-class CovidViewModel extends BaseModel {
-
-  
-}
+class CovidViewModel extends BaseModel {}

@@ -1,9 +1,6 @@
-import 'package:checkin/backend/viewModels/base_model.dart';
-import 'package:checkin/models/building.dart';
+import 'package:checkin/models/models.dart';
+import 'package:checkin/services/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../locator.dart';
-import '../../services/firestore_service.dart';
 
 class VisitedViewModel extends BaseModel {
   final FirestoreService _firestoreService = locator<FirestoreService>();

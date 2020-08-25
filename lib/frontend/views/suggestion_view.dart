@@ -1,7 +1,7 @@
 import 'package:checkin/frontend/viewModels/suggestion_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider_architecture/provider_architecture.dart';
-
+import 'package:checkin/ui/widgets/widgets.dart';
 import '../../models/suggestion.dart';
 import '../../widget/suggestion.dart';
 
@@ -20,10 +20,10 @@ class SuggestionView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              buildheader(model.currentUser.fullName, context),
+              buildheader(model.currentUser.fullName, "제안", context),
               SizedBox(
-              height: MediaQuery.of(context).size.height * 0.03,
-            ),
+                height: MediaQuery.of(context).size.height * 0.03,
+              ),
               suggestionWidget,
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -69,7 +69,7 @@ class SuggestionView extends StatelessWidget {
   }
 }
 
-Widget buildheader(String userName, BuildContext context) {
+Widget buildheader(String userName, String title, BuildContext context) {
   return Container(
       padding: const EdgeInsets.all(20.0),
       decoration: BoxDecoration(
@@ -92,10 +92,10 @@ Widget buildheader(String userName, BuildContext context) {
           ],
         ),
         SizedBox(
-              height: MediaQuery.of(context).size.height * 0.03,
-            ),
+          height: MediaQuery.of(context).size.height * 0.03,
+        ),
         Text(
-          "제안",
+          title,
           style: TextStyle(
               color: Colors.white, fontSize: 25.0, fontWeight: FontWeight.bold),
         ),

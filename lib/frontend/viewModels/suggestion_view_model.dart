@@ -1,10 +1,5 @@
-import 'package:checkin/backend/viewModels/base_model.dart';
-import 'package:checkin/locator.dart';
-import 'package:checkin/models/building.dart';
-import 'package:checkin/models/log.dart';
-import 'package:checkin/services/firestore_service.dart';
-
-import '../../models/suggestion.dart';
+import 'package:checkin/models/models.dart';
+import 'package:checkin/services/services.dart';
 
 class SuggestionViewModel extends BaseModel {
   final FirestoreService _firestoreService = locator<FirestoreService>();

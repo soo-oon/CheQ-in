@@ -1,6 +1,7 @@
 import 'package:checkin/frontend/viewModels/visited_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider_architecture/_viewmodel_provider.dart';
+import 'package:checkin/ui/widgets/widgets.dart';
 
 import '../../ui/shared/app_colors.dart';
 
@@ -12,12 +13,12 @@ class VisitedView extends StatelessWidget {
         disposeViewModel: false,
         onModelReady: (model) => model.init(),
         builder: (context, model, child) => model.busy
-            ? Center(child:CircularProgressIndicator())
+            ? Center(child: CircularProgressIndicator())
             : SafeArea(
                 child: SingleChildScrollView(
                     child: Column(
                 children: <Widget>[
-                  buildheader(model.currentUser.fullName, context),
+                  buildheader(model.currentUser.fullName, "금일 방문한 곳", context),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
                   ),
@@ -78,44 +79,11 @@ Color cardColor(int index, VisitedViewModel model) {
 
 Text buildingsubtitle(int index, VisitedViewModel model) {
   String i = model.visitedBuildings[index];
-  String english_name;
+  String englishName;
   model.buildings.forEach((element) {
     if (i == element.name) {
-      english_name = element.english_name;
+      englishName = element.english_name;
     }
   });
-  return Text(english_name);
-}
-
-Widget buildheader(String userName, BuildContext context) {
-  return Container(
-      padding: const EdgeInsets.all(20.0),
-      decoration: BoxDecoration(
-        color: Colors.blue,
-        borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(40.0),
-            bottomRight: Radius.circular(40.0)),
-      ),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              userName + " 님",
-              style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 25.0,
-                  fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.03,
-        ),
-        Text(
-          "금일 방문한 곳",
-          style: TextStyle(
-              color: Colors.white, fontSize: 25.0, fontWeight: FontWeight.bold),
-        ),
-      ]));
+  return Text(englishName);
 }

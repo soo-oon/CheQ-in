@@ -1,29 +1,29 @@
-import 'package:checkin/backend/viewModels/base_model.dart';
-import 'package:checkin/constants/route_names.dart';
-import 'package:checkin/locator.dart';
-import 'package:checkin/models/building.dart';
-import 'package:checkin/models/log.dart';
-import 'package:checkin/services/firestore_service.dart';
-import 'package:checkin/services/navigation_service.dart';
-import 'package:qrscan/qrscan.dart' as scanner;
+import 'package:checkin/models/models.dart';
+import 'package:checkin/services/services.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
 
-class EnterBuildingViewModel extends BaseModel {
+class QRViewModel extends BaseModel {
   final NavigationService navigationService = locator<NavigationService>();
-
   final FirestoreService _firestoreService = locator<FirestoreService>();
+
+  QRViewController controller;
+  String qrText = '';
+
   List<Building> _buildings;
   List<Building> get buildings => _buildings;
   var _logs;
-  init() async {
-    _enterBuilding();
-    navigationService.navigateTo(VisitedViewRoute);
-  }
 
-  void _enterBuilding() async {
-    // scan the QR of building
-    String scannedBuilding = await scanner.scan();
+  init() async {}
 
-    enterLog(scannedBuilding);
+  void enterBuilding(QRViewController controller) {
+    this.controller = controller;
+    controller.scannedDataStream.listen((scanData, {enterlog()}) {
+      if (scanData.isNotEmpty) {
+        controller.pauseCamera();
+        print("scanned");
+      }
+      qrText = scanData;
+    });
   }
 
   void enterLog(String buildingName) {
