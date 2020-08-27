@@ -46,17 +46,12 @@ class QRScanViewModel extends BaseModel {
 
         _firestoreService.visitedBuildings(buildingName);
 
-        //if user has already logged in this building today the no need to login again
-        _firestoreService.checkedInToday(_todayKey).then((value){
-          if(!value){
-            _firestoreService.updateLogs(Log(
-                userName: currentUser.fullName,
-                buildingName: buildingName,
-                phoneNumber: currentUser.phoneNumber,
-                time: DateTime.now().toString().substring(0,19),
-                key: _todayKey));
-          }
-        });
+        _firestoreService.updateLogs(Log(
+            userName: currentUser.fullName,
+            buildingName: buildingName,
+            phoneNumber: currentUser.phoneNumber,
+            time: DateTime.now().toString().substring(0,19),
+            key: _todayKey));
 
       }
     }
