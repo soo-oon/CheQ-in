@@ -1,8 +1,10 @@
 import 'package:checkin/locator.dart';
 import 'package:checkin/models/user.dart';
 import 'package:checkin/services/firestore_service.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class AuthenticationService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -20,6 +22,56 @@ class AuthenticationService {
   //     return e.message;
   //   }
   // }
+
+  Future verifyPhoneNumber(BuildContext context, TextEditingController codeController, {@required String phoneNumber}) async {
+    try {
+      _firebaseAuth.verifyPhoneNumber(
+        phoneNumber: "+82" + phoneNumber, 
+        timeout: Duration(seconds: 60),
+        verificationCompleted: (AuthCredential credential) async {
+          Navigator.of(context).pop();
+        },
+        verificationFailed: (AuthException exception){
+          print(exception);
+        }, 
+        codeSent: (String verificationId, [int forceResendingToken]) {
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) {
+              return AlertDialog(
+                title: Text("코드를 입력해주세요"),
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextField(
+                      controller: codeController,
+                    )
+                  ],
+                ),
+                actions: [
+                  FlatButton(
+                    child: Text('확인'),
+                    textColor: Colors.white,
+                    color: Colors.blue,
+                    onPressed: ()  {
+                      final code = codeController.text.trim();
+                      AuthCredential credential = PhoneAuthProvider.getCredential(verificationId: verificationId, smsCode: code);
+                      print(credential);
+                    },
+                  )
+                ],
+              );
+            }
+          );
+        }, 
+        codeAutoRetrievalTimeout: null
+      );
+    } catch (e) {
+      print(e.message);
+      return e.message;
+    }
+  }
 
   Future loginWithEmail({
     @required String email,
