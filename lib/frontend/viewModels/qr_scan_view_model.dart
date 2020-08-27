@@ -13,6 +13,7 @@ class QRScanViewModel extends BaseModel {
   List<Building> get buildings => _buildings;
   var _logs;
   var qrText = '';
+  String _todayKey;
   QRViewController controller;
 
   void init() async {
@@ -39,12 +40,24 @@ class QRScanViewModel extends BaseModel {
         if (_logs == null) {
           _logs = [];
         }
+
+        //key associated everyday a user enters a new building
+        _todayKey = currentUser.phoneNumber + buildingName + DateTime.now().toString().substring(0,10);
+
         _firestoreService.visitedBuildings(buildingName);
-        _firestoreService.updateLogs(Log(
-            userName: currentUser.fullName,
-            buildingName: buildingName,
-            phoneNumber: currentUser.phoneNumber,
-            time: DateTime.now().toString().substring(0,19)));
+
+        //if user has already logged in this building today the no need to login again
+        _firestoreService.checkedInToday(_todayKey).then((value){
+          if(!value){
+            _firestoreService.updateLogs(Log(
+                userName: currentUser.fullName,
+                buildingName: buildingName,
+                phoneNumber: currentUser.phoneNumber,
+                time: DateTime.now().toString().substring(0,19),
+                key: _todayKey));
+          }
+        });
+
       }
     }
   }

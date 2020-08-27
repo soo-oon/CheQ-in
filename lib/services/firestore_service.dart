@@ -174,6 +174,24 @@ class FirestoreService {
     }
   }
 
+  Future checkedInToday(String todayKey) async {
+
+    try {
+      var list = await _logsCollectionReference
+          .where("key", isEqualTo: todayKey)
+          .getDocuments();
+      if (list.documents.isNotEmpty) {
+        return true;
+      }
+    } catch (e) {
+      if (e is PlatformException) {
+        return false;
+      }
+    }
+
+    return false;
+  }
+
   Future addBuilding(Building building) async {
     try {
       await _buildingsCollectionReference

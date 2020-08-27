@@ -8,9 +8,11 @@ class Log {
   final String buildingName;
   final String phoneNumber;
   final String time;
+  final String key;
   
-  Log({this.userName, this.buildingName, this.phoneNumber, this.time});
+  Log({this.userName, this.buildingName, this.phoneNumber, this.time, this.key});
 
   factory Log.fromJson(Map<String, dynamic> json) => _$LogFromJson(json);
   Map<String, dynamic> toJson() => _$LogToJson(this);
+
 }
