@@ -14,7 +14,7 @@ class QRScanViewModel extends BaseModel {
   var _logs;
   var qrText = '';
   String _todayKey;
-  QRViewController controller;
+  QRViewController controller; 
 
   void init() async {
     _buildings = await _firestoreService.getBuildings();
@@ -61,6 +61,4 @@ class QRScanViewModel extends BaseModel {
       }
     }
   }
-
-
 }

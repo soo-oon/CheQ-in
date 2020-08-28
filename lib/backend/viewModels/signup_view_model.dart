@@ -16,6 +16,8 @@ class SignUpViewModel extends BaseModel {
   final FlutterOtp _flutterOtp = FlutterOtp();
 
   String _selectedRole = 'User';
+  bool isPhoneVarified = false;
+
   //String get selectedRole => _selectedRole;
 
   Future updateUserdata(String password) async {
@@ -118,8 +120,7 @@ class SignUpViewModel extends BaseModel {
 
   void sendOTP({@required String phoneNumber}) {
     String messege = "계명대학교 QR체크인 인증번호는 ";
-    String countryCode = '+82';
-    _flutterOtp.sendOtp(phoneNumber, messege, 1000,9999, countryCode);
+    _flutterOtp.sendOtp(phoneNumber);
     print(phoneNumber);
   }
 
@@ -129,5 +130,28 @@ class SignUpViewModel extends BaseModel {
     setBusy(false);
   }
 
+  void checkIfPhoneVarified(int otp) {
+    if(_flutterOtp.resultChecker(otp))
+    {
+      _dialogService.showDialog(
+        title: "인증번호 확인되었습니다.",
+        description: ""
+      );
+      isPhoneVarified = true;
+    } else {
+      _dialogService.showDialog(
+        title: "인증번호가 틀렸습니다.",
+        description: "",
+      );
+      isPhoneVarified = false;
+    }
+  }
+
+  void showPhoneVarifyDialog() {
+    _dialogService.showDialog(
+      title: "핸드폰 인증오류",
+      description: "핸드폰 인증을 해주세요"
+    );
+  }
 
 }
