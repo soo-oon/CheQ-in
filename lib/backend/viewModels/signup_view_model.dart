@@ -119,7 +119,6 @@ class SignUpViewModel extends BaseModel {
   }
 
   void sendOTP({@required String phoneNumber}) {
-    String messege = "계명대학교 QR체크인 인증번호는 ";
     _flutterOtp.sendOtp(phoneNumber);
     print(phoneNumber);
   }
@@ -134,14 +133,14 @@ class SignUpViewModel extends BaseModel {
     if(_flutterOtp.resultChecker(otp))
     {
       _dialogService.showDialog(
-        title: "인증번호 확인되었습니다.",
-        description: ""
+        title: "인증번호 확인.",
+        description: "인증번호가 확인되었습니다."
       );
       isPhoneVarified = true;
     } else {
       _dialogService.showDialog(
-        title: "인증번호가 틀렸습니다.",
-        description: "",
+        title: "인증번호 오류.",
+        description: "인증번호를 다시 입력해주세요",
       );
       isPhoneVarified = false;
     }
@@ -151,6 +150,13 @@ class SignUpViewModel extends BaseModel {
     _dialogService.showDialog(
       title: "핸드폰 인증오류",
       description: "핸드폰 인증을 해주세요"
+    );
+  }
+
+  void showOTPSentDialog() {
+    _dialogService.showDialog(
+      title: "인증번호 전송완료",
+      description: "핸드폰 문자메시지를 확인해주세요."
     );
   }
 

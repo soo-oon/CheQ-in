@@ -93,6 +93,7 @@ class SignUpView extends StatelessWidget {
                                     phoneNumber: phoneController.text);
                                 //model.verifyPhoneNumber(context, phoneCodeController, phoneController.text);
                                 isVarifyMessageSent = true;
+                                model.showOTPSentDialog();
                               },
                             ),
                           )),
