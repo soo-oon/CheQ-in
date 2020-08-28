@@ -93,15 +93,15 @@ class ModifyView extends StatelessWidget {
                         title: '보내기',
                         busy: model.busy,
                         onPressed: () {
-                          if (addressController.text != null)
+                          if (addressController.text.isNotEmpty)
                             model.currentUser.address = addressController.text;
-                          if (fullNameController.text != null)
+                          if (fullNameController.text.isNotEmpty)
                             model.currentUser.fullName =
                                 fullNameController.text;
-                          if (phoneController.text != null)
+                          if (phoneController.text.isNotEmpty)
                             model.currentUser.phoneNumber =
                                 phoneController.text;
-                          if (passwordController.text != null)
+                          if (passwordController.text.isNotEmpty)
                             model.updateUserdata(passwordController.text);
                           Navigator.of(context).pop(true);
                         })
