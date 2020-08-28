@@ -35,7 +35,7 @@ class InputField extends StatefulWidget {
       this.textInputType = TextInputType.text,
       this.password = false,
       this.isReadOnly = false,
-      this.smallVersion = false});
+      this.smallVersion = false,});
 
   @override
   _InputFieldState createState() => _InputFieldState();
@@ -53,71 +53,75 @@ class _InputFieldState extends State<InputField> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Container(
-          height: widget.smallVersion ? 40 : fieldHeight,
-          alignment: Alignment.centerLeft,
-          padding: fieldPadding,
-          decoration:
-              widget.isReadOnly ? disabledFieldDecortaion : fieldDecortaion,
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: TextFormField(
-                  controller: widget.controller,
-                  keyboardType: widget.textInputType,
-                  focusNode: widget.fieldFocusNode,
-                  textInputAction: widget.textInputAction,
-                  onChanged: widget.onChanged,
-                  inputFormatters:
-                      widget.formatter != null ? [widget.formatter] : null,
-                  onEditingComplete: () {
-                    if (widget.enterPressed != null) {
-                      FocusScope.of(context).requestFocus(FocusNode());
-                      widget.enterPressed();
-                    }
-                  },
-                  onFieldSubmitted: (value) {
-                    if (widget.nextFocusNode != null) {
-                      widget.nextFocusNode.requestFocus();
-                    }
-                  },
-                  obscureText: isPassword,
-                  readOnly: widget.isReadOnly,
-                  decoration: InputDecoration.collapsed(
-                      hintText: widget.placeholder,
-                      hintStyle:
-                          TextStyle(fontSize: widget.smallVersion ? 12 : 15)),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal:25.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            height: widget.smallVersion ? 40 : fieldHeight,
+            alignment: Alignment.centerLeft,
+            padding: fieldPadding,
+            decoration:
+                widget.isReadOnly ? disabledFieldDecortaion : fieldDecortaion,
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: TextFormField(
+                    controller: widget.controller,
+                    keyboardType: widget.textInputType,
+                    focusNode: widget.fieldFocusNode,
+                    textInputAction: widget.textInputAction,
+                    onChanged: widget.onChanged,
+                    inputFormatters:
+                        widget.formatter != null ? [widget.formatter] : null,
+                    onEditingComplete: () {
+                      if (widget.enterPressed != null) {
+                        FocusScope.of(context).requestFocus(FocusNode());
+                        widget.enterPressed();
+                      }
+                    },
+                    onFieldSubmitted: (value) {
+                      if (widget.nextFocusNode != null) {
+                        widget.nextFocusNode.requestFocus();
+                      }
+                    },
+                    obscureText: isPassword,
+                    readOnly: widget.isReadOnly,
+                    decoration: InputDecoration.collapsed(
+                        hintText: widget.placeholder,
+                        hintStyle:
+                            TextStyle(fontSize: widget.smallVersion ? 12 : 15)),
+                  ),
                 ),
-              ),
-              GestureDetector(
-                onTap: () => setState(() {
-                  isPassword = !isPassword;
-                }),
-                child: widget.password
-                    ? Container(
-                        width: fieldHeight,
-                        height: fieldHeight,
-                        alignment: Alignment.center,
-                        child: Icon(isPassword
-                            ? Icons.visibility
-                            : Icons.visibility_off))
-                    : Container(),
-              ),
-            ],
+                GestureDetector(
+                  onTap: () => setState(() {
+                    isPassword = !isPassword;
+                  }),
+                  child: widget.password
+                      ? Container(
+                          width: fieldHeight,
+                          height: fieldHeight,
+                          alignment: Alignment.center,
+                          child: Icon(isPassword
+                              ? Icons.visibility
+                              : Icons.visibility_off))
+                      : Container(),
+                ),
+              ],
+            ),
           ),
-        ),
-        if (widget.validationMessage != null)
-          NoteText(
-            widget.validationMessage,
-            color: Colors.red,
-          ),
-        if (widget.additionalNote != null) verticalSpace(5),
-        if (widget.additionalNote != null) NoteText(widget.additionalNote),
-        verticalSpaceSmall
-      ],
+          if (widget.validationMessage != null)
+            NoteText(
+              widget.validationMessage,
+              color: Colors.red,
+            ),
+          if (widget.additionalNote != null) verticalSpace(6),
+          if (widget.additionalNote != null) horizontalSpaceSmall,
+          if (widget.additionalNote != null) NoteText(widget.additionalNote),
+          verticalSpaceSmall,
+        ],
+      ),
     );
   }
 }
