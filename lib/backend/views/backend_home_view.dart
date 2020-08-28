@@ -3,6 +3,7 @@ import 'package:checkin/backend/views/push_view.dart';
 import 'package:checkin/backend/views/suggestion_view.dart';
 import 'package:checkin/backend/views/visitor_view.dart';
 import 'package:checkin/frontend/views/building_view.dart';
+import 'package:checkin/ui/widgets/exit_app_dialogue.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider_architecture/provider_architecture.dart';
@@ -14,24 +15,7 @@ class BackEndHomeView extends StatelessWidget {
       viewModelBuilder: () => BackEndHomeViewModel(),
       builder: (context, model, child) => WillPopScope(
         onWillPop: () {
-          showDialog(
-            context: context,
-            builder: (context) => new AlertDialog(
-              title: new Text('종료'),
-              content: new Text('앱을 그만두시겠습니까?'),
-              actions: <Widget>[
-                new FlatButton(
-                  onPressed: () => Navigator.of(context).pop(false),
-                  child: new Text('아니요'),
-                ),
-                new FlatButton(
-                  onPressed: () => SystemNavigator.pop(),
-                  child: new Text('네'),
-                ),
-              ],
-            ),
-          );
-          return;
+          return exitAppDialogue(context);
         },
         child: SafeArea(
             child: DefaultTabController(

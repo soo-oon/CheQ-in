@@ -20,21 +20,6 @@ class BuildingViewModel extends BaseModel {
     await _pushNotificationService.sendNotificationMessage(title, body);
     setBusy(false);
   }
-  // void enterLog(String buildingName) {
-  //   setBusy(true);
-  //   for (var building in buildings) {
-  //     if (building.name == buildingName) {
-  //       if (building.logs == null) {
-  //         building.logs = [];
-  //       }
-  //       var f = new DateFormat('yyyy-MM-dd hh:mm');
-
-  //       building.logs.add(Log(userName: currentUser.fullName, time: f.format(DateTime.now())));
-  //       _firestoreService.updateBuilding(building);
-  //     }
-  //   }
-  //   setBusy(false);
-  // }
 
   void listenToPosts() {
     setBusy(true);

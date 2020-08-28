@@ -1,5 +1,6 @@
 import 'package:checkin/backend/viewModels/info_view_model.dart';
 import 'package:checkin/backend/views/modify_view.dart';
+import 'package:checkin/ui/widgets/buildheader.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider_architecture/provider_architecture.dart';
@@ -110,37 +111,4 @@ class FrontInfoView extends StatelessWidget {
               ),
             ));
   }
-}
-
-Widget buildheader(String userName, BuildContext context) {
-  return Container(
-      padding: const EdgeInsets.all(20.0),
-      decoration: BoxDecoration(
-        color: Colors.blue,
-        borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(40.0),
-            bottomRight: Radius.circular(40.0)),
-      ),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              userName + " 님",
-              style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 25.0,
-                  fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.03,
-        ),
-        Text(
-          "프로필",
-          style: TextStyle(
-              color: Colors.white, fontSize: 25.0, fontWeight: FontWeight.bold),
-        ),
-      ]));
 }

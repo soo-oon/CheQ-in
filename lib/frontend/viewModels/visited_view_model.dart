@@ -22,7 +22,8 @@ class VisitedViewModel extends BaseModel {
     _buildings = await _firestoreService.getBuildings();
     _prefs = await SharedPreferences.getInstance();
     if (lastStop == "") lastStop = _prefs.getString("last");
-    visitedBuildings = _prefs.getStringList("buildings");
+    if (_prefs.getStringList("buildings") != null)
+      visitedBuildings = _prefs.getStringList("buildings");
     updateBuilding();
     exceptBuildingVisitedOverThreeWeek();
     setBusy(false);
@@ -32,7 +33,9 @@ class VisitedViewModel extends BaseModel {
     if (_firestoreService.visitedBuildingNames != null) {
       if (_firestoreService.visitedBuildingNames.isNotEmpty) {
         for (var i in _firestoreService.visitedBuildingNames) {
-          if (!visitedBuildings.contains(i)) visitedBuildings.add(i);
+          if (visitedBuildings != null) {
+            if (!visitedBuildings.contains(i)) visitedBuildings.add(i);
+          }
           _prefs.setInt(i, DateTime.now().month * 100 + DateTime.now().day);
         }
         lastStop = _firestoreService.visitedBuildingNames[
@@ -64,7 +67,7 @@ class VisitedViewModel extends BaseModel {
     }
     if (differenceOfDays > 31 && differenceOfDays < 91) {
       return false;
-    } else if (differenceOfDays >= 0 && differenceOfDays < 22)
+    } else if (differenceOfDays >= 0 && differenceOfDays <= _threeWeek)
       return false;
     else
       return true;
