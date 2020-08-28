@@ -10,7 +10,7 @@ class VisitedViewModel extends BaseModel {
   String lastStop = "";
   List<Building> _buildings;
   List<Building> get buildings => _buildings;
-  final int _12months = 1200;
+  final int _months = 1200;
   final int _threeWeek = 21;
 
   void fetchBuildings() async {
@@ -63,7 +63,7 @@ class VisitedViewModel extends BaseModel {
         DateTime.now().day -
         _prefs.getInt(visitedBuilding);
     if (differenceOfDays < 0) {
-      differenceOfDays += _12months;
+      differenceOfDays += _months;
     }
     if (differenceOfDays > 31 && differenceOfDays < 91) {
       return false;

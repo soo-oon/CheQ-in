@@ -3,6 +3,7 @@ import 'package:checkin/models/models.dart';
 import 'package:checkin/services/services.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audio_cache.dart';
 
 class QRScanViewModel extends BaseModel {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
@@ -15,6 +16,8 @@ class QRScanViewModel extends BaseModel {
   var qrText = '';
   String _todayKey;
   QRViewController controller;
+  AudioCache player = new AudioCache();
+  final alarmAudioPath = "sounds/beeps.mp3";
 
   void init() async {
     _buildings = await _firestoreService.getBuildings();
@@ -29,6 +32,7 @@ class QRScanViewModel extends BaseModel {
         controller.pauseCamera();
         enterLog(qrText);
         setQrScanned(true);
+        player.play(alarmAudioPath);
         _navigationService.navigateTo(FrontEndHomeViewRoute);
       }
     });
@@ -42,25 +46,24 @@ class QRScanViewModel extends BaseModel {
         }
 
         //key associated everyday a user enters a new building
-        _todayKey = currentUser.phoneNumber + buildingName + DateTime.now().toString().substring(0,10);
+        _todayKey = currentUser.phoneNumber +
+            buildingName +
+            DateTime.now().toString().substring(0, 10);
 
         _firestoreService.visitedBuildings(buildingName);
 
         //if user has already logged in this building today the no need to login again
-        _firestoreService.checkedInToday(_todayKey).then((value){
-          if(!value){
+        _firestoreService.checkedInToday(_todayKey).then((value) {
+          if (!value) {
             _firestoreService.updateLogs(Log(
                 userName: currentUser.fullName,
                 buildingName: buildingName,
                 phoneNumber: currentUser.phoneNumber,
-                time: DateTime.now().toString().substring(0,19),
+                time: DateTime.now().toString().substring(0, 19),
                 key: _todayKey));
           }
         });
-
       }
     }
   }
-
-
 }

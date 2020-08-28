@@ -1,7 +1,6 @@
 import 'package:checkin/frontend/viewModels/frontend_home_view_Model.dart';
 import 'package:checkin/ui/widgets/exit_app_dialogue.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider_architecture/provider_architecture.dart';
 import 'package:checkin/constants/route_names.dart';
 

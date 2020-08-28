@@ -5,7 +5,6 @@ import 'package:checkin/backend/views/visitor_view.dart';
 import 'package:checkin/frontend/views/building_view.dart';
 import 'package:checkin/ui/widgets/exit_app_dialogue.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider_architecture/provider_architecture.dart';
 
 class BackEndHomeView extends StatelessWidget {
