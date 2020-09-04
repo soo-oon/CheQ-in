@@ -30,6 +30,13 @@
             {
               "client_id": "693227188156-pu97plegg1pibke24c4gvutm914dfh3k.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "693227188156-5rp1inhukfvpg8aoeujjhro2nqq2m2pu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.kmu.checkin"
+              }
             }
           ]
         }
@@ -43,6 +50,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "693227188156-2ikako81n4qpjndk8e40ruu6o343d7bn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kmu.checkin",
+            "certificate_hash": "da3ade3536ad193c58ad5b6af19593e359a580ee"
+          }
+        },
         {
           "client_id": "693227188156-pu97plegg1pibke24c4gvutm914dfh3k.apps.googleusercontent.com",
           "client_type": 3
@@ -59,6 +74,13 @@
             {
               "client_id": "693227188156-pu97plegg1pibke24c4gvutm914dfh3k.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "693227188156-5rp1inhukfvpg8aoeujjhro2nqq2m2pu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.kmu.checkin"
+              }
             }
           ]
         }

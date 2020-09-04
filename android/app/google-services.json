@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:693227188156:android:3f98e8a2c2d77861b7c5b9",
+        "mobilesdk_app_id": "1:693227188156:android:7ab3dbdfee86ac59b7c5b9",
         "android_client_info": {
-          "package_name": "com.kmu.checkin"
+          "package_name": "com.example.fl101884"
         }
       },
       "oauth_client": [
@@ -30,6 +30,57 @@
             {
               "client_id": "693227188156-pu97plegg1pibke24c4gvutm914dfh3k.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "693227188156-5rp1inhukfvpg8aoeujjhro2nqq2m2pu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.kmu.checkin"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:693227188156:android:3f98e8a2c2d77861b7c5b9",
+        "android_client_info": {
+          "package_name": "com.kmu.checkin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "693227188156-2ikako81n4qpjndk8e40ruu6o343d7bn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kmu.checkin",
+            "certificate_hash": "da3ade3536ad193c58ad5b6af19593e359a580ee"
+          }
+        },
+        {
+          "client_id": "693227188156-pu97plegg1pibke24c4gvutm914dfh3k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjvq29vm9HnmdtNwA4QbtM5SY0ynrbPtQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "693227188156-pu97plegg1pibke24c4gvutm914dfh3k.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "693227188156-5rp1inhukfvpg8aoeujjhro2nqq2m2pu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.kmu.checkin"
+              }
             }
           ]
         }
