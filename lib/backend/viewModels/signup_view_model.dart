@@ -6,7 +6,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_otp/flutter_otp.dart';
 
-
 class SignUpViewModel extends BaseModel {
   final AuthenticationService _authenticationService =
       locator<AuthenticationService>();
@@ -16,7 +15,8 @@ class SignUpViewModel extends BaseModel {
   final FlutterOtp _flutterOtp = FlutterOtp();
 
   String _selectedRole = 'User';
-  bool isPhoneVarified = false;
+  //bool isPhoneVarified = false;
+  String formattedPhoneNumber;
 
   //String get selectedRole => _selectedRole;
 
@@ -123,41 +123,64 @@ class SignUpViewModel extends BaseModel {
     print(phoneNumber);
   }
 
-  Future verifyPhoneNumber(BuildContext context, TextEditingController codeController, String phoneNumber) async {
+  Future verifyPhoneNumber(BuildContext context,
+      TextEditingController codeController, String phoneNumber) async {
     setBusy(true);
-    await _authenticationService.verifyPhoneNumber(context, codeController, phoneNumber: phoneNumber);
+    await _authenticationService.verifyPhoneNumber(context, codeController,
+        phoneNumber: phoneNumber);
     setBusy(false);
   }
 
-  void checkIfPhoneVarified(int otp) {
-    if(_flutterOtp.resultChecker(otp))
-    {
-      _dialogService.showDialog(
-        title: "인증번호 확인.",
-        description: "인증번호가 확인되었습니다."
-      );
-      isPhoneVarified = true;
-    } else {
-      _dialogService.showDialog(
-        title: "인증번호 오류.",
-        description: "인증번호를 다시 입력해주세요",
-      );
-      isPhoneVarified = false;
+  bool checkPhoneNumber(String phoneNumber) {
+    formattedPhoneNumber = phoneNumber;
+
+    if (formattedPhoneNumber.length > 11 || formattedPhoneNumber.length < 11) {
+      showPhoneNumberLengthWrongDialog();
+      return false;
     }
+
+    if (formattedPhoneNumber.startsWith('010')) {
+      if (formattedPhoneNumber.contains('-')) {
+        formattedPhoneNumber.replaceAll('-', '');
+      }
+    } else {
+      showPhoneNumberWrongDialog();
+      return false;
+    }
+
+    return true;
   }
 
-  void showPhoneVarifyDialog() {
+  // void checkIfPhoneVarified(int otp) {
+  //   if (_flutterOtp.resultChecker(otp)) {
+  //     _dialogService.showDialog(
+  //         title: "인증번호 확인.", description: "인증번호가 확인되었습니다.");
+  //     isPhoneVarified = true;
+  //   } else {
+  //     _dialogService.showDialog(
+  //       title: "인증번호 오류.",
+  //       description: "인증번호를 다시 입력해주세요",
+  //     );
+  //     isPhoneVarified = false;
+  //   }
+  // }
+
+  // void showPhoneVarifyDialog() {
+  //   _dialogService.showDialog(title: "핸드폰 인증오류", description: "핸드폰 인증을 해주세요");
+  // }
+
+  void showPhoneNumberWrongDialog() {
     _dialogService.showDialog(
-      title: "핸드폰 인증오류",
-      description: "핸드폰 인증을 해주세요"
-    );
+        title: "휴대폰번호 오류", description: "휴대폰 번호를 제대로 입력해주세요");
   }
 
-  void showOTPSentDialog() {
+  void showPhoneNumberLengthWrongDialog() {
     _dialogService.showDialog(
-      title: "인증번호 전송완료",
-      description: "핸드폰 문자메시지를 확인해주세요."
-    );
+        title: "휴대폰번호 길이 오류", description: "휴대폰 번호 11자리 다 입력해주세요");
   }
 
+  // void showOTPSentDialog() {
+  //   _dialogService.showDialog(
+  //       title: "인증번호 전송완료", description: "핸드폰 문자메시지를 확인해주세요.");
+  // }
 }

@@ -74,59 +74,59 @@ class SignUpView extends StatelessWidget {
                       Flexible(
                         flex: 3,
                         child: InputField(
-                            placeholder: '휴대폰 번호',
+                            placeholder: '휴대폰 번호( - 빼고 입력해주세요)',
                             controller: phoneController,
                             textInputType: TextInputType.numberWithOptions(),
                             fieldFocusNode: phoneFocusNode,
                             nextFocusNode: addressFocusNode),
                       ),
-                      Flexible(
-                          flex: 1,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 7, horizontal: 5),
-                            child: BusyButton(
-                              title: "인증",
-                              busy: model.busy,
-                              onPressed: () {
-                                model.sendOTP(
-                                    phoneNumber: phoneController.text);
-                                //model.verifyPhoneNumber(context, phoneCodeController, phoneController.text);
-                                isVarifyMessageSent = true;
-                                model.showOTPSentDialog();
-                              },
-                            ),
-                          )),
+                      // Flexible(
+                      //     flex: 1,
+                      //     child: Padding(
+                      //       padding: const EdgeInsets.symmetric(
+                      //           vertical: 7, horizontal: 5),
+                      //       child: BusyButton(
+                      //         title: "인증",
+                      //         busy: model.busy,
+                      //         onPressed: () {
+                      //           model.sendOTP(
+                      //               phoneNumber: phoneController.text);
+                      //           //model.verifyPhoneNumber(context, phoneCodeController, phoneController.text);
+                      //           isVarifyMessageSent = true;
+                      //           model.showOTPSentDialog();
+                      //         },
+                      //       ),
+                      //     )),
                     ]),
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Flexible(
-                          flex: 3,
-                          child: InputField(
-                              placeholder: '인증번호',
-                              controller: phoneCodeController,
-                              textInputType: TextInputType.numberWithOptions(),
-                              fieldFocusNode: phoneCodeFocusNode,
-                              nextFocusNode: addressFocusNode),
-                        ),
-                        Flexible(
-                            flex: 1,
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 7, horizontal: 5),
-                              child: BusyButton(
-                                title: '확인',
-                                busy: model.busy,
-                                onPressed: () {
-                                  model.checkIfPhoneVarified(
-                                      int.parse(phoneCodeController.text));
-                                  //model.verifyPhoneNumber(context, phoneCodeController, phoneController.text);
-                                },
-                              ),
-                            )),
-                      ]),
+                // Row(
+                //     mainAxisAlignment: MainAxisAlignment.center,
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     children: [
+                //       Flexible(
+                //         flex: 3,
+                //         child: InputField(
+                //             placeholder: '인증번호',
+                //             controller: phoneCodeController,
+                //             textInputType: TextInputType.numberWithOptions(),
+                //             fieldFocusNode: phoneCodeFocusNode,
+                //             nextFocusNode: addressFocusNode),
+                //       ),
+                //       Flexible(
+                //           flex: 1,
+                //           child: Padding(
+                //             padding: const EdgeInsets.symmetric(
+                //                 vertical: 7, horizontal: 5),
+                //             child: BusyButton(
+                //               title: '확인',
+                //               busy: model.busy,
+                //               onPressed: () {
+                //                 model.checkIfPhoneVarified(
+                //                     int.parse(phoneCodeController.text));
+                //                 //model.verifyPhoneNumber(context, phoneCodeController, phoneController.text);
+                //               },
+                //             ),
+                //           )),
+                //     ]),
                 verticalSpaceSmall,
                 InputField(
                     placeholder: '주소',
@@ -184,16 +184,16 @@ class SignUpView extends StatelessWidget {
                           title: '회원가입',
                           busy: model.busy,
                           onPressed: () {
-                            if (model.isPhoneVarified) {
+                            if (model.checkPhoneNumber(phoneController.text)) {
                               model.signUp(
                                   email: emailController.text,
                                   password: passwordController.text,
                                   password2: password2Controller.text,
                                   fullName: fullNameController.text,
-                                  phoneNumber: phoneController.text,
+                                  phoneNumber: model.formattedPhoneNumber,
                                   address: addressController.text);
                             } else {
-                              model.showPhoneVarifyDialog();
+                              model.showPhoneNumberWrongDialog();
                             }
                           })
                     ],
