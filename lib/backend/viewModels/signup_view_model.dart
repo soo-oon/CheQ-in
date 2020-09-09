@@ -1,7 +1,7 @@
 import 'package:checkin/backend/viewModels/base_model.dart';
 import 'package:checkin/constants/route_names.dart';
 import 'package:checkin/services/services.dart';
-
+import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_otp/flutter_otp.dart';
@@ -119,7 +119,7 @@ class SignUpViewModel extends BaseModel {
   }
 
   void sendOTP({@required String phoneNumber}) {
-    _flutterOtp.sendOtp(phoneNumber);
+    _flutterOtp.sendOtp(phoneNumber, "otp is",1000,9999, "+82");
     print(phoneNumber);
   }
 
@@ -133,22 +133,37 @@ class SignUpViewModel extends BaseModel {
 
   bool checkPhoneNumber(String phoneNumber) {
     formattedPhoneNumber = phoneNumber;
+    formattedPhoneNumber.replaceAll("_", "");
 
-    if (formattedPhoneNumber.length > 11 || formattedPhoneNumber.length < 11) {
-      showPhoneNumberLengthWrongDialog();
+    if (formattedPhoneNumber.length < 11 ) {
+      //showPhoneNumberLengthWrongDialog();
       return false;
+    } else{
+      formattedPhoneNumber = formattedPhoneNumber.substring(formattedPhoneNumber.length-10);
+      formattedPhoneNumber = "0" + formattedPhoneNumber;
+      print(formattedPhoneNumber);
+
+      if(formattedPhoneNumber.startsWith('010')){
+        return true;
+      }else{
+        //showPhoneNumberLengthWrongDialog();
+        return false;
+      }
+    }
+    /*else if (){
+
     }
 
-    if (formattedPhoneNumber.startsWith('010')) {
+    if () {
       if (formattedPhoneNumber.contains('-')) {
         formattedPhoneNumber.replaceAll('-', '');
       }
     } else {
       showPhoneNumberWrongDialog();
       return false;
-    }
+    }*/
 
-    return true;
+
   }
 
   // void checkIfPhoneVarified(int otp) {

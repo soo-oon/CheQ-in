@@ -76,7 +76,7 @@ class SignUpView extends StatelessWidget {
                         child: InputField(
                             placeholder: '휴대폰 번호( - 빼고 입력해주세요)',
                             controller: phoneController,
-                            textInputType: TextInputType.numberWithOptions(),
+                            textInputType: TextInputType.number,
                             fieldFocusNode: phoneFocusNode,
                             nextFocusNode: addressFocusNode),
                       ),
