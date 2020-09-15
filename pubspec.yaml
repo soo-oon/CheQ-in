@@ -28,6 +28,7 @@ dependencies:
   json_serializable: ^3.3.0
   qr_code_scanner: ^0.0.13
   audioplayers: ^0.16.0
+  flutter_launcher_icons: ^0.7.4
 
   
 
@@ -50,3 +51,7 @@ flutter:
     - assets/images/
     - assets/sounds/
 
+flutter_icons:
+  image_path: 'assets/images/applogo.png'
+  android: true
+  ios: true
