@@ -4,7 +4,7 @@ import 'package:checkin/services/services.dart';
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_otp/flutter_otp.dart';
+//import 'package:flutter_otp/flutter_otp.dart';
 
 class SignUpViewModel extends BaseModel {
   final AuthenticationService _authenticationService =
@@ -12,7 +12,7 @@ class SignUpViewModel extends BaseModel {
   final DialogService _dialogService = locator<DialogService>();
   final FirestoreService _firestoreService = locator<FirestoreService>();
   final NavigationService _navigationService = locator<NavigationService>();
-  final FlutterOtp _flutterOtp = FlutterOtp();
+  //final FlutterOtp _flutterOtp = FlutterOtp();
 
   String _selectedRole = 'User';
   //bool isPhoneVarified = false;
@@ -118,10 +118,10 @@ class SignUpViewModel extends BaseModel {
     }
   }
 
-  void sendOTP({@required String phoneNumber}) {
+  /*void sendOTP({@required String phoneNumber}) {
     _flutterOtp.sendOtp(phoneNumber, "otp is",1000,9999, "+82");
     print(phoneNumber);
-  }
+  }*/
 
   Future verifyPhoneNumber(BuildContext context,
       TextEditingController codeController, String phoneNumber) async {
