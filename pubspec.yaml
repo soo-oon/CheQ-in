@@ -2,7 +2,7 @@ name: checkin
 description: KMU check in AP
 
 
-version: 1.0.0+1
+version: 1.0.1+2
 
 environment:
   sdk: ">=2.6.0 <3.0.0"
@@ -13,7 +13,6 @@ dependencies:
 
   cupertino_icons: ^0.1.2
   qrscan: ^0.2.17
-
   firebase_database: ^3.0.0
   provider_architecture: ^1.1.1+1
   firebase_messaging: ^6.0.16
@@ -53,6 +52,6 @@ flutter:
     - assets/sounds/
 
 flutter_icons:
-  image_path: 'assets/images/applogo.png'
+  image_path: 'assets/images/applogo.JPG'
   android: true
   ios: true

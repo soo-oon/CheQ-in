@@ -3,9 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>693227188156-5rp1inhukfvpg8aoeujjhro2nqq2m2pu.apps.googleusercontent.com</string>
+	<string>693227188156-stuon7ofgeu8hgbb929ru9i8hf52huic.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.693227188156-5rp1inhukfvpg8aoeujjhro2nqq2m2pu</string>
+	<string>com.googleusercontent.apps.693227188156-stuon7ofgeu8hgbb929ru9i8hf52huic</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>693227188156-2ikako81n4qpjndk8e40ruu6o343d7bn.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAXSgS8VAtcXed-js_lV95mhJDMhHHImf4</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.kmu.checkin</string>
+	<string>com.kmu.checkinapp</string>
 	<key>PROJECT_ID</key>
 	<string>checkin-e0a2d</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +31,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:693227188156:ios:6e7d09536447233eb7c5b9</string>
+	<string>1:693227188156:ios:44bdea9291057120b7c5b9</string>
 	<key>DATABASE_URL</key>
 	<string>https://checkin-e0a2d.firebaseio.com</string>
 </dict>
