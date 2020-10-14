@@ -1,6 +1,7 @@
 import 'package:checkin/frontend/viewModels/covid_home_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider_architecture/provider_architecture.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 final prevention = [
   {'assets/images/distance.png': '사회적\n거리두기'},
@@ -12,15 +13,17 @@ class CovidView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
 
     return ViewModelProvider<CovidViewModel>.withConsumer(
         viewModelBuilder: () => CovidViewModel(),
         builder: (context, model, child) => CustomScrollView(
-              physics: ClampingScrollPhysics(),
+              shrinkWrap: true,
+              physics: BouncingScrollPhysics(),
               slivers: [
                 _buildHeader(model.currentUser.fullName, screenHeight),
-                _buildPreventionTips(screenHeight),
-                _buildYourOwnText(screenHeight),
+                _buildEnd(
+                    model.currentUser.fullName, screenHeight, screenWidth),
               ],
             ));
   }
@@ -57,7 +60,7 @@ class CovidView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '증상이 있으신가요?',
+                  '계명대학교 편의 사이트입니다. ',
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 22.0,
@@ -67,61 +70,6 @@ class CovidView extends StatelessWidget {
                 SizedBox(
                   height: screenHeight * 0.01,
                 ),
-                Text(
-                  '코로나19 증상으로 아프면 즉시 전화하거나 문자 메시지를 보내 도움을 요청하십시오.',
-                  style: const TextStyle(
-                    color: Colors.white70,
-                    fontSize: 15.0,
-                  ),
-                ),
-                SizedBox(
-                  height: screenHeight * 0.03,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    FlatButton.icon(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20.0, vertical: 10.0),
-                      onPressed: () {},
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0)),
-                      color: Colors.red,
-                      icon: const Icon(
-                        Icons.phone,
-                        color: Colors.white,
-                      ),
-                      label: Text(
-                        '전화하기',
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      textColor: Colors.white,
-                    ),
-                    FlatButton.icon(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20.0, vertical: 10.0),
-                      onPressed: () {},
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0)),
-                      color: Colors.lightGreen,
-                      icon: const Icon(
-                        Icons.chat_bubble,
-                        color: Colors.white,
-                      ),
-                      label: Text(
-                        '문자보내기',
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      textColor: Colors.white,
-                    )
-                  ],
-                )
               ],
             )
           ],
@@ -217,4 +165,179 @@ class CovidView extends StatelessWidget {
       ),
     );
   }
+
+  SliverToBoxAdapter _buildEnd(
+      String userName, double screenHeight, double screenWidth) {
+    return SliverToBoxAdapter(
+      child: Container(
+        padding: const EdgeInsets.all(20.0),
+        decoration: BoxDecoration(
+            //color: Color.fromRGBO(62, 65, 72, 0),
+            color: Colors.white),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      Icons.location_on,
+                      color: Colors.black,
+                    ),
+                    Text(
+                      '성서캠퍼스',
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: screenHeight * 0.01,
+                ),
+                Text(
+                  '(우)42601 대구광역시 달서구 달구벌대로 1095',
+                  style: const TextStyle(
+                    color: Colors.black87,
+                    fontSize: 10.0,
+                  ),
+                ),
+                Text(
+                  '계명대학교 성서캠퍼스',
+                  style: const TextStyle(
+                    color: Colors.black87,
+                    fontSize: 10.0,
+                  ),
+                ),
+                Text(
+                  'TEL 053.580.5114',
+                  style: const TextStyle(
+                    color: Colors.black87,
+                    fontSize: 10.0,
+                  ),
+                ),
+                SizedBox(
+                  height: screenHeight * 0.01,
+                ),
+                Row(
+                  children: [
+                    Icon(
+                      Icons.location_on,
+                      color: Colors.black,
+                    ),
+                    Text(
+                      '대명캠퍼스',
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 15.0,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: screenHeight * 0.01,
+                ),
+                Text(
+                  '(우)42403 대구광역시 남구 명덕로 104',
+                  style: const TextStyle(
+                    color: Colors.black87,
+                    fontSize: 10.0,
+                  ),
+                ),
+                Text(
+                  '계명대학교 대명캠퍼스',
+                  style: const TextStyle(
+                    color: Colors.black87,
+                    fontSize: 10.0,
+                  ),
+                ),
+                Text(
+                  'TEL 053.580.5114',
+                  style: const TextStyle(
+                    color: Colors.black87,
+                    fontSize: 10.0,
+                  ),
+                ),
+                SizedBox(
+                  height: screenHeight * 0.02,
+                ),
+                Row(
+                  children: [
+                    _gridTile(
+                        screenWidth,
+                        screenHeight,
+                        "https://www.kmu.ac.kr/uni/main/page.jsp?mnu_uid=3319",
+                        Icons.location_city,
+                        "캠퍼스맵"),
+                    SizedBox(
+                      width: screenWidth * 0.1,
+                    ),
+                    _gridTile(
+                        screenWidth,
+                        screenHeight,
+                        "https://www.kmu.ac.kr/uni/main/page.jsp?mnu_uid=3322",
+                        Icons.phone,
+                        "교내주요연락처"),
+                  ],
+                ),
+                SizedBox(
+                  height: screenHeight * 0.02,
+                ),
+                Row(
+                  children: [
+                    _gridTile(
+                        screenWidth,
+                        screenHeight,
+                        "https://www.kmu.ac.kr/uni/main/page.jsp?mnu_uid=3324",
+                        Icons.location_on,
+                        "오시는 길"),
+                    SizedBox(
+                      width: screenWidth * 0.1,
+                    ),
+                    _gridTile(
+                        screenWidth,
+                        screenHeight,
+                        "https://www.kmu.ac.kr/uni/main/page.jsp?mnu_uid=3323",
+                        Icons.keyboard,
+                        "주요사이트"),
+                  ],
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+Widget _gridTile(double screenWidth, double screenHeight, String url,
+    IconData icon, String title) {
+  return Container(
+    padding: const EdgeInsets.all(20.0),
+    width: screenWidth * 0.4,
+    height: screenHeight * 0.11,
+    decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        //color: Color.fromRGBO(62, 65, 72, 0),
+        color: Colors.blueGrey),
+    child: GestureDetector(
+      onTap: () {
+        print("baam");
+        launch(url);
+      },
+      child: Center(
+          child: Column(
+        children: [
+          Icon(icon),
+          Text(title),
+        ],
+      )),
+    ),
+  );
 }
