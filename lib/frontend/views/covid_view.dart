@@ -170,7 +170,7 @@ class CovidView extends StatelessWidget {
       String userName, double screenHeight, double screenWidth) {
     return SliverToBoxAdapter(
       child: Container(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(12.0),
         decoration: BoxDecoration(
             //color: Color.fromRGBO(62, 65, 72, 0),
             color: Colors.white),
@@ -267,6 +267,7 @@ class CovidView extends StatelessWidget {
                   height: screenHeight * 0.02,
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _gridTile(
                         screenWidth,
@@ -275,7 +276,7 @@ class CovidView extends StatelessWidget {
                         Icons.location_city,
                         "캠퍼스맵"),
                     SizedBox(
-                      width: screenWidth * 0.1,
+                      width: screenWidth * 0.05,
                     ),
                     _gridTile(
                         screenWidth,
@@ -289,6 +290,7 @@ class CovidView extends StatelessWidget {
                   height: screenHeight * 0.02,
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     _gridTile(
                         screenWidth,
@@ -297,7 +299,7 @@ class CovidView extends StatelessWidget {
                         Icons.location_on,
                         "오시는 길"),
                     SizedBox(
-                      width: screenWidth * 0.1,
+                      width: screenWidth * 0.05,
                     ),
                     _gridTile(
                         screenWidth,
@@ -319,7 +321,7 @@ class CovidView extends StatelessWidget {
 Widget _gridTile(double screenWidth, double screenHeight, String url,
     IconData icon, String title) {
   return Container(
-    padding: const EdgeInsets.all(20.0),
+    padding: const EdgeInsets.only(top: 12.0),
     width: screenWidth * 0.4,
     height: screenHeight * 0.11,
     decoration: BoxDecoration(
@@ -335,7 +337,7 @@ Widget _gridTile(double screenWidth, double screenHeight, String url,
           child: Column(
         children: [
           Icon(icon),
-          Text(title),
+          Expanded(child: Text(title)),
         ],
       )),
     ),
