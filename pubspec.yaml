@@ -1,7 +1,6 @@
 name: checkin
 description: KMU check in AP
 
-
 version: 1.0.1+2
 
 environment:
@@ -31,8 +30,6 @@ dependencies:
   flutter_automation: ^1.4.0
   url_launcher: ^5.7.2
 
-  
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -51,8 +48,19 @@ flutter:
   assets:
     - assets/images/
     - assets/sounds/
-
+    - assets/fonts/
+  fonts:
+    # - family: Raleway
+    #   fonts:
+    #     - asset: fonts/Raleway-Regular.ttf
+    #     - asset: fonts/Raleway-Italic.ttf
+    #       style: italic
+    - family: NotoSans
+      fonts:
+        - asset: assets/fonts/NotoSansKR-Regular.otf
+        - asset: assets/fonts/NotoSansKR-Bold.otf
+          weight: 700
 flutter_icons:
-  image_path: 'assets/images/applogo.JPG'
+  image_path: "assets/images/applogo.JPG"
   android: true
   ios: true
