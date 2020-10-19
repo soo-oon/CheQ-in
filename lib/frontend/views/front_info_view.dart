@@ -1,5 +1,6 @@
 import 'package:checkin/backend/viewModels/info_view_model.dart';
 import 'package:checkin/backend/views/modify_view.dart';
+import 'package:checkin/backend/views/modify_view_replace.dart';
 import 'package:checkin/ui/widgets/buildheader.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -88,7 +89,7 @@ class FrontInfoView extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => ModifyView()),
+                                    builder: (context) => ProfileScreen()),
                               );
                             },
                           ),

@@ -12,9 +12,11 @@ class InputWidget extends StatefulWidget {
   final double height;
   final String hintText;
   final bool password;
+  final bool changed;
   final Color color;
   final Color hintTextColor;
   final int maxLine;
+  final bool isReadOnly;
 
   const InputWidget(
       {Key key,
@@ -31,7 +33,9 @@ class InputWidget extends StatefulWidget {
       this.password = false,
       this.color = Colors.white,
       this.hintTextColor = Colors.black,
-      this.maxLine = 1})
+      this.maxLine = 1,
+      this.changed = false,
+      this.isReadOnly = false})
       : super(key: key);
   @override
   _InputWidgetState createState() => _InputWidgetState();
@@ -39,10 +43,12 @@ class InputWidget extends StatefulWidget {
 
 class _InputWidgetState extends State<InputWidget> {
   bool isPassword;
+  bool isChanged;
   @override
   void initState() {
     super.initState();
     isPassword = widget.password;
+    isChanged = widget.changed;
   }
 
   @override
@@ -67,8 +73,22 @@ class _InputWidgetState extends State<InputWidget> {
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Row(
           children: [
+            GestureDetector(
+              onTap: () => setState(() {
+                isChanged = !isChanged;
+              }),
+              child: widget.changed
+                  ? Container(
+                      width: widget.height,
+                      height: widget.height,
+                      alignment: Alignment.center,
+                      child: Icon(Icons.check,
+                          color: isChanged ? Colors.black : Colors.green))
+                  : Container(),
+            ),
             Expanded(
               child: TextFormField(
+                readOnly: widget.isReadOnly ? true : isChanged,
                 maxLines: widget.maxLine,
                 controller: widget.controller,
                 keyboardType: widget.textInputType,

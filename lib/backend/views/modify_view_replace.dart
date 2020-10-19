@@ -1,29 +1,39 @@
-import 'package:checkin/backend/viewModels/info_view_model.dart';
-import 'package:checkin/backend/views/modify_view.dart';
-import 'package:checkin/backend/views/modify_view_replace.dart';
-import 'package:checkin/frontend/viewModels/options_view_model.dart';
+import 'package:checkin/backend/viewModels/signup_view_model.dart';
 import 'package:checkin/ui/shared/ui_helpers.dart';
 import 'package:checkin/ui/widgets/email_widget.dart';
-import 'package:checkin/ui/widgets/icon_button_widget.dart';
+import 'package:checkin/ui/widgets/input_widget.dart';
 import 'package:checkin/ui/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:provider_architecture/provider_architecture.dart';
 
-class OptionScreen extends StatefulWidget {
+class ProfileScreen extends StatefulWidget {
   @override
-  _OptionScreenState createState() => _OptionScreenState();
+  _ProfileScreenState createState() => _ProfileScreenState();
 }
 
-class _OptionScreenState extends State<OptionScreen> {
+class _ProfileScreenState extends State<ProfileScreen> {
+  final emailController = TextEditingController();
+  final fullNameController = TextEditingController();
+  final phoneController = TextEditingController();
+  final addressController = TextEditingController();
+
+  final fullNameFocusNode = FocusNode();
+  final emailFocusNode = FocusNode();
+  final phoneFocusNode = FocusNode();
+  final addressFocusNode = FocusNode();
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return ViewModelProvider<InfoViewModel>.withConsumer(
-        viewModelBuilder: () => InfoViewModel(),
-        onModelReady: (model) => model.init(),
+    return ViewModelProvider<SignUpViewModel>.withConsumer(
+        viewModelBuilder: () => SignUpViewModel(),
+        onModelReady: (model) {
+          emailController.text = model.currentUser.email;
+          fullNameController.text = model.currentUser.fullName;
+          phoneController.text = model.currentUser.phoneNumber;
+          addressController.text = model.currentUser.address;
+        },
         builder: (context, model, child) => Scaffold(
-              backgroundColor: Colors.white,
-              body: SafeArea(
+              body: SingleChildScrollView(
                 child: model.busy
                     ? CircularProgressIndicator()
                     : Container(
@@ -70,42 +80,87 @@ class _OptionScreenState extends State<OptionScreen> {
                             _greetingWidget(model.currentUser.fullName,
                                 model.currentUser.email),
                             verticalSpaceMedium,
-                            CustomIconButton(
-                              title: "학교 및 기관 설정",
-                              icon: Icons.ac_unit,
-                              color: Colors.white,
+                            SizedBox(
+                              height: size.height / 20,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => new AlertDialog(
+                                    title: new Text(
+                                      'email은 변경할 수 없습니다.',
+                                      style: TextStyle(fontSize: 15),
+                                    ),
+                                    actions: [
+                                      new FlatButton(
+                                        onPressed: () =>
+                                            Navigator.of(context).pop(false),
+                                        child: new Text('아니요'),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                              child: InputWidget(
+                                hintText: model.currentUser.email,
+                                controller: emailController,
+                                fieldFocusNode: emailFocusNode,
+                                nextFocusNode: addressFocusNode,
+                                changed: true,
+                                isReadOnly: true,
+                              ),
                             ),
                             verticalSpaceSmall,
-                            CustomIconButton(
-                              title: "프로필 및 개인정보 변경",
-                              icon: Icons.ac_unit,
-                              color: Colors.white,
+                            InputWidget(
+                              hintText: model.currentUser.fullName,
+                              controller: fullNameController,
+                              fieldFocusNode: fullNameFocusNode,
+                              nextFocusNode: phoneFocusNode,
+                              changed: true,
+                            ),
+                            verticalSpaceSmall,
+                            InputWidget(
+                              hintText: model.currentUser.phoneNumber,
+                              controller: phoneController,
+                              fieldFocusNode: phoneFocusNode,
+                              nextFocusNode: addressFocusNode,
+                              changed: true,
+                            ),
+                            verticalSpaceSmall,
+                            InputWidget(
+                              hintText: model.currentUser.address,
+                              controller: addressController,
+                              fieldFocusNode: addressFocusNode,
+                              changed: true,
+                            ),
+                            verticalSpaceTiny,
+                            Text("체크표시 클릭후 수정가능합니다."),
+                            const SizedBox(height: 50),
+                            CustomButton(
+                              title: "수정하기",
+                              color: Color.fromRGBO(239, 239, 245, 1),
+                              textColor: Colors.black,
                               onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => ProfileScreen()));
+                                if (addressController.text.isNotEmpty)
+                                  model.currentUser.address =
+                                      addressController.text;
+                                if (fullNameController.text.isNotEmpty)
+                                  model.currentUser.fullName =
+                                      fullNameController.text;
+                                if (phoneController.text.isNotEmpty)
+                                  model.currentUser.phoneNumber =
+                                      phoneController.text;
+                                Navigator.pop(context);
                               },
                             ),
                             verticalSpaceSmall,
-                            CustomIconButton(
-                              title: "앱 정보",
-                              icon: Icons.ac_unit,
-                              color: Colors.white,
-                            ),
-                            verticalSpaceSmall,
-                            CustomIconButton(
-                              title: "공지사항",
-                              icon: Icons.ac_unit,
-                              color: Colors.white,
-                            ),
-                            verticalSpaceSmall,
-                            CustomIconButton(
-                              title: "로그아웃",
-                              icon: Icons.ac_unit,
-                              color: Colors.white,
+                            CustomButton(
+                              title: "돌아가기",
+                              color: Color.fromRGBO(239, 239, 245, 1),
+                              textColor: Colors.black,
                               onTap: () {
-                                model.signOut();
+                                Navigator.pop(context);
                               },
                             ),
                           ],
