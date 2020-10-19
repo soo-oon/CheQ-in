@@ -1,14 +1,14 @@
+import 'package:checkin/ui/shared/ui_helpers.dart';
 import 'package:flutter/material.dart';
 
 class CustomIconButton extends StatefulWidget {
   final String title;
   final IconData icon;
-  final Size size;
   final Color color;
   final Function onTap;
 
   const CustomIconButton(
-      {Key key, this.title, this.icon, this.size, this.color, this.onTap})
+      {Key key, this.title, this.icon, this.color, this.onTap})
       : super(key: key);
   @override
   _CustomIconButtonState createState() => _CustomIconButtonState();
@@ -17,31 +17,38 @@ class CustomIconButton extends StatefulWidget {
 class _CustomIconButtonState extends State<CustomIconButton> {
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return InkWell(
       onTap: widget.onTap,
       child: Container(
         height: 50,
-        width: widget.size.width * 0.9,
+        width: size.width * 0.9,
         child: Row(
           children: [
             SizedBox(
               width: 20,
             ),
-            Icon(widget.icon),
-            SizedBox(
-              width: 20,
+            Icon(
+              widget.icon,
+              size: 20,
             ),
-            Text(widget.title)
+            SizedBox(
+              width: 15,
+            ),
+            Text(
+              widget.title,
+              style: TextStyle(fontSize: 11),
+            )
           ],
         ),
         decoration: BoxDecoration(
             color: widget.color,
-            borderRadius: BorderRadius.all(Radius.circular(5.0)),
+            borderRadius: BorderRadius.all(Radius.circular(10.0)),
             boxShadow: [
               BoxShadow(
-                color: Colors.grey.withOpacity(0.15),
+                color: Color.fromRGBO(245, 244, 249, 1),
                 spreadRadius: 5,
-                blurRadius: 5,
+                blurRadius: 3,
                 offset: Offset(0, 3),
               )
             ]),

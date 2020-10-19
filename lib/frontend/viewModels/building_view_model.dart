@@ -10,9 +10,15 @@ class BuildingViewModel extends BaseModel {
   bool isAdmin = false;
   List<Building> _buildings;
   List<Building> get buildings => _buildings;
+  String date = "";
   init() {
     if (currentUser.userRole == "Admin") isAdmin = true;
     listenToPosts();
+    date = DateTime.now().year.toString() +
+        ' / ' +
+        DateTime.now().month.toString() +
+        ' / ' +
+        DateTime.now().day.toString();
   }
 
   Future sendPush(String title, String body) async {

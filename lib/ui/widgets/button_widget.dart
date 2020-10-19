@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class CustomButton extends StatefulWidget {
   final String title;
-  final Size size;
   final Color color;
   final Color textColor;
   final Function onTap;
@@ -10,7 +9,6 @@ class CustomButton extends StatefulWidget {
   const CustomButton(
       {Key key,
       @required this.title,
-      @required this.size,
       this.color = Colors.white,
       this.onTap,
       this.textColor = Colors.black})
@@ -22,11 +20,12 @@ class CustomButton extends StatefulWidget {
 class _CustomButtonState extends State<CustomButton> {
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return InkWell(
       onTap: widget.onTap,
       child: Container(
         height: 50,
-        width: widget.size.width * 0.9,
+        width: size.width * 0.9,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

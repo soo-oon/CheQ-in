@@ -1,4 +1,5 @@
 import 'package:checkin/backend/viewModels/visitor_view_model.dart';
+import 'package:checkin/ui/shared/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider_architecture/provider_architecture.dart';
@@ -18,7 +19,9 @@ class VisitorView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               model.busy
-                  ? SizedBox(height: MediaQuery.of(context).size.height/2 - 50,)
+                  ? SizedBox(
+                      height: MediaQuery.of(context).size.height / 2 - 50,
+                    )
                   : Container(
                       child: ExpansionTile(
                         title: Text("Filter"),
@@ -28,7 +31,9 @@ class VisitorView extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text("날짜"),
-                              SizedBox(width: 10,),
+                              SizedBox(
+                                width: 10,
+                              ),
                               Text(model.startDate.toString().substring(0, 10)),
                               FlatButton(
                                 child: Icon(Icons.calendar_today),
@@ -39,11 +44,8 @@ class VisitorView extends StatelessWidget {
                               DropdownButton(
                                 value: model.numberOfDates,
                                 onChanged: (value) {},
-                                items: <int>[
-                                  1,
-                                  2,
-                                  3
-                                ].map<DropdownMenuItem<int>>((int value) {
+                                items: <int>[1, 2, 3]
+                                    .map<DropdownMenuItem<int>>((int value) {
                                   return DropdownMenuItem<int>(
                                     value: value,
                                     child: Text(
@@ -88,7 +90,7 @@ class VisitorView extends StatelessWidget {
                       ),
                     ),
               model.logDecodedJsonData == null
-                  ? Center(child:CircularProgressIndicator())
+                  ? Center(child: CircularProgressIndicator())
                   : JsonTable(
                       model.logDecodedJsonData,
                       showColumnToggle: false,
@@ -111,7 +113,7 @@ class VisitorView extends StatelessWidget {
                               border: Border.all(
                                 width: 0.8,
                               ),
-                              color: Colors.grey[300]),
+                              color: mainColor.withOpacity(0.5)),
                           child: Text(
                             header,
                             textAlign: TextAlign.center,
@@ -127,7 +129,7 @@ class VisitorView extends StatelessWidget {
                           decoration: BoxDecoration(
                               border: Border.all(
                                   width: 0.8,
-                                  color: Colors.grey.withOpacity(0.5))),
+                                  color: Colors.grey.withOpacity(0.3))),
                           child: Text(
                             value,
                             softWrap: true,

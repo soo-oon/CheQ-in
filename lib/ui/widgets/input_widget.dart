@@ -8,18 +8,17 @@ class InputWidget extends StatefulWidget {
   final TextInputAction textInputAction;
   final Function(String) onChanged;
   final Function enterPressed;
-  final Size size;
   final double widthRatio;
   final double height;
   final String hintText;
   final bool password;
   final Color color;
   final Color hintTextColor;
+  final int maxLine;
 
   const InputWidget(
       {Key key,
       @required this.controller,
-      @required this.size,
       @required this.hintText,
       this.textInputType,
       this.fieldFocusNode,
@@ -31,7 +30,8 @@ class InputWidget extends StatefulWidget {
       this.height = 55,
       this.password = false,
       this.color = Colors.white,
-      this.hintTextColor = Colors.black})
+      this.hintTextColor = Colors.black,
+      this.maxLine = 1})
       : super(key: key);
   @override
   _InputWidgetState createState() => _InputWidgetState();
@@ -47,6 +47,7 @@ class _InputWidgetState extends State<InputWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return Container(
       decoration: BoxDecoration(
           color: widget.color,
@@ -60,7 +61,7 @@ class _InputWidgetState extends State<InputWidget> {
             )
           ]),
       height: widget.height,
-      width: widget.size.width * widget.widthRatio,
+      width: size.width * widget.widthRatio,
       padding: EdgeInsets.only(left: 8.0, bottom: 5.0),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -68,6 +69,7 @@ class _InputWidgetState extends State<InputWidget> {
           children: [
             Expanded(
               child: TextFormField(
+                maxLines: widget.maxLine,
                 controller: widget.controller,
                 keyboardType: widget.textInputType,
                 focusNode: widget.fieldFocusNode,

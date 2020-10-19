@@ -20,17 +20,17 @@ class _EmailTagState extends State<EmailTag> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.all(5),
+        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(10)),
+            borderRadius: BorderRadius.all(Radius.circular(13)),
             color: widget.backgroundColor),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(
-              Icons.add_comment,
+              Icons.email,
               color: widget.textColor,
-              size: 10,
+              size: 15,
             ),
             const SizedBox(width: 5),
             Text(

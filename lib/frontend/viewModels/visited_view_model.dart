@@ -1,5 +1,6 @@
 import 'package:checkin/models/models.dart';
 import 'package:checkin/services/services.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class VisitedViewModel extends BaseModel {
@@ -12,6 +13,10 @@ class VisitedViewModel extends BaseModel {
   List<Building> get buildings => _buildings;
   final int _months = 1200;
   final int _threeWeek = 21;
+  DateTime today = DateTime.now();
+  final DateTime now = DateTime.now();
+  final DateFormat formatter = DateFormat('MMMM');
+  String formatted = "";
 
   void fetchBuildings() async {
     _buildings = await _firestoreService.getBuildings();
@@ -26,6 +31,8 @@ class VisitedViewModel extends BaseModel {
       visitedBuildings = _prefs.getStringList("buildings");
     updateBuilding();
     exceptBuildingVisitedOverThreeWeek();
+    formatted = formatter.format(now);
+    print(formatted);
     setBusy(false);
   }
 

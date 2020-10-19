@@ -58,7 +58,6 @@ class _EnterPageScreenState extends State<EnterPageScreen> {
                       ),
                       InputWidget(
                         controller: fullNameController,
-                        size: size,
                         hintText: '이름',
                         fieldFocusNode: fullNameFocusNode,
                         nextFocusNode: phoneFocusNode,
@@ -68,7 +67,6 @@ class _EnterPageScreenState extends State<EnterPageScreen> {
                       verticalSpaceSmall,
                       InputWidget(
                         controller: phoneController,
-                        size: size,
                         hintText: '휴대폰 번호( - 빼고 입력해주세요)',
                         textInputType: TextInputType.number,
                         fieldFocusNode: phoneFocusNode,
@@ -79,7 +77,6 @@ class _EnterPageScreenState extends State<EnterPageScreen> {
                       const SizedBox(height: 10),
                       InputWidget(
                         controller: addressController,
-                        size: size,
                         hintText: '주소',
                         fieldFocusNode: addressFocusNode,
                         nextFocusNode: emailFocusNode,
@@ -89,7 +86,6 @@ class _EnterPageScreenState extends State<EnterPageScreen> {
                       verticalSpaceSmall,
                       InputWidget(
                         controller: emailController,
-                        size: size,
                         hintText: '이메일',
                         fieldFocusNode: emailFocusNode,
                         nextFocusNode: passwordFocusNode,
@@ -99,7 +95,6 @@ class _EnterPageScreenState extends State<EnterPageScreen> {
                       verticalSpaceSmall,
                       InputWidget(
                         controller: password2Controller,
-                        size: size,
                         password: true,
                         hintText: '비밀번호',
                         fieldFocusNode: passwordFocusNode,
@@ -110,7 +105,6 @@ class _EnterPageScreenState extends State<EnterPageScreen> {
                       verticalSpaceSmall,
                       InputWidget(
                         controller: password2Controller,
-                        size: size,
                         password: true,
                         hintText: '비밀번호 확인',
                         fieldFocusNode: password2FocusNode,
@@ -133,7 +127,6 @@ class _EnterPageScreenState extends State<EnterPageScreen> {
                       verticalSpaceLarge,
                       CustomButton(
                         title: '회원가입',
-                        size: size,
                         textColor: Color(0xff3d6bfc),
                         onTap: () {
                           if (model.checkPhoneNumber(phoneController.text)) {
