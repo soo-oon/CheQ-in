@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class VisitedViewModel extends BaseModel {
   final FirestoreService _firestoreService = locator<FirestoreService>();
   SharedPreferences _prefs;
+  SharedPreferences get prefs => _prefs;
   List<String> visitedBuildings = [];
   List<String> removedBuildings = [];
   String lastStop = "";
@@ -29,6 +30,7 @@ class VisitedViewModel extends BaseModel {
     if (lastStop == "") lastStop = _prefs.getString("last");
     if (_prefs.getStringList("buildings") != null)
       visitedBuildings = _prefs.getStringList("buildings");
+
     updateBuilding();
     exceptBuildingVisitedOverThreeWeek();
     formatted = formatter.format(now);

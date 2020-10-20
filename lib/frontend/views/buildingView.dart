@@ -37,7 +37,10 @@ class _VisitBuildingViewState extends State<VisitBuildingView> {
                                   false,
                                   model.visitedBuildings[index],
                                   buildingsubtitle(index, model),
-                                  '2020',
+                                  model.prefs
+                                      .getInt(model.visitedBuildings[index])
+                                      .toString()
+                                      .replaceRange(2, 2, ' / '),
                                   _tileColor(index, model));
                             }),
                       )

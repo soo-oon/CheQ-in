@@ -22,8 +22,8 @@ class _LoginScreenState extends State<LoginScreen> {
         viewModelBuilder: () => LoginViewModel(),
         builder: (context, model, child) => Scaffold(
               backgroundColor: Colors.white,
-              body: SingleChildScrollView(
-                child: Center(
+              body: Center(
+                child: SingleChildScrollView(
                   child: Container(
                     decoration: BoxDecoration(color: Colors.white),
                     width: double.infinity,
