@@ -1,19 +1,22 @@
+import 'package:checkin/frontend/views/buildingView.dart';
+import 'package:checkin/frontend/views/covid_view_new.dart';
+import 'package:checkin/frontend/views/suggestion_view_test.dart';
 import 'package:flutter/material.dart';
 import 'package:checkin/models/models.dart';
 import 'package:checkin/frontend/views/front_views.dart';
 
 class FrontEndHomeViewModel extends BaseModel {
   List<Widget> pages = [
-    CovidView(),
-    VisitedView(),
+    MyHome(),
+    VisitBuildingView(),
     QRScanView(),
-    SuggestionView(),
-    FrontInfoView(),
+    InquiryScreen(),
+    OptionScreen(),
   ];
 
   init() async {
     setBusy(true);
-    if(qrScanned == true) {
+    if (qrScanned == true) {
       setIndex(1);
     } else {
       setIndex(0);

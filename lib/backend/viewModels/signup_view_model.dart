@@ -135,17 +135,18 @@ class SignUpViewModel extends BaseModel {
     formattedPhoneNumber = phoneNumber;
     formattedPhoneNumber.replaceAll("_", "");
 
-    if (formattedPhoneNumber.length < 11 ) {
+    if (formattedPhoneNumber.length < 11) {
       //showPhoneNumberLengthWrongDialog();
       return false;
-    } else{
-      formattedPhoneNumber = formattedPhoneNumber.substring(formattedPhoneNumber.length-10);
+    } else {
+      formattedPhoneNumber =
+          formattedPhoneNumber.substring(formattedPhoneNumber.length - 10);
       formattedPhoneNumber = "0" + formattedPhoneNumber;
       print(formattedPhoneNumber);
 
-      if(formattedPhoneNumber.startsWith('010')){
+      if (formattedPhoneNumber.startsWith('010')) {
         return true;
-      }else{
+      } else {
         //showPhoneNumberLengthWrongDialog();
         return false;
       }
@@ -162,8 +163,6 @@ class SignUpViewModel extends BaseModel {
       showPhoneNumberWrongDialog();
       return false;
     }*/
-
-
   }
 
   // void checkIfPhoneVarified(int otp) {

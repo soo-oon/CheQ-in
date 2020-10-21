@@ -7,3 +7,6 @@ export 'note_text.dart';
 export 'text_link.dart';
 export 'header.dart';
 export 'suggestion.dart';
+export 'input_and_button.dart';
+export 'button_widget.dart';
+export 'icon_button_widget.dart';

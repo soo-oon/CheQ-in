@@ -16,7 +16,7 @@ class Const {
   // ignore: non_constant_identifier_names
   static final NUMBER_OF_BUILDINGS = 4;
   // ignore: non_constant_identifier_names
-  static final SELECTED_COLOR = Colors.lightBlue;
+  static final SELECTED_COLOR = Color(0xff3d6bfc);
   // ignore: non_constant_identifier_names
   static final UNSELECTED_COLOR = Colors.grey;
 }

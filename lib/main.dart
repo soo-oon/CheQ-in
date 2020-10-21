@@ -10,11 +10,9 @@ import 'locator.dart';
 void main() {
   setupLocator();
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitDown,
-    DeviceOrientation.portraitUp
-  ]).then((_) => runApp(new MyApp()));
-  
+  SystemChrome.setPreferredOrientations(
+          [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp])
+      .then((_) => runApp(new MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -26,15 +24,16 @@ class MyApp extends StatelessWidget {
       builder: (context, child) => Navigator(
         key: locator<DialogService>().dialogNavigationKey,
         onGenerateRoute: (settings) => MaterialPageRoute(
-          builder: (context) => DialogManager(child: child,)
-        ),
+            builder: (context) => DialogManager(
+                  child: child,
+                )),
       ),
       navigatorKey: locator<NavigationService>().navigationKey,
       theme: ThemeData(
         primaryColor: Color(0xff19c7c1),
         textTheme: Theme.of(context).textTheme.apply(
-              fontFamily: 'Open Sans',
-        ),
+              fontFamily: 'NotoSans',
+            ),
       ),
       home: StartUpView(),
       onGenerateRoute: generateRoute,

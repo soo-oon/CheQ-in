@@ -5,3 +5,4 @@ export 'visited_view.dart';
 export 'front_info_view.dart';
 export 'qr_scan_view.dart';
 export 'suggestion_view.dart';
+export 'option_view.dart';
