@@ -1,7 +1,5 @@
 import 'package:checkin/backend/viewModels/info_view_model.dart';
 import 'package:checkin/backend/views/modify_view.dart';
-import 'package:checkin/backend/views/modify_view_replace.dart';
-import 'package:checkin/frontend/viewModels/options_view_model.dart';
 import 'package:checkin/ui/shared/ui_helpers.dart';
 import 'package:checkin/ui/widgets/email_widget.dart';
 import 'package:checkin/ui/widgets/icon_button_widget.dart';
