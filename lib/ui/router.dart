@@ -1,13 +1,11 @@
 import 'package:checkin/backend/views/backend_home_view.dart';
 import 'package:checkin/frontend/views/front_views.dart';
 import 'package:checkin/frontend/views/frontend_home_view.dart';
-import 'package:checkin/frontend/views/visited_view.dart';
+import 'package:checkin/frontend/views/visited_building.dart';
 import 'package:flutter/material.dart';
 import 'package:checkin/constants/route_names.dart';
 import 'package:checkin/backend/views/login_view.dart';
-import 'package:checkin/backend/views/login_view_test.dart';
 import 'package:checkin/backend/views/signup_view.dart';
-import 'package:checkin/backend/views/sign_up_view_replace.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -34,7 +32,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case VisitedViewRoute:
       return _getPageRoute(
         routeName: settings.name,
-        viewToShow: VisitedView(),
+        viewToShow: VisitBuildingView(),
       );
     case QRScanViewRoute:
       return _getPageRoute(

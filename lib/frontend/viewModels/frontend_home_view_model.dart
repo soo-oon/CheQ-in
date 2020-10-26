@@ -1,6 +1,5 @@
-import 'package:checkin/frontend/views/buildingView.dart';
 import 'package:checkin/frontend/views/covid_view_new.dart';
-import 'package:checkin/frontend/views/suggestion_view_test.dart';
+import 'package:checkin/frontend/views/visited_building.dart';
 import 'package:flutter/material.dart';
 import 'package:checkin/models/models.dart';
 import 'package:checkin/frontend/views/front_views.dart';
