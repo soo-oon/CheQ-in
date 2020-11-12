@@ -94,7 +94,7 @@ class _EnterPageScreenState extends State<EnterPageScreen> {
                       ),
                       verticalSpaceSmall,
                       InputWidget(
-                        controller: password2Controller,
+                        controller: passwordController,
                         password: true,
                         hintText: '비밀번호',
                         fieldFocusNode: passwordFocusNode,

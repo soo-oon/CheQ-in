@@ -30,8 +30,8 @@ class _MyHomeState extends State<MyHome> {
     return ViewModelProvider<CovidViewModel>.withConsumer(
         viewModelBuilder: () => CovidViewModel(),
         builder: (context, model, child) => Scaffold(
-              body: Container(
-                width: double.infinity,
+              body: SingleChildScrollView(
+                //width: double.infinity,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -46,7 +46,7 @@ class _MyHomeState extends State<MyHome> {
                       crossAxisCount: 2,
                       children: gridItems,
                     ),
-                    Row(
+                    /*Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -73,7 +73,7 @@ class _MyHomeState extends State<MyHome> {
                           ),
                         ),
                       ],
-                    )
+                    )*/
                   ],
                 ),
               ),
